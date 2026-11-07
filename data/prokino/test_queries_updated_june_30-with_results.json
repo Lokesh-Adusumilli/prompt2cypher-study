@@ -1,0 +1,3791 @@
+[
+    {
+        "title": "A1",
+        "query": "What is the functional domain associated with EGFR protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain) RETURN DISTINCT fd.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "PK_Tyr_Ser-Thr"
+            ],
+            [
+                "Furin-like"
+            ],
+            [
+                "Recep_L_domain"
+            ],
+            [
+                "GF_recep_IV"
+            ]
+        ]
+    },
+    {
+        "title": "A2",
+        "query": "What are the amino acid changes and mutation descriptions for EGFR protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASMUTATION]->(m) RETURN DISTINCT m.hasMutationAA, m.hasMutationDescription LIMIT 100",
+        "cypher_result": [
+            [
+                "p.G824=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.A613=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.D1009Y",
+                "Substitution - Missense"
+            ],
+            [
+                "p.C624G",
+                "Substitution - Missense"
+            ],
+            [
+                "p.S1162N",
+                "Substitution - Missense"
+            ],
+            [
+                "p.T751A",
+                "Substitution - Missense"
+            ],
+            [
+                "p.G719Afs*29",
+                "Deletion - Frameshift"
+            ],
+            [
+                "p.V726M",
+                "Substitution - Missense"
+            ],
+            [
+                "p.P644S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.N444I",
+                "Substitution - Missense"
+            ],
+            [
+                "p.A859S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.V301=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.E804K",
+                "Substitution - Missense"
+            ],
+            [
+                "p.I82F",
+                "Substitution - Missense"
+            ],
+            [
+                "p.N422S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.Q820R",
+                "Substitution - Missense"
+            ],
+            [
+                "p.A289D",
+                "Substitution - Missense"
+            ],
+            [
+                "p.A1181P",
+                "Substitution - Missense"
+            ],
+            [
+                "p.R831L",
+                "Substitution - Missense"
+            ],
+            [
+                "p.A702S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.W817Gfs*9",
+                "Deletion - Frameshift"
+            ],
+            [
+                "p.S752P",
+                "Substitution - Missense"
+            ],
+            [
+                "p.I664Sfs*41",
+                "Deletion - Frameshift"
+            ],
+            [
+                "p.F712S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.T940A",
+                "Substitution - Missense"
+            ],
+            [
+                "p.G719V",
+                "Substitution - Missense"
+            ],
+            [
+                "p.G779S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.N1094S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.E690K",
+                "Substitution - Missense"
+            ],
+            [
+                "p.K852T",
+                "Substitution - Missense"
+            ],
+            [
+                "p.A419P",
+                "Substitution - Missense"
+            ],
+            [
+                "p.R776H",
+                "Substitution - Missense"
+            ],
+            [
+                "p.N842S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.Y915C",
+                "Substitution - Missense"
+            ],
+            [
+                "p.R958=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.L747_S752>V",
+                "Complex - deletion inframe"
+            ],
+            [
+                "p.V834del",
+                "Deletion - In frame"
+            ],
+            [
+                "p.N771dup",
+                "Insertion - In frame"
+            ],
+            [
+                "p.G873Q",
+                "Substitution - Missense"
+            ],
+            [
+                "p.A647T",
+                "Substitution - Missense"
+            ],
+            [
+                "p.V592=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.R973*",
+                "Substitution - Nonsense"
+            ],
+            [
+                "p.C624Y",
+                "Substitution - Missense"
+            ],
+            [
+                "p.E282K",
+                "Substitution - Missense"
+            ],
+            [
+                "p.K714E",
+                "Substitution - Missense"
+            ],
+            [
+                "p.V536M",
+                "Substitution - Missense"
+            ],
+            [
+                "p.P772_H773insX",
+                "Insertion - In frame"
+            ],
+            [
+                "p.K754R",
+                "Substitution - Missense"
+            ],
+            [
+                "p.G796=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.D314N",
+                "Substitution - Missense"
+            ],
+            [
+                "p.C595Y",
+                "Substitution - Missense"
+            ],
+            [
+                "p.P772_V774dup",
+                "Insertion - In frame"
+            ],
+            [
+                "p.H805R",
+                "Substitution - Missense"
+            ],
+            [
+                "p.L747_P753delinsQ",
+                ""
+            ],
+            [
+                "p.E746_T751>C",
+                "Complex - deletion inframe"
+            ],
+            [
+                "p.D807E",
+                "Substitution - Missense"
+            ],
+            [
+                "p.T783I",
+                "Substitution - Missense"
+            ],
+            [
+                "p.H304Y",
+                "Substitution - Missense"
+            ],
+            [
+                "p.K716E",
+                "Substitution - Missense"
+            ],
+            [
+                "p.S1153N",
+                "Substitution - Missense"
+            ],
+            [
+                "p.F1151L",
+                "Substitution - Missense"
+            ],
+            [
+                "p.H835Q",
+                "Substitution - Missense"
+            ],
+            [
+                "p.S177P",
+                "Substitution - Missense"
+            ],
+            [
+                "p.E829K",
+                "Substitution - Missense"
+            ],
+            [
+                "p.T1041A",
+                "Substitution - Missense"
+            ],
+            [
+                "p.S752_V769del",
+                "Deletion - In frame"
+            ],
+            [
+                "p.R224H",
+                "Substitution - Missense"
+            ],
+            [
+                "p.R324L",
+                "Substitution - Missense"
+            ],
+            [
+                "p.G312W",
+                "Substitution - Missense"
+            ],
+            [
+                "p.H584Q",
+                "Substitution - Missense"
+            ],
+            [
+                "p.I759V",
+                "Substitution - Missense"
+            ],
+            [
+                "p.R748I",
+                "Substitution - Missense"
+            ],
+            [
+                "p.R252H",
+                "Substitution - Missense"
+            ],
+            [
+                "p.N182=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.V769M",
+                "Substitution - Missense"
+            ],
+            [
+                "p.G719D",
+                "Substitution - Missense"
+            ],
+            [
+                "p.C1146S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.P1117=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.A1048V",
+                "Substitution - Missense"
+            ],
+            [
+                "p.A21=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.C628F",
+                "Substitution - Missense"
+            ],
+            [
+                "p.T273A",
+                "Substitution - Missense"
+            ],
+            [
+                "p.H773_V774insGNPH",
+                "Insertion - In frame"
+            ],
+            [
+                "p.A750_K757del",
+                "Deletion - In frame"
+            ],
+            [
+                "p.P644=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.W951*",
+                "Substitution - Nonsense"
+            ],
+            [
+                "p.I664F",
+                "Substitution - Missense"
+            ],
+            [
+                "p.Q276L",
+                "Substitution - Missense"
+            ],
+            [
+                "p.G719?",
+                "Unknown"
+            ],
+            [
+                "p.P1088S",
+                "Substitution - Missense"
+            ],
+            [
+                "p.L718Q",
+                "Substitution - Missense"
+            ],
+            [
+                "p.R1052I",
+                "Substitution - Missense"
+            ],
+            [
+                "p.L541F",
+                "Substitution - Missense"
+            ],
+            [
+                "p.D166N",
+                "Substitution - Missense"
+            ],
+            [
+                "p.E746_T751delinsV",
+                ""
+            ],
+            [
+                "p.S1096=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.P266Hfs*14",
+                "Deletion - Frameshift"
+            ],
+            [
+                "p.E746_E749>Y",
+                "Complex - deletion inframe"
+            ],
+            [
+                "p.I706=",
+                "Substitution - coding silent"
+            ],
+            [
+                "p.N771del",
+                "Deletion - In frame"
+            ]
+        ]
+    },
+    {
+        "title": "A3",
+        "query": "In which organisms is DCLK1 protein present?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'DCLK1'})-[:PRESENTIN]->(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "Human"
+            ],
+            [
+                "Mouse"
+            ]
+        ]
+    },
+    {
+        "title": "A4",
+        "query": "What pathways does EGFR protein participate in?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:PARTICIPATESIN]->(path:Pathway) RETURN DISTINCT path.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "Signal Transduction"
+            ],
+            [
+                "Downregulation of ERBB4 signaling"
+            ],
+            [
+                "Vesicle-mediated transport"
+            ],
+            [
+                "RNA Polymerase II Transcription"
+            ],
+            [
+                "GAB1 signalosome"
+            ],
+            [
+                "Developmental Biology"
+            ],
+            [
+                "Intracellular signaling by second messengers"
+            ],
+            [
+                "Signaling by Non-Receptor Tyrosine Kinases"
+            ],
+            [
+                "Signaling by Nuclear Receptors"
+            ],
+            [
+                "Signaling by Receptor Tyrosine Kinases"
+            ],
+            [
+                "Signaling by ERBB4"
+            ],
+            [
+                "Axon guidance"
+            ],
+            [
+                "Nuclear signaling by ERBB4"
+            ],
+            [
+                "Signaling by EGFR"
+            ],
+            [
+                "MAPK1/MAPK3 signaling"
+            ],
+            [
+                "Negative regulation of the PI3K/AKT network"
+            ],
+            [
+                "Nervous system development"
+            ],
+            [
+                "GPCR downstream signalling"
+            ],
+            [
+                "PIP3 activates AKT signaling"
+            ],
+            [
+                "Signaling by ERBB2"
+            ],
+            [
+                "Signaling by PTK6"
+            ],
+            [
+                "RAF/MAP kinase cascade"
+            ],
+            [
+                "Generic Transcription Pathway"
+            ],
+            [
+                "Membrane Trafficking"
+            ],
+            [
+                "L1CAM interactions"
+            ],
+            [
+                "MAPK family signaling cascades"
+            ],
+            [
+                "Extra-nuclear estrogen signaling"
+            ],
+            [
+                "PI5P, PP2A and IER3 Regulate PI3K/AKT Signaling"
+            ],
+            [
+                "ESR-mediated signaling"
+            ],
+            [
+                "Gene expression (Transcription)"
+            ],
+            [
+                "Signaling by GPCR"
+            ],
+            [
+                "Clathrin-mediated endocytosis"
+            ],
+            [
+                "Diseases of signal transduction by growth factor receptors and second messengers"
+            ],
+            [
+                "Downregulation of ERBB2:ERBB3 signaling"
+            ],
+            [
+                "Downregulation of ERBB2 signaling"
+            ],
+            [
+                "Gastrin-CREB signalling pathway via PKC and MAPK"
+            ],
+            [
+                "EGFR Transactivation by Gastrin"
+            ],
+            [
+                "G alpha (q) signalling events"
+            ],
+            [
+                "Estrogen-dependent gene expression"
+            ],
+            [
+                "Infectious disease"
+            ],
+            [
+                "Disease"
+            ],
+            [
+                "Semaphorin interactions"
+            ],
+            [
+                "SHC1 events in ERBB2 signaling"
+            ],
+            [
+                "Signaling by NOTCH"
+            ],
+            [
+                "Cargo recognition for clathrin-mediated endocytosis"
+            ],
+            [
+                "Signal transduction by L1"
+            ],
+            [
+                "Estrogen-dependent nuclear events downstream of ESR-membrane signaling"
+            ],
+            [
+                "Signaling by ERBB2 in Cancer"
+            ],
+            [
+                "Transcriptional regulation by the AP-2 (TFAP2) family of transcription factors"
+            ],
+            [
+                "SHC1 events in EGFR signaling"
+            ],
+            [
+                "EGFR downregulation"
+            ],
+            [
+                "ERBB2 Regulates Cell Motility"
+            ],
+            [
+                "EGFR interacts with phospholipase C-gamma"
+            ],
+            [
+                "Sema4D induced cell migration and growth-cone collapse"
+            ],
+            [
+                "Drug-mediated inhibition of ERBB2 signaling"
+            ],
+            [
+                "Sema4D in semaphorin signaling"
+            ],
+            [
+                "PI3K events in ERBB2 signaling"
+            ],
+            [
+                "GRB2 events in EGFR signaling"
+            ],
+            [
+                "PTK6 promotes HIF1A stabilization"
+            ],
+            [
+                "Signaling by NOTCH3"
+            ],
+            [
+                "PLCG1 events in ERBB2 signaling"
+            ],
+            [
+                "TFAP2 (AP-2) family regulates transcription of growth factors and their receptors"
+            ],
+            [
+                "Signaling by ERBB2 KD Mutants"
+            ],
+            [
+                "GRB2 events in ERBB2 signaling"
+            ],
+            [
+                "Signaling by ERBB2 ECD mutants"
+            ],
+            [
+                "ERBB2 Activates PTK6 Signaling"
+            ],
+            [
+                "Signaling by ERBB2 TMD/JMD mutants"
+            ],
+            [
+                "Constitutive Signaling by Aberrant PI3K in Cancer"
+            ],
+            [
+                "PI3K/AKT Signaling in Cancer"
+            ],
+            [
+                "NOTCH3 Activation and Transmission of Signal to the Nucleus"
+            ],
+            [
+                "HCMV Early Events"
+            ],
+            [
+                "HCMV Infection"
+            ],
+            [
+                "Constitutive Signaling by Ligand-Responsive EGFR Cancer Variants"
+            ],
+            [
+                "Signaling by Ligand-Responsive EGFR Variants in Cancer"
+            ],
+            [
+                "Signaling by EGFRvIII in Cancer"
+            ],
+            [
+                "Constitutive Signaling by EGFRvIII"
+            ],
+            [
+                "Signaling by Overexpressed Wild-Type EGFR in Cancer"
+            ],
+            [
+                "Inhibition of Signaling by Overexpressed EGFR"
+            ],
+            [
+                "Signaling by EGFR in Cancer"
+            ]
+        ]
+    },
+    {
+        "title": "A5",
+        "query": "What reactions are produced by the 'RHOJ GTPase cycle' pathway?",
+        "cypher": "MATCH (p:Pathway {hasPrimaryName: 'RHOJ GTPase cycle'})-[:HASREACTION]->(r:Reaction) RETURN DISTINCT r.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "RHOJ GEFs activate RHOJ"
+            ],
+            [
+                "RHOJ binds effectors at the plasma membrane"
+            ],
+            [
+                "RHOJ GAPs stimulate RHOJ GTPase activity"
+            ]
+        ]
+    },
+    {
+        "title": "A6",
+        "query": "List all proteins belonging to the EGFR family.",
+        "cypher": "MATCH (f:EGFRfamily)-[:ENCODEDIN]->(p:Protein) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "ERBB2"
+            ],
+            [
+                "ERBB3"
+            ],
+            [
+                "AQUEK265"
+            ],
+            [
+                "EGFR"
+            ],
+            [
+                "LET-23"
+            ],
+            [
+                "AQUEK266"
+            ],
+            [
+                "AQUEK263"
+            ],
+            [
+                "ERBB4"
+            ],
+            [
+                "AQUEK264"
+            ]
+        ]
+    },
+    {
+        "title": "A7",
+        "query": "What is the tissue specificity of the EGFR protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) RETURN DISTINCT p.hasTissueSpecificity LIMIT 100",
+        "cypher_result": [
+            [
+                "Ubiquitously expressed. Isoform 2 is also expressed in ovarian cancers."
+            ],
+            [
+                "Ubiquitously expressed in embryos. In larvae, uniform expression is seen in wing disks, genital disk, anlagen of testis and ovary, and brain cortex. In eye-antenna disk, highest expression is anterior to morphogenetic furrow, levels remain high in photoreceptor precursor cells. This pattern is reversed in posterior eye disk. In adults expression is high in brain cortex and thoracic and abdominal ganglia."
+            ],
+            [
+                null
+            ]
+        ]
+    },
+    {
+        "title": "A8",
+        "query": "What is the chromosomal position of the EGFR protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) RETURN DISTINCT p.chromosomalPosition LIMIT 100",
+        "cypher_result": [
+            [
+                "7p11.1-p11.2"
+            ],
+            [
+                "57F5--8"
+            ],
+            [
+                null
+            ]
+        ]
+    },
+    {
+        "title": "A9",
+        "query": "Is HIPK1 protein a dark kinase?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'HIPK1'}) RETURN DISTINCT p.isDarkKinase LIMIT 100",
+        "cypher_result": [
+            [
+                true
+            ],
+            [
+                false
+            ]
+        ]
+    },
+    {
+        "title": "A10",
+        "query": "What is the cellular location of the BRAF protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'BRAF'}) RETURN DISTINCT p.hasCellularLocation LIMIT 100",
+        "cypher_result": [
+            [
+                "Cytoplasm"
+            ],
+            [
+                "Cell membrane"
+            ]
+        ]
+    },
+    {
+        "title": "B1",
+        "query": "What are the sequence motifs found in the amino acid sequence of the EGFR protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASSEQUENCE]->(s:Sequence)-[:HASMOTIF]->(sm:SequenceMotif) RETURN DISTINCT sm.hasPrimaryName AS StructuralMotif LIMIT 100",
+        "cypher_result": [
+            [
+                "beta7"
+            ],
+            [
+                "beta2"
+            ],
+            [
+                "Sh2"
+            ],
+            [
+                "alphaF"
+            ],
+            [
+                "G loop"
+            ],
+            [
+                "subdomain V"
+            ],
+            [
+                "CS3"
+            ],
+            [
+                "Sh1"
+            ],
+            [
+                "C-lobe"
+            ],
+            [
+                "RS3"
+            ],
+            [
+                "CS7"
+            ],
+            [
+                "CS5"
+            ],
+            [
+                "linker"
+            ],
+            [
+                "subdomain X"
+            ],
+            [
+                "N-lobe"
+            ],
+            [
+                "CS2"
+            ],
+            [
+                "DFG Motif"
+            ],
+            [
+                "subdomain VIa"
+            ],
+            [
+                "subdomain I"
+            ],
+            [
+                "RS1"
+            ],
+            [
+                "alphaC"
+            ],
+            [
+                "beta3-Lys"
+            ],
+            [
+                "beta5"
+            ],
+            [
+                "alphaC-Glu"
+            ],
+            [
+                "CS4"
+            ],
+            [
+                "APE Motif"
+            ],
+            [
+                "HxN Motif"
+            ],
+            [
+                "activation loop"
+            ],
+            [
+                "alphaI"
+            ],
+            [
+                "alphaH"
+            ],
+            [
+                "beta9"
+            ],
+            [
+                "Sh3"
+            ],
+            [
+                "HRD Motif"
+            ],
+            [
+                "subdomain III"
+            ],
+            [
+                "CS8"
+            ],
+            [
+                "subdomain VIII"
+            ],
+            [
+                "subdomain II"
+            ],
+            [
+                "RS4"
+            ],
+            [
+                "RS2"
+            ],
+            [
+                "subdomain IV"
+            ],
+            [
+                "alphaG"
+            ],
+            [
+                "beta3"
+            ],
+            [
+                "DxW Motif"
+            ],
+            [
+                "beta6"
+            ],
+            [
+                "beta1"
+            ],
+            [
+                "CS6"
+            ],
+            [
+                "alphaE"
+            ],
+            [
+                "subdomain VII"
+            ],
+            [
+                "RS0"
+            ],
+            [
+                "CS1"
+            ],
+            [
+                "subdomain VIb"
+            ],
+            [
+                "alphaD"
+            ],
+            [
+                "beta8"
+            ],
+            [
+                "subdomain XI"
+            ],
+            [
+                "catalytic loop"
+            ],
+            [
+                "beta4"
+            ],
+            [
+                "alpha-D.54"
+            ],
+            [
+                "g.l.8"
+            ],
+            [
+                "a.l.84"
+            ],
+            [
+                "c.l.74"
+            ],
+            [
+                "g.l.7"
+            ],
+            [
+                "III.17"
+            ],
+            [
+                "a.l.85"
+            ],
+            [
+                "alpha-D.55"
+            ],
+            [
+                "linker.52"
+            ],
+            [
+                "GK.45"
+            ],
+            [
+                "I.3"
+            ],
+            [
+                "linker.51"
+            ],
+            [
+                "alpha-D.59"
+            ],
+            [
+                "VII.77"
+            ],
+            [
+                "alpha-C.21"
+            ],
+            [
+                "alpha-C.25"
+            ],
+            [
+                "II.11"
+            ],
+            [
+                "III.19"
+            ],
+            [
+                "g.l.6"
+            ],
+            [
+                "II.13"
+            ],
+            [
+                "c.l.70"
+            ],
+            [
+                "c.l.75"
+            ],
+            [
+                "b.l.37"
+            ],
+            [
+                "IV.38"
+            ],
+            [
+                "V.44"
+            ],
+            [
+                "hinge.47"
+            ],
+            [
+                "alpha-C.28"
+            ],
+            [
+                "hinge.46"
+            ],
+            [
+                "III.16"
+            ],
+            [
+                "linker.49"
+            ],
+            [
+                "III.15"
+            ],
+            [
+                "hinge.48"
+            ],
+            [
+                "xDFG.83"
+            ],
+            [
+                "linker.50"
+            ],
+            [
+                "g.l.5"
+            ],
+            [
+                "xDFG.82"
+            ],
+            [
+                "xDFG.80"
+            ],
+            [
+                "xDFG.81"
+            ],
+            [
+                "g.l.4"
+            ],
+            [
+                "g.l.9"
+            ],
+            [
+                "V.43"
+            ],
+            [
+                "b.l.36"
+            ]
+        ]
+    },
+    {
+        "title": "B2",
+        "query": "Which sample is associated with the gene expression of EGFR protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})<-[:HASPROTEIN]-(ge:GeneExpression)-[:INSAMPLE]->(s:Sample) RETURN DISTINCT s.hasSampleName LIMIT 100",
+        "cypher_result": [
+            [
+                "TCGA-AG-A015-01"
+            ],
+            [
+                "TCGA-DJ-A2Q7-01"
+            ],
+            [
+                "TCGA-CG-5724-01"
+            ],
+            [
+                "TCGA-XS-A8TJ-01"
+            ],
+            [
+                "TCGA-DD-A73B-01"
+            ],
+            [
+                "TCGA-AA-A02J-01"
+            ],
+            [
+                "TCGA-06-0168-01"
+            ],
+            [
+                "TCGA-BH-A1EX-01"
+            ],
+            [
+                "TCGA-HC-A8D1-01"
+            ],
+            [
+                "TCGA-FD-A6TE-01"
+            ],
+            [
+                "TCGA-G3-A3CG-01"
+            ],
+            [
+                "TCGA-AA-3675-01"
+            ],
+            [
+                "TCGA-D8-A1J8-01"
+            ],
+            [
+                "TCGA-29-1761-01"
+            ],
+            [
+                "TCGA-GV-A3QH-01"
+            ],
+            [
+                "TCGA-AA-3489-01"
+            ],
+            [
+                "TCGA-FP-7735-01"
+            ],
+            [
+                "TCGA-KK-A6DY-01"
+            ],
+            [
+                "TCGA-RY-A840-01"
+            ],
+            [
+                "TCGA-66-2727-01"
+            ],
+            [
+                "TCGA-DI-A0WH-01"
+            ],
+            [
+                "TCGA-D8-A141-01"
+            ],
+            [
+                "TCGA-BR-A4PF-01"
+            ],
+            [
+                "TCGA-EK-A2PG-01"
+            ],
+            [
+                "TCGA-EK-A2R7-01"
+            ],
+            [
+                "TCGA-KR-A7K7-01"
+            ],
+            [
+                "TCGA-G4-6588-01"
+            ],
+            [
+                "TCGA-ZF-AA56-01"
+            ],
+            [
+                "TCGA-75-6203-01"
+            ],
+            [
+                "TCGA-A2-A3XS-01"
+            ],
+            [
+                "TCGA-FS-A1ZT-06"
+            ],
+            [
+                "TCGA-AB-2969-03"
+            ],
+            [
+                "TCGA-56-A5DS-01"
+            ],
+            [
+                "TCGA-AQ-A54N-01"
+            ],
+            [
+                "TCGA-DC-4749-01"
+            ],
+            [
+                "TCGA-LD-A7W6-01"
+            ],
+            [
+                "TCGA-D9-A4Z2-01"
+            ],
+            [
+                "TCGA-EE-A2GP-06"
+            ],
+            [
+                "TCGA-DD-A4NL-01"
+            ],
+            [
+                "TCGA-A7-A26G-01"
+            ],
+            [
+                "TCGA-CM-6172-01"
+            ],
+            [
+                "TCGA-DK-A6B1-01"
+            ],
+            [
+                "TCGA-UB-AA0V-01"
+            ],
+            [
+                "TCGA-CR-7389-01"
+            ],
+            [
+                "TCGA-AX-A3G9-01"
+            ],
+            [
+                "TCGA-E2-A15K-06"
+            ],
+            [
+                "TCGA-DD-AAW2-01"
+            ],
+            [
+                "TCGA-80-5607-01"
+            ],
+            [
+                "HCC1937"
+            ],
+            [
+                "TCGA-DY-A0XA-01"
+            ],
+            [
+                "TCGA-EW-A1P4-01"
+            ],
+            [
+                "TCGA-FC-A5OB-01"
+            ],
+            [
+                "TCGA-AN-A0XU-01"
+            ],
+            [
+                "TCGA-WE-AAA0-06"
+            ],
+            [
+                "TCGA-CJ-4644-01"
+            ],
+            [
+                "TCGA-CH-5764-01"
+            ],
+            [
+                "TCGA-AJ-A3TW-01"
+            ],
+            [
+                "TCGA-VM-A8CF-01"
+            ],
+            [
+                "TCGA-25-1627-01"
+            ],
+            [
+                "TCGA-PQ-A6FN-01"
+            ],
+            [
+                "TCGA-B0-5710-01"
+            ],
+            [
+                "TCGA-BR-7715-01"
+            ],
+            [
+                "TCGA-30-1891-01"
+            ],
+            [
+                "TCGA-D5-6923-01"
+            ],
+            [
+                "TCGA-QU-A6IO-01"
+            ],
+            [
+                "TCGA-AP-A05H-01"
+            ],
+            [
+                "TCGA-P3-A6T0-01"
+            ],
+            [
+                "TCGA-G3-AAV6-01"
+            ],
+            [
+                "TCGA-19-1787-01"
+            ],
+            [
+                "TCGA-HF-7134-01"
+            ],
+            [
+                "TCGA-FD-A62P-01"
+            ],
+            [
+                "TCGA-02-0055-01"
+            ],
+            [
+                "TCGA-CV-7423-01"
+            ],
+            [
+                "TCGA-GS-A9U3-01"
+            ],
+            [
+                "TCGA-B2-A4SR-01"
+            ],
+            [
+                "TCGA-D8-A1XA-01"
+            ],
+            [
+                "TCGA-77-8008-01"
+            ],
+            [
+                "TCGA-Q1-A5R3-01"
+            ],
+            [
+                "TCGA-BA-4074-01"
+            ],
+            [
+                "TCGA-EO-A3L0-01"
+            ],
+            [
+                "TCGA-DK-A1A7-01"
+            ],
+            [
+                "TCGA-TM-A84L-01"
+            ],
+            [
+                "TCGA-50-5045-01"
+            ],
+            [
+                "TCGA-A6-2677-01"
+            ],
+            [
+                "TCGA-CJ-4882-01"
+            ],
+            [
+                "TCGA-55-6980-01"
+            ],
+            [
+                "TCGA-F7-8298-01"
+            ],
+            [
+                "TCGA-85-7843-01"
+            ],
+            [
+                "TCGA-44-7669-01"
+            ],
+            [
+                "TCGA-CV-7089-01"
+            ],
+            [
+                "TCGA-FG-8185-01"
+            ],
+            [
+                "TCGA-YL-A8HJ-01"
+            ],
+            [
+                "TCGA-B0-5081-01"
+            ],
+            [
+                "TCGA-24-2267-01"
+            ],
+            [
+                "TCGA-AB-2935-03"
+            ],
+            [
+                "TCGA-A8-A09N-01"
+            ],
+            [
+                "TCGA-93-A4JO-01"
+            ],
+            [
+                "TCGA-E9-A1RB-01"
+            ],
+            [
+                "TCGA-EE-A183-06"
+            ],
+            [
+                "TCGA-DU-7300-01"
+            ]
+        ]
+    },
+    {
+        "title": "B3",
+        "query": "What are functional domains in the EGFR protein that belong to Human?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain),(p)-[:PRESENTIN]->(o:Organism {hasPrimaryName: 'Human'}) RETURN DISTINCT fd.hasPrimaryName AS FunctionalDomain",
+        "cypher_result": [
+            [
+                "GF_recep_IV"
+            ],
+            [
+                "PK_Tyr_Ser-Thr"
+            ],
+            [
+                "Furin-like"
+            ],
+            [
+                "Recep_L_domain"
+            ]
+        ]
+    },
+    {
+        "title": "B4",
+        "query": "Which samples with primary site 'skin' have missense mutations in the protein 'DCLK3'? Please provide the sample names.",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'DCLK3'})-[:HASMUTATION]->(m:Missense)-[:INSAMPLE]->(s:Sample {hasPrimarySite: 'skin'}) RETURN DISTINCT s.hasSampleName LIMIT 100",
+        "cypher_result": [
+            [
+                "TCGA-EE-A2MR-06"
+            ],
+            [
+                "TCGA-EE-A2GR-06"
+            ],
+            [
+                "TCGA-DA-A1HV-06"
+            ],
+            [
+                "CSCC-15-T"
+            ],
+            [
+                "TCGA-W3-AA1R-06"
+            ],
+            [
+                "WM3211"
+            ],
+            [
+                "TCGA-D3-A2JP-06"
+            ],
+            [
+                "5-VS039-T1"
+            ],
+            [
+                "TCGA-BF-AAOU-01"
+            ],
+            [
+                "CSCC-55-T"
+            ],
+            [
+                "YURAY"
+            ],
+            [
+                "5-VS018-T1"
+            ],
+            [
+                "YUWIA"
+            ],
+            [
+                "5-VS028-T1"
+            ],
+            [
+                "TCGA-FR-A726-01"
+            ],
+            [
+                "EXTERN_MELA_20140526_055"
+            ],
+            [
+                "TCGA-EE-A3AE-06"
+            ],
+            [
+                "TCGA-D9-A6EC-06"
+            ],
+            [
+                "PT13"
+            ],
+            [
+                "2834135"
+            ],
+            [
+                "5-VS041-T1"
+            ],
+            [
+                "TCGA-GN-A266-06"
+            ],
+            [
+                "TCGA-YD-A89C-06"
+            ],
+            [
+                "5-VS037-T3"
+            ],
+            [
+                "5-VS037-T2"
+            ],
+            [
+                "EXTERN_MELA_20140524_014"
+            ],
+            [
+                "EXTERN_MELA_20140924_076"
+            ],
+            [
+                "TCGA-FW-A3R5-06"
+            ],
+            [
+                "TCGA-OD-A75X-06"
+            ],
+            [
+                "5-VS009-T1"
+            ],
+            [
+                "TCGA-YD-A9TA-06"
+            ],
+            [
+                "5-VS034-T1"
+            ],
+            [
+                "PD42099a"
+            ],
+            [
+                "EXTERN_MELA_20140514_002"
+            ],
+            [
+                "TCGA-EE-A3JD-06"
+            ],
+            [
+                "CSCC-31-T"
+            ],
+            [
+                "TCGA-D9-A148-06"
+            ],
+            [
+                "TCGA-WE-A8ZX-06"
+            ],
+            [
+                "PD42117a"
+            ],
+            [
+                "5-VS024-T1"
+            ],
+            [
+                "2521252"
+            ],
+            [
+                "EXTERN_MELA_20140924_117"
+            ],
+            [
+                "TCGA-EE-A181-06"
+            ],
+            [
+                "5-VS042-T1"
+            ],
+            [
+                "TCGA-D3-A8GL-06"
+            ],
+            [
+                "TCGA-FS-A1ZZ-06"
+            ],
+            [
+                "CSCC-32-T"
+            ],
+            [
+                "TCGA-YG-AA3N-01"
+            ],
+            [
+                "YUQUEST"
+            ],
+            [
+                "TCGA-EE-A29S-06"
+            ],
+            [
+                "PT49"
+            ],
+            [
+                "PT37"
+            ],
+            [
+                "TCGA-EE-A29M-06"
+            ],
+            [
+                "TCGA-GF-A6C9-06"
+            ],
+            [
+                "PD42121a"
+            ],
+            [
+                "TCGA-D3-A3MV-06"
+            ],
+            [
+                "46M"
+            ],
+            [
+                "12T"
+            ],
+            [
+                "Au4"
+            ],
+            [
+                "EXTERN_MELA_20140924_079"
+            ],
+            [
+                "5-VS004-T1"
+            ],
+            [
+                "TCGA-FS-A1Z0-06"
+            ],
+            [
+                "PD42092a"
+            ],
+            [
+                "TCGA-ER-A19A-06"
+            ],
+            [
+                "EXTERN_MELA_20140526_035"
+            ],
+            [
+                "ME016T"
+            ],
+            [
+                "2492726"
+            ],
+            [
+                "2492724"
+            ],
+            [
+                "TCGA-DA-A1HY-06"
+            ],
+            [
+                "2492725"
+            ],
+            [
+                "TCGA-D3-A8GI-06"
+            ],
+            [
+                "TCGA-FW-A3TU-06"
+            ],
+            [
+                "TCGA-EE-A2GC-06"
+            ],
+            [
+                "TCGA-FS-A1ZA-06"
+            ],
+            [
+                "PD42096c"
+            ],
+            [
+                "PT33"
+            ],
+            [
+                "TCGA-GF-A3OT-06"
+            ],
+            [
+                "EXTERN_MELA_20140505_038"
+            ],
+            [
+                "TCGA-EE-A2M5-06"
+            ],
+            [
+                "EXTERN_MELA_20140505_063"
+            ],
+            [
+                "TCGA-D3-A2JF-06"
+            ],
+            [
+                "TCGA-GN-A4U5-01"
+            ],
+            [
+                "MELA_35619"
+            ],
+            [
+                "EXTERN_MELA_20140526_101"
+            ],
+            [
+                "TCGA-WE-A8K1-06"
+            ],
+            [
+                "EXTERN_MELA_20140924_125"
+            ],
+            [
+                "EXTERN_MELA_20140924_029"
+            ],
+            [
+                "TCGA-EE-A20C-06"
+            ]
+        ]
+    },
+    {
+        "title": "B5",
+        "query": "List all organisms that are classified under the 'Plant' clade.",
+        "cypher": "MATCH (c:Clade {hasPrimaryName: 'Plant'})<-[:ISPARTOF]-(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "S.moellendorffii"
+            ]
+        ]
+    },
+    {
+        "title": "B6",
+        "query": "Which proteins have functional domains named 'Pkinase'?",
+        "cypher": "MATCH (fd:FunctionalDomain {hasPrimaryName: 'Pkinase'})<-[:HASFUNCTIONALDOMAIN]-(p:Protein) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "87875.M00084"
+            ],
+            [
+                "97166.M00052"
+            ],
+            [
+                "81174.M00100"
+            ],
+            [
+                "80651.M00178"
+            ],
+            [
+                "96098.M00089"
+            ],
+            [
+                "108712.M00003"
+            ],
+            [
+                "89650.M00191"
+            ],
+            [
+                "87361.M00157"
+            ],
+            [
+                "91117.M00135"
+            ],
+            [
+                "85889.M00444"
+            ],
+            [
+                "83956.M00144"
+            ],
+            [
+                "91335.M00045"
+            ],
+            [
+                "88246.M00051"
+            ],
+            [
+                "82181.M00186"
+            ],
+            [
+                "81877.M00050"
+            ],
+            [
+                "81869.M00200"
+            ],
+            [
+                "93440.M00483"
+            ],
+            [
+                "82414.M00147"
+            ],
+            [
+                "85522.M00037"
+            ],
+            [
+                "81202.M00126"
+            ],
+            [
+                "83138.M00062"
+            ],
+            [
+                "84370.M00118"
+            ],
+            [
+                "96732.M00493"
+            ],
+            [
+                "84085.M00082"
+            ],
+            [
+                "82012.M00114"
+            ],
+            [
+                "82761.M00480"
+            ],
+            [
+                "95912.M00292"
+            ],
+            [
+                "95054.M00081"
+            ],
+            [
+                "88116.M00086"
+            ],
+            [
+                "96903.M00101"
+            ],
+            [
+                "89348.M00043"
+            ],
+            [
+                "88273.M00404"
+            ],
+            [
+                "86001.M00247"
+            ],
+            [
+                "95978.M00076"
+            ],
+            [
+                "88712.M00283"
+            ],
+            [
+                "84263.M00136"
+            ],
+            [
+                "92477.M00178"
+            ],
+            [
+                "82181.M00150"
+            ],
+            [
+                "96726.M00108"
+            ],
+            [
+                "81933.M00078"
+            ],
+            [
+                "83396.M00086"
+            ],
+            [
+                "80213.M00073"
+            ],
+            [
+                "82576.M00127"
+            ],
+            [
+                "83481.M00038"
+            ],
+            [
+                "82488.M00083"
+            ],
+            [
+                "92477.M00232"
+            ],
+            [
+                "92513.M00171"
+            ],
+            [
+                "TVAG_134240"
+            ],
+            [
+                "84337.M00134"
+            ],
+            [
+                "87564.M00062"
+            ],
+            [
+                "82761.M00546"
+            ],
+            [
+                "88728.M00082"
+            ],
+            [
+                "88712.M00314"
+            ],
+            [
+                "80596.M00217"
+            ],
+            [
+                "88945.M00103"
+            ],
+            [
+                "80520.M00020"
+            ],
+            [
+                "87054.M00094"
+            ],
+            [
+                "86827.M00443"
+            ],
+            [
+                "94483.M00080"
+            ],
+            [
+                "87854.M00199"
+            ],
+            [
+                "83714.M00243"
+            ],
+            [
+                "82234.M00109"
+            ],
+            [
+                "92800.M00034"
+            ],
+            [
+                "96955.M00178"
+            ],
+            [
+                "97007.M00164"
+            ],
+            [
+                "87835.M00232"
+            ],
+            [
+                "87955.M00279"
+            ],
+            [
+                "87328.M00184"
+            ],
+            [
+                "94173.M00177"
+            ],
+            [
+                "92204.M00063"
+            ],
+            [
+                "93793.M00220"
+            ],
+            [
+                "81907.M00061"
+            ],
+            [
+                "84433.M00188"
+            ],
+            [
+                "94262.M00256"
+            ],
+            [
+                "92747.M00163"
+            ],
+            [
+                "84270.M00653"
+            ],
+            [
+                "82578.M00484"
+            ],
+            [
+                "81368.M00100"
+            ],
+            [
+                "93494.M00054"
+            ],
+            [
+                "90492.M00241"
+            ],
+            [
+                "84370.M00111"
+            ],
+            [
+                "134846.M00005"
+            ],
+            [
+                "94489.M00120"
+            ],
+            [
+                "89692.M00407"
+            ],
+            [
+                "95287.M00227"
+            ],
+            [
+                "86412.M00168"
+            ],
+            [
+                "93204.M00229"
+            ],
+            [
+                "84178.M00086"
+            ],
+            [
+                "82538.M00104"
+            ],
+            [
+                "TVAG_431170"
+            ],
+            [
+                "89419.M00154"
+            ],
+            [
+                "93242.M00143"
+            ],
+            [
+                "92747.M00194"
+            ],
+            [
+                "84891.M00119"
+            ],
+            [
+                "90936.M00081"
+            ],
+            [
+                "88045.M00019"
+            ],
+            [
+                "95629.M00070"
+            ],
+            [
+                "86997.M00243"
+            ],
+            [
+                "94266.M00066"
+            ],
+            [
+                "90019.M00227"
+            ]
+        ]
+    },
+    {
+        "title": "B7",
+        "query": "What sequences are associated with EGFR protein?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASSEQUENCE]->(s:Sequence) RETURN DISTINCT s.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "Human_EGFR-Isoform2_Seq"
+            ],
+            [
+                "Human_EGFR-Isoform1_Seq"
+            ],
+            [
+                "Human_EGFR-Cosmic_Seq"
+            ],
+            [
+                "Human_EGFR-Isoform3_Seq"
+            ],
+            [
+                "Human_EGFR-UniProt_Seq"
+            ],
+            [
+                "Human_EGFR-Isoform4_Seq"
+            ],
+            [
+                "Human_EGFR-Kinbase_Seq"
+            ],
+            [
+                "FruitFly_EGFR-Isoform1_Seq"
+            ],
+            [
+                "FruitFly_EGFR-Kinbase_Seq"
+            ],
+            [
+                "FruitFly_EGFR-Isoform2_Seq"
+            ],
+            [
+                "FruitFly_EGFR-UniProt_Seq"
+            ],
+            [
+                "Mouse_EGFR-UniProt_Seq"
+            ],
+            [
+                "Mouse_EGFR-Kinbase_Seq"
+            ],
+            [
+                "SeaUrchin_EGFR-Kinbase_Seq"
+            ]
+        ]
+    },
+    {
+        "title": "B8",
+        "query": "List the names of samples implicated in cancer type 'glioma_gliosarcoma'.",
+        "cypher": "MATCH (s:Sample)-[:IMPLICATEDIN]->(c:Cancer {hasPrimaryName: 'glioma_gliosarcoma'}) RETURN DISTINCT s.hasSampleName LIMIT 100",
+        "cypher_result": [
+            [
+                "2760844"
+            ],
+            [
+                "1036330"
+            ],
+            [
+                "1036327"
+            ],
+            [
+                "1036331"
+            ],
+            [
+                "2701739"
+            ],
+            [
+                "2701741"
+            ],
+            [
+                "2701737"
+            ],
+            [
+                "2701740"
+            ],
+            [
+                "P-0001049-T01-IM3"
+            ],
+            [
+                "P-0008380-T02-IM5"
+            ],
+            [
+                "E40430"
+            ],
+            [
+                "P-0009649-T01-IM5"
+            ],
+            [
+                "P-0011026-T01-IM5"
+            ],
+            [
+                "2240680"
+            ],
+            [
+                "1285427"
+            ],
+            [
+                "2114472"
+            ]
+        ]
+    },
+    {
+        "title": "B9",
+        "query": "Which proteins have mutations of type 'Missense'?",
+        "cypher": "MATCH (p:Protein)-[:HASMUTATION]->(m:Missense) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "SPEG"
+            ],
+            [
+                "TBCK"
+            ],
+            [
+                "KIT"
+            ],
+            [
+                "TBK1"
+            ],
+            [
+                "AKT3"
+            ],
+            [
+                "AKT1"
+            ],
+            [
+                "AKT2"
+            ],
+            [
+                "HIPK2"
+            ],
+            [
+                "HIPK1"
+            ],
+            [
+                "HIPK4"
+            ],
+            [
+                "HIPK3"
+            ],
+            [
+                "EEF2K"
+            ],
+            [
+                "DAPK2"
+            ],
+            [
+                "DAPK1"
+            ],
+            [
+                "DAPK3"
+            ],
+            [
+                "EGFR"
+            ],
+            [
+                "KDR"
+            ],
+            [
+                "DDR2"
+            ],
+            [
+                "DDR1"
+            ],
+            [
+                "CASK"
+            ],
+            [
+                "ITK"
+            ],
+            [
+                "NUAK2"
+            ],
+            [
+                "NUAK1"
+            ],
+            [
+                "MOS"
+            ],
+            [
+                "CAMK2D"
+            ],
+            [
+                "CAMK2A"
+            ],
+            [
+                "CAMK2B"
+            ],
+            [
+                "CAMK2G"
+            ],
+            [
+                "MOK"
+            ],
+            [
+                "CAMK1G"
+            ],
+            [
+                "CAMK1D"
+            ],
+            [
+                "EPHA7"
+            ],
+            [
+                "EPHA8"
+            ],
+            [
+                "EPHA5"
+            ],
+            [
+                "EPHA6"
+            ],
+            [
+                "EPHA3"
+            ],
+            [
+                "EPHA4"
+            ],
+            [
+                "EPHA1"
+            ],
+            [
+                "EPHA2"
+            ],
+            [
+                "EPHB1"
+            ],
+            [
+                "EPHB6"
+            ],
+            [
+                "EPHB4"
+            ],
+            [
+                "EPHB2"
+            ],
+            [
+                "EPHB3"
+            ],
+            [
+                "FLT1"
+            ],
+            [
+                "FLT3"
+            ],
+            [
+                "FLT4"
+            ],
+            [
+                "LYN"
+            ],
+            [
+                "LRRK2"
+            ],
+            [
+                "LRRK1"
+            ],
+            [
+                "MAK"
+            ],
+            [
+                "MER"
+            ],
+            [
+                "MET"
+            ],
+            [
+                "ROR1"
+            ],
+            [
+                "ROR2"
+            ],
+            [
+                "PIM3"
+            ],
+            [
+                "PIM1"
+            ],
+            [
+                "PIM2"
+            ],
+            [
+                "IGF1R"
+            ],
+            [
+                "BMPR2"
+            ],
+            [
+                "WNK2"
+            ],
+            [
+                "WNK3"
+            ],
+            [
+                "WNK4"
+            ],
+            [
+                "LTK"
+            ],
+            [
+                "TGFBR2"
+            ],
+            [
+                "TGFBR1"
+            ],
+            [
+                "OBSCN"
+            ],
+            [
+                "CDK9"
+            ],
+            [
+                "CDK8"
+            ],
+            [
+                "FGFR1"
+            ],
+            [
+                "FGFR2"
+            ],
+            [
+                "FGFR3"
+            ],
+            [
+                "FGFR4"
+            ],
+            [
+                "ZAP70"
+            ],
+            [
+                "LCK"
+            ],
+            [
+                "BRAF"
+            ],
+            [
+                "CDC7"
+            ],
+            [
+                "CAMKK1"
+            ],
+            [
+                "CAMKK2"
+            ],
+            [
+                "CDKL4"
+            ],
+            [
+                "CDKL3"
+            ],
+            [
+                "CDKL5"
+            ],
+            [
+                "CDKL2"
+            ],
+            [
+                "CDKL1"
+            ],
+            [
+                "GAK"
+            ],
+            [
+                "GCK"
+            ],
+            [
+                "ACTR2"
+            ],
+            [
+                "PHKG1"
+            ],
+            [
+                "PHKG2"
+            ],
+            [
+                "PINK1"
+            ],
+            [
+                "PSKH2"
+            ],
+            [
+                "PSKH1"
+            ],
+            [
+                "ROCK2"
+            ],
+            [
+                "ROCK1"
+            ],
+            [
+                "MYO3B"
+            ],
+            [
+                "FRK"
+            ],
+            [
+                "MYO3A"
+            ],
+            [
+                "CDK10"
+            ],
+            [
+                "CDK19"
+            ],
+            [
+                "BMPR1A"
+            ]
+        ]
+    },
+    {
+        "title": "B10",
+        "query": "List the proteins with cellular location 'Cytoskeleton' that are found in the organism 'Mouse'.",
+        "cypher": "MATCH (p:Protein {hasCellularLocation: 'Cytoskeleton'})-[:PRESENTIN]->(o:Organism {hasPrimaryName: 'Mouse'}) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "LIMK2"
+            ],
+            [
+                "MAK"
+            ],
+            [
+                "DCLK2"
+            ],
+            [
+                "PKN2"
+            ],
+            [
+                "PAK1"
+            ],
+            [
+                "PLK2"
+            ],
+            [
+                "SMMLCK"
+            ],
+            [
+                "MYO3B"
+            ],
+            [
+                "BRSK2"
+            ],
+            [
+                "CDKL5"
+            ],
+            [
+                "ERK7"
+            ],
+            [
+                "CDK10"
+            ],
+            [
+                "CDK6"
+            ],
+            [
+                "TRAD"
+            ],
+            [
+                "TRB2"
+            ],
+            [
+                "SGK269"
+            ]
+        ]
+    },
+    {
+        "title": "C1",
+        "query": "What ligands interact with the sequence motifs of the IRAK1 protein, and what is the type of interaction?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'IRAK1'})-[:HASSEQUENCE]->(s:Sequence)-[:HASMOTIF]->(sm:SequenceMotif)<-[:HASMOTIF]-(li:LigandInteraction)-[:HASLIGAND]->(l:Ligand) RETURN DISTINCT l.hasPrimaryName AS Ligand, li.hasType AS InteractionType LIMIT 100",
+        "cypher_result": [
+            [
+                "N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide",
+                "Apolar contact"
+            ],
+            [
+                "N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide",
+                "Aromatic edge-to-face"
+            ],
+            [
+                "N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide",
+                "Aromatic face-to-face"
+            ],
+            [
+                "N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide",
+                "Hydrogen bond donor (protein)"
+            ]
+        ]
+    },
+    {
+        "title": "C2",
+        "query": "List the cancer types linked to mutations found in the DCLK3 protein.",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'DCLK3'})-[:HASMUTATION]->(m)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer) RETURN DISTINCT c.hasPrimaryName AS CancerType LIMIT 100",
+        "cypher_result": [
+            [
+                "carcinoma_NS"
+            ],
+            [
+                "carcinoma_adenocarcinoma"
+            ],
+            [
+                "adenoma_NS"
+            ],
+            [
+                "NS_NS"
+            ],
+            [
+                "lymphoid_neoplasm_mantle_cell_lymphoma"
+            ],
+            [
+                "malignant_melanoma_NS"
+            ],
+            [
+                "carcinoma_endometrioid_carcinoma"
+            ],
+            [
+                "carcinoma_squamous_cell_carcinoma"
+            ],
+            [
+                "malignant_melanoma_acral_lentiginous"
+            ],
+            [
+                "carcinoma_transitional_cell_carcinoma"
+            ],
+            [
+                "carcinoma_ductal_carcinoma"
+            ],
+            [
+                "sarcoma_NS"
+            ],
+            [
+                "carcinoma_basal_cell_carcinoma"
+            ],
+            [
+                "carcinoma_clear_cell_renal_cell_carcinoma"
+            ],
+            [
+                "glioma_astrocytoma_Grade_IV"
+            ],
+            [
+                "other_neoplasm"
+            ],
+            [
+                "carcinoma_serous_carcinoma"
+            ],
+            [
+                "carcinoma_metaplastic_carcinoma"
+            ],
+            [
+                "other_adenoma"
+            ],
+            [
+                "glioma_NS"
+            ],
+            [
+                "carcinoma_large_cell_neuroendocrine_carcinoma"
+            ],
+            [
+                "carcinoma_hepatocellular_carcinoma"
+            ],
+            [
+                "angiosarcoma_NS"
+            ],
+            [
+                "carcinoma_diffuse_adenocarcinoma"
+            ],
+            [
+                "carcinoma_papillary_renal_cell_carcinoma"
+            ],
+            [
+                "carcinoma_large_cell_carcinoma"
+            ],
+            [
+                "haematopoietic_neoplasm_acute_myeloid_leukaemia"
+            ],
+            [
+                "carcinoma_mucinous_adenocarcinoma"
+            ],
+            [
+                "carcinoma_intestinal_adenocarcinoma"
+            ],
+            [
+                "malignant_melanoma_lentigo_maligna"
+            ],
+            [
+                "carcinoma_clear_cell_carcinoma"
+            ],
+            [
+                "carcinoma_ER-positive_carcinoma"
+            ],
+            [
+                "carcinoma_small_cell_carcinoma"
+            ],
+            [
+                "carcinoma_basal_(triple-negative)_carcinoma"
+            ],
+            [
+                "carcinoma_luminal_NS_carcinoma"
+            ],
+            [
+                "malignant_melanoma_superficial_spreading"
+            ],
+            [
+                "carcinoma_non_small_cell_carcinoma"
+            ],
+            [
+                "adenoma_tubulovillous"
+            ],
+            [
+                "malignant_melanoma_desmoplastic"
+            ],
+            [
+                "lymphoid_neoplasm_mycosis_fungoides-Sezary_syndrome"
+            ],
+            [
+                "carcinoma_Merkel_cell_carcinoma"
+            ],
+            [
+                "malignant_melanoma_nodular"
+            ],
+            [
+                "lymphoid_neoplasm_acute_lymphoblastic_B_cell_leukaemia"
+            ]
+        ]
+    },
+    {
+        "title": "C3",
+        "query": "Which cancer samples have under expression of AKT3 protein? Show sample name, regulation, and cancer type.",
+        "cypher": "MATCH (ge:GeneExpression)-[:HASPROTEIN]->(p:Protein {hasPrimaryName: 'AKT3'}) MATCH (ge)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer) WHERE ge.hasRegulation IN ['under'] RETURN DISTINCT s.hasSampleName AS SampleName, ge.hasRegulation AS Regulation, c.hasPrimaryName AS CancerType LIMIT 100",
+        "cypher_result": [
+            [
+                "TCGA-ZG-A9N3-01",
+                "under",
+                "carcinoma_adenocarcinoma"
+            ],
+            [
+                "TCGA-B4-5835-01",
+                "under",
+                "carcinoma_clear_cell_renal_cell_carcinoma"
+            ],
+            [
+                "TCGA-ET-A4KN-01",
+                "under",
+                "carcinoma_NS"
+            ],
+            [
+                "TCGA-FC-A4JI-01",
+                "under",
+                "carcinoma_adenocarcinoma"
+            ],
+            [
+                "TCGA-XK-AAIW-01",
+                "under",
+                "carcinoma_adenocarcinoma"
+            ],
+            [
+                "TCGA-CS-6186-01",
+                "under",
+                "glioma_NS"
+            ],
+            [
+                "TCGA-FC-A6HD-01",
+                "under",
+                "carcinoma_adenocarcinoma"
+            ],
+            [
+                "TCGA-HT-A4DS-01",
+                "under",
+                "glioma_NS"
+            ],
+            [
+                "TCGA-M7-A724-01",
+                "under",
+                "carcinoma_adenocarcinoma"
+            ],
+            [
+                "TCGA-VN-A88N-01",
+                "under",
+                "carcinoma_adenocarcinoma"
+            ]
+        ]
+    },
+    {
+        "title": "C4",
+        "query": "Which sequence motifs are found in proteins belonging to the EGFR family?",
+        "cypher": "MATCH (f:EGFRfamily)-[:ENCODEDIN]->(p:Protein) MATCH (p)-[:HASSEQUENCE]->(s:Sequence) MATCH (s)-[:HASMOTIF]->(sm:SequenceMotif) RETURN DISTINCT sm.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "beta7"
+            ],
+            [
+                "beta2"
+            ],
+            [
+                "Sh2"
+            ],
+            [
+                "alphaF"
+            ],
+            [
+                "G loop"
+            ],
+            [
+                "subdomain V"
+            ],
+            [
+                "CS3"
+            ],
+            [
+                "Sh1"
+            ],
+            [
+                "C-lobe"
+            ],
+            [
+                "RS3"
+            ],
+            [
+                "CS7"
+            ],
+            [
+                "CS5"
+            ],
+            [
+                "linker"
+            ],
+            [
+                "subdomain X"
+            ],
+            [
+                "N-lobe"
+            ],
+            [
+                "CS2"
+            ],
+            [
+                "DFG Motif"
+            ],
+            [
+                "subdomain VIa"
+            ],
+            [
+                "subdomain I"
+            ],
+            [
+                "RS1"
+            ],
+            [
+                "alphaC"
+            ],
+            [
+                "beta3-Lys"
+            ],
+            [
+                "beta5"
+            ],
+            [
+                "alphaC-Glu"
+            ],
+            [
+                "CS4"
+            ],
+            [
+                "APE Motif"
+            ],
+            [
+                "HxN Motif"
+            ],
+            [
+                "activation loop"
+            ],
+            [
+                "alphaI"
+            ],
+            [
+                "alphaH"
+            ],
+            [
+                "beta9"
+            ],
+            [
+                "Sh3"
+            ],
+            [
+                "HRD Motif"
+            ],
+            [
+                "subdomain III"
+            ],
+            [
+                "CS8"
+            ],
+            [
+                "subdomain VIII"
+            ],
+            [
+                "subdomain II"
+            ],
+            [
+                "RS4"
+            ],
+            [
+                "RS2"
+            ],
+            [
+                "subdomain IV"
+            ],
+            [
+                "alphaG"
+            ],
+            [
+                "beta3"
+            ],
+            [
+                "DxW Motif"
+            ],
+            [
+                "beta6"
+            ],
+            [
+                "beta1"
+            ],
+            [
+                "CS6"
+            ],
+            [
+                "alphaE"
+            ],
+            [
+                "subdomain VII"
+            ],
+            [
+                "RS0"
+            ],
+            [
+                "CS1"
+            ],
+            [
+                "subdomain VIb"
+            ],
+            [
+                "alphaD"
+            ],
+            [
+                "beta8"
+            ],
+            [
+                "subdomain XI"
+            ],
+            [
+                "catalytic loop"
+            ],
+            [
+                "beta4"
+            ],
+            [
+                "alpha-D.54"
+            ],
+            [
+                "g.l.8"
+            ],
+            [
+                "a.l.84"
+            ],
+            [
+                "c.l.74"
+            ],
+            [
+                "g.l.7"
+            ],
+            [
+                "III.17"
+            ],
+            [
+                "a.l.85"
+            ],
+            [
+                "alpha-D.55"
+            ],
+            [
+                "linker.52"
+            ],
+            [
+                "GK.45"
+            ],
+            [
+                "I.3"
+            ],
+            [
+                "linker.51"
+            ],
+            [
+                "alpha-D.59"
+            ],
+            [
+                "VII.77"
+            ],
+            [
+                "alpha-C.21"
+            ],
+            [
+                "alpha-C.25"
+            ],
+            [
+                "II.11"
+            ],
+            [
+                "III.19"
+            ],
+            [
+                "g.l.6"
+            ],
+            [
+                "II.13"
+            ],
+            [
+                "c.l.70"
+            ],
+            [
+                "c.l.75"
+            ],
+            [
+                "b.l.37"
+            ],
+            [
+                "IV.38"
+            ],
+            [
+                "V.44"
+            ],
+            [
+                "hinge.47"
+            ],
+            [
+                "alpha-C.28"
+            ],
+            [
+                "hinge.46"
+            ],
+            [
+                "III.16"
+            ],
+            [
+                "linker.49"
+            ],
+            [
+                "III.15"
+            ],
+            [
+                "hinge.48"
+            ],
+            [
+                "xDFG.83"
+            ],
+            [
+                "linker.50"
+            ],
+            [
+                "g.l.5"
+            ],
+            [
+                "xDFG.82"
+            ],
+            [
+                "xDFG.80"
+            ],
+            [
+                "xDFG.81"
+            ],
+            [
+                "g.l.4"
+            ],
+            [
+                "g.l.9"
+            ],
+            [
+                "V.43"
+            ],
+            [
+                "b.l.36"
+            ]
+        ]
+    },
+    {
+        "title": "C5",
+        "query": "What are the histology subtypes of cancers linked to samples that have proteins with mutation ID 'COSM4166151'?",
+        "cypher": "MATCH (m:OtherMutation {hasMutationId: 'COSM4166151'}) MATCH (p:Protein)-[:HASMUTATION]->(m) MATCH (p)<-[:HASPROTEIN]-(ge:GeneExpression) MATCH (ge)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer) RETURN DISTINCT c.hasHistologySubType AS HistologySubType LIMIT 100",
+        "cypher_result": [
+            [
+                "adenocarcinoma"
+            ],
+            [
+                "NS"
+            ],
+            [
+                "clear_cell_renal_cell_carcinoma"
+            ],
+            [
+                "endometrioid_carcinoma"
+            ],
+            [
+                "squamous_cell_carcinoma"
+            ],
+            [
+                "acute_myeloid_leukaemia"
+            ],
+            [
+                "astrocytoma_Grade_IV"
+            ],
+            [
+                "hepatocellular_carcinoma"
+            ],
+            [
+                "serous_carcinoma"
+            ],
+            [
+                "diffuse_large_B_cell_lymphoma"
+            ],
+            [
+                "non_small_cell_carcinoma"
+            ],
+            [
+                "ductal_carcinoma"
+            ],
+            [
+                "small_cell_carcinoma"
+            ],
+            [
+                "chromophobe_renal_cell_carcinoma"
+            ]
+        ]
+    },
+    {
+        "title": "C6",
+        "query": "What is the name of the organism for proteins belonging to the Plant clade?",
+        "cypher": "MATCH (c:Clade {hasPrimaryName: 'Plant'})<-[:ISPARTOF]-(o:Organism) MATCH (p:Protein)-[:PRESENTIN]->(o) RETURN DISTINCT o.hasPrimaryName AS Organism LIMIT 100",
+        "cypher_result": [
+            [
+                "S.moellendorffii"
+            ]
+        ]
+    },
+    {
+        "title": "C7",
+        "query": "Find pathways that include proteins containing the functional domain 'PI3_PI4_kinase' and have mutations. Please provide the names of these pathways and descriptions of the mutations.",
+        "cypher": "MATCH (fd:FunctionalDomain {hasPrimaryName: 'PI3_PI4_kinase'})<-[:HASFUNCTIONALDOMAIN]-(p:Protein)-[:HASMUTATION]->(m),(p)-[:PARTICIPATESIN]->(pw:Pathway) RETURN DISTINCT pw.hasPrimaryName AS Pathway, m.hasMutationDescription AS MutationDescription LIMIT 100",
+        "cypher_result": [
+            [
+                "Gene expression (Transcription)",
+                "Substitution - Missense"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Substitution - coding silent"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Deletion - In frame"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Unknown"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Frameshift"
+            ],
+            [
+                "Gene expression (Transcription)",
+                "Complex - frameshift"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Substitution - Missense"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Substitution - coding silent"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Substitution - Nonsense"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Insertion - Frameshift"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Deletion - In frame"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Deletion - Frameshift"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Unknown"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Frameshift"
+            ],
+            [
+                "TP53 Regulates Transcription of DNA Repair Genes",
+                "Complex - frameshift"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Substitution - Missense"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Substitution - coding silent"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Deletion - In frame"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Unknown"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Frameshift"
+            ],
+            [
+                "Processing of DNA double-strand break ends",
+                "Complex - frameshift"
+            ],
+            [
+                "Homology Directed Repair",
+                "Substitution - Missense"
+            ],
+            [
+                "Homology Directed Repair",
+                "Substitution - coding silent"
+            ],
+            [
+                "Homology Directed Repair",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Homology Directed Repair",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Homology Directed Repair",
+                "Deletion - In frame"
+            ],
+            [
+                "Homology Directed Repair",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Homology Directed Repair",
+                "Unknown"
+            ],
+            [
+                "Homology Directed Repair",
+                "Frameshift"
+            ],
+            [
+                "Homology Directed Repair",
+                "Complex - frameshift"
+            ],
+            [
+                "Reproduction",
+                "Substitution - Missense"
+            ],
+            [
+                "Reproduction",
+                "Substitution - coding silent"
+            ],
+            [
+                "Reproduction",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Reproduction",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Reproduction",
+                "Deletion - In frame"
+            ],
+            [
+                "Reproduction",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Reproduction",
+                "Unknown"
+            ],
+            [
+                "Reproduction",
+                "Frameshift"
+            ],
+            [
+                "Reproduction",
+                "Complex - frameshift"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Substitution - Missense"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Substitution - coding silent"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Deletion - In frame"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Unknown"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Frameshift"
+            ],
+            [
+                "Presynaptic phase of homologous DNA pairing and strand exchange",
+                "Complex - frameshift"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Substitution - Missense"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Substitution - coding silent"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Deletion - In frame"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Unknown"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Frameshift"
+            ],
+            [
+                "Generic Transcription Pathway",
+                "Complex - frameshift"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Substitution - Missense"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Substitution - coding silent"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Substitution - Nonsense"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Insertion - Frameshift"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Deletion - In frame"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Deletion - Frameshift"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Unknown"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Frameshift"
+            ],
+            [
+                "HDR through Single Strand Annealing (SSA)",
+                "Complex - frameshift"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Substitution - Missense"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Substitution - coding silent"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Substitution - Nonsense"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Insertion - Frameshift"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Deletion - In frame"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Deletion - Frameshift"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Unknown"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Frameshift"
+            ],
+            [
+                "DNA Double-Strand Break Repair",
+                "Complex - frameshift"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Substitution - Missense"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Substitution - coding silent"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Deletion - In frame"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Unknown"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Frameshift"
+            ],
+            [
+                "Fanconi Anemia Pathway",
+                "Complex - frameshift"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Substitution - Missense"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Substitution - coding silent"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Substitution - Nonsense"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Insertion - Frameshift"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Deletion - In frame"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Deletion - Frameshift"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Unknown"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Frameshift"
+            ],
+            [
+                "Cell Cycle Checkpoints",
+                "Complex - frameshift"
+            ],
+            [
+                "Cellular responses to stimuli",
+                "Substitution - Missense"
+            ]
+        ]
+    },
+    {
+        "title": "C8",
+        "query": "List the organisms that have proteins containing the functional domain 'Cadherin'.",
+        "cypher": "MATCH (fd:FunctionalDomain {hasPrimaryName: 'Cadherin'})<-[:HASFUNCTIONALDOMAIN]-(p:Protein)-[:PRESENTIN]->(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "Mouse"
+            ],
+            [
+                "M.brevicollis"
+            ],
+            [
+                "Human"
+            ]
+        ]
+    },
+    {
+        "title": "C9",
+        "query": "Which mutations of the protein 'BRAF' associated with samples implicated in 'carcinoma_blastoma'? Please provide the mutation IDs and mutation descriptions.",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'BRAF'})-[:HASMUTATION]->(m)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer {hasPrimaryName: 'carcinoma_blastoma'}) RETURN DISTINCT m.hasMutationId, m.hasMutationDescription LIMIT 100",
+        "cypher_result": [
+            [
+                "COSM1131",
+                "Substitution - Missense"
+            ]
+        ]
+    },
+    {
+        "title": "C10",
+        "query": "What are the reactions associated with pathways in which BRAF protein participates?",
+        "cypher": "MATCH (p:Protein {hasPrimaryName: 'BRAF'})-[:PARTICIPATESIN]->(path:Pathway)-[:HASREACTION]->(r:Reaction) RETURN DISTINCT r.hasPrimaryName LIMIT 100",
+        "cypher_result": [
+            [
+                "CBL ubiquitinates FRS2 and FGFR2"
+            ],
+            [
+                "p-CBL:GRB2 binds p-FRS2:activated FGFR2"
+            ],
+            [
+                "Activated ERK1/2 threonine-phosphorylates FGFR2-associated FRS2"
+            ],
+            [
+                "p-CBL:GRB2 binds p-FRS2:activated FGFR1"
+            ],
+            [
+                "KAL1 binds FGFR1c"
+            ],
+            [
+                "Activated ERK1/2 threonine-phosphorylates FGFR1-associated FRS2."
+            ],
+            [
+                "CBL ubiquitinates FRS2 and FGFR1"
+            ],
+            [
+                "Activated ERK1/2 threonine-phosphorylates FGFR3-associated FRS2."
+            ],
+            [
+                "CBL ubiquitinates FRS2 and FGFR3"
+            ],
+            [
+                "p-CBL:GRB2 binds p-FRS2:activated FGFR3"
+            ],
+            [
+                "Activated ERK1/2 threonine-phosphorylates FGFR4-associated FRS2."
+            ],
+            [
+                "p-CBL:GRB2 binds p-FRS2:activated FGFR4"
+            ],
+            [
+                "CBL ubiquitinates FRS2 and FGFR4"
+            ],
+            [
+                "MAP2Ks and MAPKs bind to the activated RAF complex"
+            ],
+            [
+                "Dual mechanism MAPK inhibitors bind MAPKs"
+            ],
+            [
+                "MAP2Ks phosphorylate MAPK at the Golgi membrane"
+            ],
+            [
+                "WDR83:LAMTOR2:LAMTOR3 binds MAPK components"
+            ],
+            [
+                "Dissociation of RAS:RAF complex"
+            ],
+            [
+                "RAF phosphorylates MAP2K dimer"
+            ],
+            [
+                "Single mechanism MAP2K inhibitors bind phosphorylated MAP2Ks"
+            ],
+            [
+                "IL17RD binds p-2S MAP2Ks and MAPKs"
+            ],
+            [
+                "MAP2Ks phosphorylate MAPKs"
+            ],
+            [
+                "Dual mechanism MAP2K inhibitors bind MAP2Ks"
+            ],
+            [
+                "Single mechanism MAPK inhibitors bind phosphorylated MAPK"
+            ],
+            [
+                "\"Activator\" RAF:YWHAB dimer binds RAS:GTP"
+            ],
+            [
+                "MRAS:SHOC2:PPP1CC dephosphorylates inactive RAFs"
+            ],
+            [
+                "p-S311,S406 KSR1:MARK3 binds YWHAB dimer"
+            ],
+            [
+                "PP2A dephosphorylates KSR1"
+            ],
+            [
+                "MARK3 phosphorylates KSR1"
+            ],
+            [
+                "Raf dimer inhibitors bind RAF heterodimers"
+            ],
+            [
+                "RAS:GTP:'activator' RAF homo/heterodimerizes with other RAF monomers"
+            ],
+            [
+                "Phosphorylation of RAF"
+            ],
+            [
+                "YWHAB dimer dissociates from KSR1:MARK3"
+            ],
+            [
+                "PP2A dephosphorylates inactive RAFs"
+            ],
+            [
+                "Inactive RAFs bind YWHAB"
+            ],
+            [
+                "YWHAB dimer dissociates from dephosphorylated RAF"
+            ],
+            [
+                "p-T,Y MAPKs dimerize"
+            ],
+            [
+                "RAS:GTP binds PI3K"
+            ],
+            [
+                "RAS:GTP binds RAL GDS proteins"
+            ],
+            [
+                "RAS intrinsic GTPase activity hydrolyzes GTP to GDP"
+            ],
+            [
+                "PEA15 binds MAPK monomers and dimers"
+            ],
+            [
+                "Intrinsic nucleotide exchange on RAS"
+            ],
+            [
+                "RAS GEFs promote RAS nucleotide exchange"
+            ],
+            [
+                "B-RAF dissociates from S111/S120 p-SPRY2"
+            ],
+            [
+                "Phosphorylated SPRY2 is ubiquitinated by CBL"
+            ],
+            [
+                "PPA2A dephosphorylates SPRY2"
+            ],
+            [
+                "SRC phosphorylates SPRY2 on Y55 and Y227"
+            ],
+            [
+                "PPTN11 dephosphorylates SPRY2"
+            ],
+            [
+                "SPRY2 binds CBL"
+            ],
+            [
+                "SPRY2 is phosphorylated by phosphorylated MNK1"
+            ],
+            [
+                "CBL dissociates from ubiquitinated p-SPRY2"
+            ],
+            [
+                "SPRY2 translocates to the plasma membrane"
+            ],
+            [
+                "SPRY2 binds GRB2"
+            ],
+            [
+                "(Frs2)C3G stimulates nucleotide exchange on Rap1"
+            ],
+            [
+                "Activated BRAF recruits MAP2Ks and MAPKs to the endosome"
+            ],
+            [
+                "p-FRS2 binds CRKL"
+            ],
+            [
+                "(Frs2)Rap1-GTP binds to and activates B-Raf"
+            ],
+            [
+                "FRS2 is phosphorylated by active TrkA receptor"
+            ],
+            [
+                "Activated BRAF phosphorylates MAP2K dimers downstream of RAP1 and NGF"
+            ],
+            [
+                "p-FRS2:CRKL binds C3G"
+            ],
+            [
+                "FRS2 binds to active TrkA receptor"
+            ],
+            [
+                "BRAF autophosphorylates downstream of RAP1 and NGF"
+            ],
+            [
+                "MAP2Ks phosphorylate MAPKs downstream of BRAF and NGF"
+            ],
+            [
+                "PTPN3 dephosphorylates MAPK12"
+            ],
+            [
+                "BRAP binds RAS:GTP"
+            ],
+            [
+                "PP2A dephosphorylates RAF1"
+            ],
+            [
+                "PTPN7 dephosphorylates p-T,Y-MAPKs"
+            ],
+            [
+                "BRAP binds KSR1:MARK3"
+            ],
+            [
+                "BRAP autoubiquitinates"
+            ],
+            [
+                "PEBP1 binds activated RAF1"
+            ],
+            [
+                "MAPK12 phosphorylates PTPN3"
+            ],
+            [
+                "PTPN3 binds p-T183,Y185 MAPK12"
+            ],
+            [
+                "Cytosolic DUSPs dephosphorylate MAPKs"
+            ],
+            [
+                "PAQR3 binds inactive RAFs"
+            ],
+            [
+                "PTPN7 binds p-T,Y-MAPK"
+            ],
+            [
+                "PP5 dephosphorylates RAF1 S338"
+            ],
+            [
+                "Nuclear DUSPs dephosphorylate MAPKs"
+            ],
+            [
+                "Activated MAPK phosphorylates RAF1"
+            ],
+            [
+                "Activated MAPKs phosphorylate MAP2K1"
+            ],
+            [
+                "Activated MAPKs phosphorylate BRAF"
+            ],
+            [
+                "Mutant RAS:p-RAF complexes phosphorylate MAP2Ks"
+            ],
+            [
+                "Mutant RAS:p-RAF complexes bind MAP2Ks and MAPKs"
+            ],
+            [
+                "Dissociation of oncogenic RAS:RAF complex"
+            ],
+            [
+                "RAS mutants bind inactive RAF"
+            ],
+            [
+                "RAF is phosphorylated downstream of oncogenic RAS"
+            ],
+            [
+                "Activated MAP2Ks phosphorylate MAPKs downstream of oncogenic RAS"
+            ],
+            [
+                "Activated MAP2Ks phosphorylate MAPKs downstream of high kinase activity BRAF mutants"
+            ],
+            [
+                "Inhibitors bind and inhibit highly active BRAF mutants"
+            ],
+            [
+                "High kinase activity BRAF mutants bind MAP2Ks and MAPKs"
+            ],
+            [
+                "Dissociation of high activity BRAF complexes"
+            ],
+            [
+                "Dimerization of BRAF V600E splice variants contributes to BRAF inhibitor resistance"
+            ],
+            [
+                "High kinase activity BRAF complexes phosphorylate MAP2Ks"
+            ],
+            [
+                "RAS:GTP:moderate kinase activity p-RAF complexes bind MAP2Ks and MAPKs"
+            ],
+            [
+                "Moderate kinase activity BRAF mutants bind RAS:GTP"
+            ],
+            [
+                "Dissociation of moderate activity BRAF complexes"
+            ],
+            [
+                "RAF is phosphorylated downstream of moderate kinase activity BRAF mutants"
+            ],
+            [
+                "RAS:GTP:moderate kinase activity p-RAF complexes phosphorylate MAP2Ks"
+            ],
+            [
+                "Activated MAP2Ks phosphorylate MAPKs downstream of moderate kinase activity BRAF mutants"
+            ],
+            [
+                "Moderate kinase activity BRAF mutants:RAS:GTP homo/heterodimerize"
+            ],
+            [
+                "p-BRAF and RAF fusion dimers bind MAP2Ks and MAPKs"
+            ]
+        ]
+    }
+]

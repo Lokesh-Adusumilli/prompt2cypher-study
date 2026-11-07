@@ -1,0 +1,10 @@
+- Limit the results to 100 entries (append `LIMIT 100` to the query).
+- Use `DISTINCT` to avoid duplicate results whenever appropriate.
+- Return ONLY the Cypher query — no explanations, no comments, no prose.
+- CRITICAL: Use ONLY the exact property names listed in the schema provided. Do NOT invent or guess property names. This schema uses a "has*" naming convention (e.g., hasPrimaryName, hasMutationDescription, hasScientificName). If unsure which property to use, refer to the schema labels section above.
+- CRITICAL: Do NOT return full node or relationship objects (e.g., RETURN p or RETURN r). Always return specific named properties (e.g., RETURN p.hasPrimaryName).
+- CRITICAL: Use ONLY relationship types and node labels that appear in the schema. Do NOT invent relationship names.
+- Pay attention to relationship direction: in {"name": "r", "from": "n1", "to": "n2"}, the relationship goes FROM n1 TO n2, not the reverse.
+- In this graph, "kinase" means "Protein". Use the Protein label when the user query refers to a kinase.
+- Return one column per distinct entity type in the answer. Do NOT concatenate multiple values into one column.
+- When a query asks for a specific property of a named entity (e.g., its location or classification), return only that property — do not also return the entity itself.

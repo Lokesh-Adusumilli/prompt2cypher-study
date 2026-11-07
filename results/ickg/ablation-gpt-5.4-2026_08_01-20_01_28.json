@@ -1,0 +1,302 @@
+[
+    {
+        "title": "A1",
+        "query": "Find all proteins involved in the 'Muscle contraction' pathway.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway) WHERE pw.label = 'Muscle contraction' RETURN DISTINCT p.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway {label: 'Muscle contraction'}) RETURN DISTINCT p.id AS protein_id, p.label AS protein_name ORDER BY protein_name;",
+            "without_schema_comments": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway) WHERE pw.label = 'Muscle contraction' RETURN DISTINCT p.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:hasPathway]->(path:Pathway) WHERE path.label = 'Muscle contraction' RETURN DISTINCT p.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A2",
+        "query": "Retrieve all functional domains associated with the 'KCNC2' protein.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {label: 'KCNC2'})-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {label: 'KCNC2'})-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN fd.id, fd.label",
+            "without_schema_comments": "MATCH (p:Protein {label: 'KCNC2'}) MATCH (p)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'KCNC2'})-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A3",
+        "query": "List all diseases the protein 'CFTR' is implicated in.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {label: 'CFTR'})-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {label: 'CFTR'})-[:implicatedInDisease]->(d:Disease) RETURN d.label AS disease, d.id AS disease_id ORDER BY d.label;",
+            "without_schema_comments": "MATCH (p:Protein {label: 'CFTR'}) MATCH (p)-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label AS Disease LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'CFTR'})-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A4",
+        "query": "Find all proteins interacting with the light ion channel 'KCNQ3'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (lic:LightIonChannel {label: 'KCNQ3'})-[:interact]->(p:Protein) RETURN DISTINCT p.label LIMIT 100",
+            "without_instructions": "MATCH (lic:LightIonChannel {label: 'KCNQ3'})-[:interact]-(p:Protein) RETURN DISTINCT p.id, p.label",
+            "without_schema_comments": "MATCH (lic:LightIonChannel {label: 'KCNQ3'}) MATCH (p:Protein)-[:interact]->(lic) RETURN DISTINCT p.label AS Protein LIMIT 100",
+            "without_relevant_nodes": "MATCH (lic:LightIonChannel {label: 'KCNQ3'}) MATCH (lic)-[:interact]->(p) RETURN DISTINCT p.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A5",
+        "query": "List all biological processes the protein 'CFTR' is involved in.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {label: 'CFTR'}) MATCH (p)-[:hasBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.id AS biological_process_id, bp.label AS biological_process ORDER BY biological_process",
+            "without_schema_comments": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A6",
+        "query": "Retrieve all molecular functions associated with the dark ion channel 'KCNG3'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (d:DarkIonChannel {label: 'KCNG3'})-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.label LIMIT 100",
+            "without_instructions": "MATCH (d:DarkIonChannel {label: 'KCNG3'})-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN mf.id, mf.label",
+            "without_schema_comments": "MATCH (d:DarkIonChannel {label: 'KCNG3'})-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (d:DarkIonChannel {label: 'KCNG3'})-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A7",
+        "query": "Find all cellular components the protein 'CFTR' is associated with.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {label: 'CFTR'})-[:hasCellularComponent]->(cc:CellularComponent) RETURN DISTINCT cc.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {label: 'CFTR'})-[:hasCellularComponent]->(cc:CellularComponent) RETURN cc.id, cc.label ORDER BY cc.label;",
+            "without_schema_comments": "MATCH (p:Protein {label: 'CFTR'}) MATCH (p)-[:hasCellularComponent]->(cc:CellularComponent) RETURN DISTINCT cc.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'CFTR'})-[:hasCellularComponent]->(cc:CellularComponent) RETURN DISTINCT cc.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A8",
+        "query": "List all chemicals associated with the 'Chemical and Drug Induced Liver Injury' disease.",
+        "ablation_results": {
+            "with_instructions": "MATCH (c:Chemical)-[:assoWithDisease]->(d:Disease) WHERE d.label = 'Chemical and Drug Induced Liver Injury' RETURN DISTINCT c.label LIMIT 100",
+            "without_instructions": "MATCH (c:Chemical)-[:assoWithDisease]->(d:Disease {label: 'Chemical and Drug Induced Liver Injury'}) RETURN DISTINCT c.label AS chemical, c.id AS chemical_id ORDER BY chemical;",
+            "without_schema_comments": "MATCH (c:Chemical)-[:assoWithDisease]->(d:Disease) WHERE d.label = 'Chemical and Drug Induced Liver Injury' RETURN DISTINCT c.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (c:Chemical)-[:assoWithDisease]->(d:Disease) WHERE d.label = 'Chemical and Drug Induced Liver Injury' RETURN DISTINCT c.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A9",
+        "query": "Retrieve all ions associated with the light ion channel 'HTR3E'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (lic:LightIonChannel {label: 'HTR3E'})-[:hasIonAsso]->(ion:Ion) RETURN DISTINCT ion.label LIMIT 100",
+            "without_instructions": "MATCH (lic:LightIonChannel {label: 'HTR3E'})-[:hasIonAsso]->(ion:Ion) RETURN ion.id, ion.label",
+            "without_schema_comments": "MATCH (lic:LightIonChannel {label: 'HTR3E'}) MATCH (lic)-[:hasIonAsso]->(ion:Ion) RETURN DISTINCT ion.label AS Ion LIMIT 100",
+            "without_relevant_nodes": "MATCH (lic:LightIonChannel {label: 'HTR3E'})-[:hasIonAsso]->(i:Ion) RETURN DISTINCT i.label AS label LIMIT 100"
+        }
+    },
+    {
+        "title": "A10",
+        "query": "Find all proteins that have the PTM 'Prkaa2'",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:hasPTM]->(ptm:PTM) WHERE ptm.label = 'Prkaa2' RETURN DISTINCT p.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:hasPTM]->(ptm:PTM) WHERE ptm.label = 'Prkaa2' RETURN p.id, p.label",
+            "without_schema_comments": "MATCH (p:Protein)-[:hasPTM]->(ptm:PTM) WHERE ptm.label = 'Prkaa2' RETURN DISTINCT p.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p)-[:hasPTM]->(ptm:PTM) WHERE (p:Protein OR p:LightKinase OR p:DarkKinase) AND ptm.label = 'Prkaa2' RETURN DISTINCT p.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A11",
+        "query": "List all dark ion channels that interact with the 'CACNB1' protein.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {label: 'CACNB1'}) MATCH (d:DarkIonChannel)-[:interact]->(p) RETURN DISTINCT d.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {label: 'CACNB1'})-[:interact]-(dic:DarkIonChannel) RETURN DISTINCT dic.id, dic.label ORDER BY dic.label;",
+            "without_schema_comments": "MATCH (p:Protein {label: 'CACNB1'}) MATCH (d:DarkIonChannel)-[:interact]->(p) RETURN DISTINCT d.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'CACNB1'}) MATCH (d:DarkIonChannel)-[:interact]->(p) RETURN DISTINCT d.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A12",
+        "query": "List all the ion channels from the family TRP.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:hasFamily]->(f:Family) WHERE f.label = 'TRP' RETURN DISTINCT p.label LIMIT 100",
+            "without_instructions": "MATCH (p)-[:hasFamily]->(f:Family) WHERE (p:Protein OR p:LightIonChannel OR p:DarkIonChannel)   AND toLower(f.label) = 'trp' RETURN DISTINCT p.label AS ion_channel ORDER BY ion_channel;",
+            "without_schema_comments": "MATCH (ic)-[:hasFamily]->(f:Family) WHERE (ic:LightIonChannel OR ic:DarkIonChannel OR ic:Protein)   AND f.label = \"TRP\" RETURN DISTINCT ic.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (ic) WHERE ic:LightIonChannel OR ic:DarkIonChannel OR ic:Protein MATCH (ic)-[:hasFamily]->(f:Family) WHERE f.label = 'TRP' RETURN DISTINCT ic.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A13",
+        "query": "Which family has the largest number of dark ion channels?",
+        "ablation_results": {
+            "with_instructions": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WITH f, COUNT(DISTINCT d) AS darkIonChannelCount RETURN f.label ORDER BY darkIonChannelCount DESC LIMIT 100",
+            "without_instructions": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WITH f, COUNT(d) AS darkIonChannelCount ORDER BY darkIonChannelCount DESC RETURN f.label AS family, darkIonChannelCount LIMIT 1;",
+            "without_schema_comments": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WITH f, COUNT(DISTINCT d) AS darkIonChannelCount RETURN f.label ORDER BY darkIonChannelCount DESC LIMIT 100",
+            "without_relevant_nodes": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WITH f, COUNT(DISTINCT d) AS darkIonChannelCount ORDER BY darkIonChannelCount DESC RETURN f.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A14",
+        "query": "List all dark ion channels that belong to the family labeled 'Unclassified'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WHERE f.label = 'Unclassified' RETURN DISTINCT d.label LIMIT 100",
+            "without_instructions": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WHERE f.label = 'Unclassified' RETURN d.id AS darkIonChannelId, d.label AS darkIonChannel ORDER BY d.label;",
+            "without_schema_comments": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WHERE f.label = 'Unclassified' RETURN DISTINCT d.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) WHERE f.label = 'Unclassified' RETURN DISTINCT d.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A15",
+        "query": "What molecular functions are associated with light ion channels that belong to the 'GABA' family?",
+        "ablation_results": {
+            "with_instructions": "MATCH (lic:LightIonChannel)-[:hasFamily]->(f:Family) MATCH (lic)-[:hasMolecularFunction]->(mf:MolecularFunction) WHERE f.label CONTAINS 'GABA' RETURN DISTINCT mf.label LIMIT 100",
+            "without_instructions": "MATCH (lic:LightIonChannel)-[:hasFamily]->(f:Family),       (lic)-[:hasMolecularFunction]->(mf:MolecularFunction) WHERE f.label CONTAINS 'GABA' OR f.id CONTAINS 'GABA' RETURN DISTINCT mf.id, mf.label ORDER BY mf.label;",
+            "without_schema_comments": "MATCH (lic:LightIonChannel)-[:hasFamily]->(f:Family) MATCH (lic)-[:hasMolecularFunction]->(mf:MolecularFunction) WHERE f.label = 'GABA' RETURN DISTINCT mf.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (lic:LightIonChannel)-[:hasFamily]->(f:Family) MATCH (lic)-[:hasMolecularFunction]->(mf:MolecularFunction) WHERE f.label CONTAINS 'GABA' OR f.id CONTAINS 'GABA' RETURN DISTINCT mf.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A16",
+        "query": "List all the ions and gating mechanisms for the 'K' family of dark ion channels.",
+        "ablation_results": {
+            "with_instructions": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) MATCH (d)-[:hasIonAsso]->(i:Ion) MATCH (d)-[:hasGateMechanism]->(g:GateMechanism) WHERE f.label = 'K' RETURN DISTINCT i.label AS ion, g.label AS gateMechanism LIMIT 100",
+            "without_instructions": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family {label: 'K'}) OPTIONAL MATCH (d)-[:hasIonAsso]->(i:Ion) OPTIONAL MATCH (d)-[:hasGateMechanism]->(g:GateMechanism) RETURN DISTINCT d.label AS darkIonChannel, collect(DISTINCT i.label) AS ions, collect(DISTINCT g.label) AS gatingMechanisms ORDER BY darkIonChannel;",
+            "without_schema_comments": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) MATCH (d)-[:hasIonAsso]->(i:Ion) MATCH (d)-[:hasGateMechanism]->(g:GateMechanism) WHERE f.label = 'K' RETURN DISTINCT i.label AS ion, g.label AS gatingMechanism LIMIT 100",
+            "without_relevant_nodes": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) MATCH (d)-[:hasIonAsso]->(i:Ion) MATCH (d)-[:hasGateMechanism]->(g:GateMechanism) WHERE f.label = 'K' RETURN DISTINCT i.label, g.label LIMIT 100"
+        }
+    },
+    {
+        "title": "A17",
+        "query": "Find all proteins involved in the 'Fatty acid metabolism' pathway.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway) WHERE pw.label = 'Fatty acid metabolism' RETURN DISTINCT p.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:hasPathway]->(path:Pathway {label: 'Fatty acid metabolism'}) RETURN p.id, p.label",
+            "without_schema_comments": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway) WHERE pw.label = 'Fatty acid metabolism' RETURN DISTINCT p.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway) WHERE pw.label = 'Fatty acid metabolism' RETURN DISTINCT p.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B1",
+        "query": "Find all light ion channels that are involved in the same biological process as the protein 'CFTR'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) MATCH (lic:LightIonChannel)-[:hasBiologicalProcess]->(bp) RETURN DISTINCT lic.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) MATCH (lic:LightIonChannel)-[:hasBiologicalProcess]->(bp) RETURN DISTINCT lic.id AS id, lic.label AS lightIonChannel, bp.id AS biologicalProcessId, bp.label AS biologicalProcess ORDER BY lightIonChannel, biologicalProcess",
+            "without_schema_comments": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) MATCH (lic:LightIonChannel)-[:hasBiologicalProcess]->(bp) RETURN DISTINCT lic.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) MATCH (lic:LightIonChannel)-[:hasBiologicalProcess]->(bp) RETURN DISTINCT lic.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B2",
+        "query": "Find all dark ion channels that are involved in the same pathway as the 'CACNG6' dark ion channel.",
+        "ablation_results": {
+            "with_instructions": "MATCH (cacng6:DarkIonChannel {label: 'CACNG6'}) MATCH (cacng6)-[:hasPathway]->(p:Pathway) MATCH (other:DarkIonChannel)-[:hasPathway]->(p) WHERE other.label <> 'CACNG6' RETURN DISTINCT other.label LIMIT 100",
+            "without_instructions": "MATCH (cacng6:DarkIonChannel {label: 'CACNG6'})-[:hasPathway]->(p:Pathway)<-[:hasPathway]-(other:DarkIonChannel) WHERE other <> cacng6 RETURN DISTINCT other.id AS id, other.label AS darkIonChannel, p.id AS pathwayId, p.label AS pathway ORDER BY darkIonChannel, pathway;",
+            "without_schema_comments": "MATCH (cacng6:DarkIonChannel {label: 'CACNG6'})-[:hasPathway]->(p:Pathway) MATCH (dic:DarkIonChannel)-[:hasPathway]->(p) WHERE dic.label <> 'CACNG6' RETURN DISTINCT dic.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (cacng6:DarkIonChannel {label: 'CACNG6'})-[:hasPathway]->(p:Pathway) MATCH (other:DarkIonChannel)-[:hasPathway]->(p) WHERE other.label <> 'CACNG6' RETURN DISTINCT other.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B3",
+        "query": "Find all diseases that are linked to proteins that bind to the 'ferric oxide' chemical.",
+        "ablation_results": {
+            "with_instructions": "MATCH (c:Chemical {label: 'ferric oxide'}) MATCH (c)-[:assoWithGene]->(p:Protein) MATCH (p)-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label LIMIT 100",
+            "without_instructions": "MATCH (c:Chemical {label: 'ferric oxide'})-[:assoWithGene]->(p:Protein)-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label AS disease, d.id AS disease_id",
+            "without_schema_comments": "MATCH (c:Chemical {label: 'ferric oxide'}) MATCH (c)-[:assoWithGene]->(p:Protein) MATCH (p)-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (c:Chemical {label: 'ferric oxide'}) MATCH (c)-[:assoWithGene]->(p) MATCH (p)-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B4",
+        "query": "Find all functional domains that the protein 'CFTR' shares with other proteins.",
+        "ablation_results": {
+            "with_instructions": "MATCH (cftr:Protein {label: 'CFTR'})-[:hasFunctionalDomain]->(fd:FunctionalDomain) MATCH (other:Protein)-[:hasFunctionalDomain]->(fd) WHERE other.label <> 'CFTR' RETURN DISTINCT fd.label LIMIT 100",
+            "without_instructions": "MATCH (cftr:Protein {label: 'CFTR'})-[:hasFunctionalDomain]->(fd:FunctionalDomain)<-[:hasFunctionalDomain]-(other:Protein) WHERE other <> cftr RETURN DISTINCT fd.id AS functionalDomainId, fd.label AS functionalDomain, collect(DISTINCT other.label) AS otherProteins ORDER BY functionalDomain",
+            "without_schema_comments": "MATCH (cftr:Protein {label: 'CFTR'}) MATCH (cftr)-[:hasFunctionalDomain]->(fd:FunctionalDomain) MATCH (other:Protein)-[:hasFunctionalDomain]->(fd) WHERE other <> cftr RETURN DISTINCT fd.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'CFTR'})-[:hasFunctionalDomain]->(fd:FunctionalDomain) MATCH (other:Protein)-[:hasFunctionalDomain]->(fd) WHERE other.label <> 'CFTR' RETURN DISTINCT fd.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B5",
+        "query": "Find all the proteins that are associated with the same pathways and conduct the same ions as the protein 'KCNG3'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (target:Protein {label: 'KCNG3'}) MATCH (target)-[:hasPathway]->(p:Pathway) MATCH (target)-[:hasIonAsso]->(i:Ion) WITH target, collect(DISTINCT p) AS targetPathways, collect(DISTINCT i) AS targetIons MATCH (protein:Protein) WHERE protein <> target MATCH (protein)-[:hasPathway]->(p2:Pathway) WHERE p2 IN targetPathways MATCH (protein)-[:hasIonAsso]->(i2:Ion) WHERE i2 IN targetIons RETURN DISTINCT protein.label LIMIT 100",
+            "without_instructions": "MATCH (target:Protein {label: 'KCNG3'}) MATCH (target)-[:hasPathway]->(p:Pathway) WITH target, collect(DISTINCT p) AS targetPathways MATCH (target)-[:hasIonAsso]->(i:Ion) WITH target, targetPathways, collect(DISTINCT i) AS targetIons MATCH (candidate:Protein) WHERE candidate <> target MATCH (candidate)-[:hasPathway]->(cp:Pathway) WITH target, targetPathways, targetIons, candidate, collect(DISTINCT cp) AS candidatePathways MATCH (candidate)-[:hasIonAsso]->(ci:Ion) WITH candidate, targetPathways, targetIons, candidatePathways, collect(DISTINCT ci) AS candidateIons WHERE ALL(p IN targetPathways WHERE p IN candidatePathways)   AND ALL(i IN targetIons WHERE i IN candidateIons) RETURN DISTINCT candidate.label AS protein, candidate.id AS proteinId ORDER BY protein;",
+            "without_schema_comments": "MATCH (target:Protein {label: 'KCNG3'}) MATCH (target)-[:hasPathway]->(p:Pathway) MATCH (target)-[:hasIonAsso]->(i:Ion) MATCH (other:Protein)-[:hasPathway]->(p) MATCH (other)-[:hasIonAsso]->(i) WHERE other <> target RETURN DISTINCT other.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (target:Protein {label: 'KCNG3'}) MATCH (target)-[:hasPathway]->(p:Pathway) WITH target, collect(DISTINCT p) AS targetPathways MATCH (target)-[:hasIonAsso]->(i:Ion) WITH target, targetPathways, collect(DISTINCT i) AS targetIons MATCH (protein:Protein) WHERE protein <> target MATCH (protein)-[:hasPathway]->(p2:Pathway) WITH target, targetPathways, targetIons, protein, collect(DISTINCT p2) AS proteinPathways MATCH (protein)-[:hasIonAsso]->(i2:Ion) WITH protein, targetPathways, targetIons, proteinPathways, collect(DISTINCT i2) AS proteinIons WHERE ALL(p IN targetPathways WHERE p IN proteinPathways)   AND ALL(i IN targetIons WHERE i IN proteinIons) RETURN DISTINCT protein.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B6",
+        "query": "List all biological processes that are connected to chemicals associated with the protein 'TRPM8'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {label: 'TRPM8'}) MATCH (c:Chemical)-[:assoWithGene]->(p) MATCH (c)-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {label: 'TRPM8'}) MATCH (c:Chemical)-[:assoWithGene]->(p) MATCH (c)-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label AS biological_process, bp.id AS biological_process_id ORDER BY biological_process",
+            "without_schema_comments": "MATCH (p:Protein {label: 'TRPM8'}) MATCH (c:Chemical)-[:assoWithGene]->(p) MATCH (c)-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {label: 'TRPM8'}) MATCH (c:Chemical)-[:assoWithGene]->(p) MATCH (c)-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B7",
+        "query": "Identify all pathways that connect the dark ion channel 'CACNG3' to diseases through proteins implicated in those diseases.",
+        "ablation_results": {
+            "with_instructions": "MATCH (dic:DarkIonChannel {label: 'CACNG3'}) MATCH (dic)-[:interact]->(p:Protein) MATCH (p)-[:implicatedInDisease]->(d:Disease) MATCH (p)-[:hasPathway]->(pw:Pathway) RETURN DISTINCT pw.label AS Pathway, d.label AS Disease, p.label AS Protein LIMIT 100",
+            "without_instructions": "MATCH (dic:DarkIonChannel {label: 'CACNG3'})-[:interact]-(p:Protein)-[:implicatedInDisease]->(d:Disease),       (p)-[:hasPathway]->(pw:Pathway) RETURN DISTINCT pw, p, d ORDER BY pw.label, p.label, d.label;",
+            "without_schema_comments": "MATCH (dic:DarkIonChannel {label: 'CACNG3'}) MATCH (dic)-[:interact]->(p:Protein) MATCH (p)-[:implicatedInDisease]->(d:Disease) MATCH (p)-[:hasPathway]->(pw:Pathway) RETURN DISTINCT pw.label AS Pathway, d.label AS Disease, p.label AS Protein LIMIT 100",
+            "without_relevant_nodes": "MATCH (c:DarkIonChannel {label: 'CACNG3'})-[:interact]-(p) MATCH (p)-[:implicatedInDisease]->(d:Disease) MATCH (p)-[:hasPathway]->(pw:Pathway) RETURN DISTINCT pw.label AS pathway, d.label AS disease, p.label AS protein LIMIT 100"
+        }
+    },
+    {
+        "title": "B8",
+        "query": "Retrieve all molecular functions associated with proteins implicated in 'Seizures' disease.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:implicatedInDisease]->(d:Disease) MATCH (p)-[:hasMolecularFunction]->(mf:MolecularFunction) WHERE d.label = 'Seizures' RETURN DISTINCT mf.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:implicatedInDisease]->(d:Disease {label: 'Seizures'}) MATCH (p)-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.id, mf.label ORDER BY mf.label;",
+            "without_schema_comments": "MATCH (p:Protein)-[:implicatedInDisease]->(d:Disease) MATCH (p)-[:hasMolecularFunction]->(mf:MolecularFunction) WHERE d.label = 'Seizures' RETURN DISTINCT mf.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p)-[:implicatedInDisease]->(d:Disease) WHERE d.label = 'Seizures' AND (p:Protein OR p:LightIonChannel OR p:DarkIonChannel) MATCH (p)-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.label LIMIT 100"
+        }
+    },
+    {
+        "title": "B9",
+        "query": "Retrieve the functional domains of proteins that are associated with the chemical 'ferric oxide'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (c:Chemical {label: 'ferric oxide'}) MATCH (c)-[:assoWithGene]->(p:Protein) MATCH (p)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.label LIMIT 100",
+            "without_instructions": "MATCH (c:Chemical {label: 'ferric oxide'})-[:assoWithGene]->(p:Protein)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.id, fd.label ORDER BY fd.label;",
+            "without_schema_comments": "MATCH (c:Chemical {label: 'ferric oxide'}) MATCH (c)-[:assoWithGene]->(p:Protein) MATCH (p)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (c:Chemical {label: 'ferric oxide'}) MATCH (c)-[:assoWithGene]->(p:Protein) MATCH (p)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.label LIMIT 100"
+        }
+    },
+    {
+        "title": "C1",
+        "query": "Which family and group does the ion channel 'HTR3E' belong to?",
+        "ablation_results": {
+            "with_instructions": "MATCH (ic:LightIonChannel {label: 'HTR3E'})-[:hasFamily]->(f:Family) MATCH (ic)-[:hasGroup]->(g:Group) RETURN DISTINCT f.label AS family, g.label AS group LIMIT 100",
+            "without_instructions": "MATCH (ic:LightIonChannel {label: 'HTR3E'}) OPTIONAL MATCH (ic)-[:hasFamily]->(f:Family) OPTIONAL MATCH (ic)-[:hasGroup]->(g:Group) RETURN ic.label AS ion_channel, f.label AS family, g.label AS group;",
+            "without_schema_comments": "MATCH (p:Protein {label: 'HTR3E'})-[:hasFamily]->(f:Family) MATCH (p)-[:hasGroup]->(g:Group) RETURN DISTINCT f.label AS family, g.label AS group LIMIT 100",
+            "without_relevant_nodes": "MATCH (ic:LightIonChannel {label: 'HTR3E'})-[:hasFamily]->(f:Family) MATCH (ic)-[:hasGroup]->(g:Group) RETURN DISTINCT f.label AS family, g.label AS group LIMIT 100"
+        }
+    },
+    {
+        "title": "C2",
+        "query": "Find all ion channels that are connected to the 'Neuronal System' pathway through interacting proteins.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Pathway {label: 'Neuronal System'}) MATCH (prot:Protein)-[:hasPathway]->(p) MATCH (lic:LightIonChannel)-[:interact]-(prot) RETURN DISTINCT lic.label UNION MATCH (p:Pathway {label: 'Neuronal System'}) MATCH (prot:Protein)-[:hasPathway]->(p) MATCH (dic:DarkIonChannel)-[:interact]-(prot) RETURN DISTINCT dic.label LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:hasPathway]->(path:Pathway {label: 'Neuronal System'}) MATCH (ic)-[:interact]-(p) WHERE ic:LightIonChannel OR ic:DarkIonChannel RETURN DISTINCT ic.id AS ion_channel_id, ic.label AS ion_channel_name",
+            "without_schema_comments": "MATCH (p:Pathway {label: 'Neuronal System'}) MATCH (prot:Protein)-[:hasPathway]->(p) MATCH (ion)-[:interact]-(prot) WHERE ion:LightIonChannel OR ion:DarkIonChannel RETURN DISTINCT ion.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Pathway {label: 'Neuronal System'}) MATCH (ip)-[:hasPathway]->(p) MATCH (ic)-[:interact]-(ip) WHERE ic:LightIonChannel OR ic:DarkIonChannel RETURN DISTINCT ic.label LIMIT 100"
+        }
+    },
+    {
+        "title": "C3",
+        "query": "List the light ion channels in the Chloride channels group and their respective functional domains.",
+        "ablation_results": {
+            "with_instructions": "MATCH (lic:LightIonChannel)-[:hasGroup]->(g:Group) MATCH (lic)-[:hasFunctionalDomain]->(fd:FunctionalDomain) WHERE g.label = 'Chloride channels' RETURN DISTINCT lic.label AS LightIonChannel, fd.label AS FunctionalDomain LIMIT 100",
+            "without_instructions": "MATCH (lic:LightIonChannel)-[:hasGroup]->(g:Group {label: 'Chloride channels'}) OPTIONAL MATCH (lic)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN lic.label AS light_ion_channel, collect(DISTINCT fd.label) AS functional_domains ORDER BY light_ion_channel;",
+            "without_schema_comments": "MATCH (lic:LightIonChannel)-[:hasGroup]->(g:Group) MATCH (lic)-[:hasFunctionalDomain]->(fd:FunctionalDomain) WHERE g.label = \"Chloride channels\" RETURN DISTINCT lic.label, fd.label LIMIT 100",
+            "without_relevant_nodes": "MATCH (lic:LightIonChannel)-[:hasGroup]->(g:Group) MATCH (lic)-[:hasFunctionalDomain]->(fd:FunctionalDomain) WHERE g.label = 'Chloride channels' RETURN DISTINCT lic.label, fd.label LIMIT 100"
+        }
+    },
+    {
+        "title": "C4",
+        "query": "Which ions are connected to the chemical 'Ozone' through biological processes that involve proteins?",
+        "ablation_results": {
+            "with_instructions": "MATCH (c:Chemical {label: 'Ozone'}) MATCH (c)-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) MATCH (p:Protein)-[:hasBiologicalProcess]->(bp) MATCH (p)-[:hasIonAsso]->(i:Ion) RETURN DISTINCT i.label LIMIT 100",
+            "without_instructions": "MATCH (c:Chemical {label: 'Ozone'})-[:assoWithGene]->(p:Protein)-[:hasBiologicalProcess]->(bp:BiologicalProcess)<-[:hasBiologicalProcess]-(p2:Protein)-[:hasIonAsso]->(i:Ion) RETURN DISTINCT i.label AS ion, i.id AS ion_id",
+            "without_schema_comments": "MATCH (c:Chemical {label: 'Ozone'}) MATCH (c)-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) MATCH (p:Protein)-[:hasBiologicalProcess]->(bp) MATCH (p)-[:hasIonAsso]->(i:Ion) RETURN DISTINCT i.label AS Ion LIMIT 100",
+            "without_relevant_nodes": "MATCH (c:Chemical {label: 'Ozone'})-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) MATCH (p)-[:hasBiologicalProcess]->(bp) WHERE p:Protein OR p:LightKinase OR p:DarkKinase OR p:LightIonChannel OR p:DarkIonChannel MATCH (p)-[:hasIonAsso]->(i:Ion) RETURN DISTINCT i.label LIMIT 100"
+        }
+    }
+]

@@ -1,0 +1,808 @@
+[
+  {
+    "title": "A1",
+    "nl_query": "What is the functional domain associated with EGFR protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain) RETURN DISTINCT fd.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 4,
+    "live_count": 4,
+    "stored_sample": [
+      "PK_Tyr_Ser-Thr",
+      "GF_recep_IV",
+      "Furin-like",
+      "Recep_L_domain"
+    ],
+    "live_sample": [
+      "PK_Tyr_Ser-Thr",
+      "GF_recep_IV",
+      "Furin-like",
+      "Recep_L_domain"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A2",
+    "nl_query": "What are the amino acid changes and mutation descriptions for EGFR protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASMUTATION]->(m) RETURN DISTINCT m.hasMutationAA, m.hasMutationDescription LIMIT 100",
+    "error": null,
+    "stored_count": 108,
+    "live_count": 108,
+    "stored_sample": [
+      "p.C624Y",
+      "p.V592=",
+      "p.P266Hfs*14",
+      "p.E746_T751delinsV",
+      "p.K754R"
+    ],
+    "live_sample": [
+      "p.C624Y",
+      "p.V592=",
+      "p.P266Hfs*14",
+      "p.E746_T751delinsV",
+      "p.K754R"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A3",
+    "nl_query": "In which organisms is DCLK1 protein present?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'DCLK1'})-[:PRESENTIN]->(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "Human",
+      "Mouse"
+    ],
+    "live_sample": [
+      "Human",
+      "Mouse"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A4",
+    "nl_query": "What pathways does EGFR protein participate in?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:PARTICIPATESIN]->(path:Pathway) RETURN DISTINCT path.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 79,
+    "live_count": 79,
+    "stored_sample": [
+      "Intracellular signaling by second messengers",
+      "Nuclear signaling by ERBB4",
+      "Membrane Trafficking",
+      "L1CAM interactions",
+      "Transcriptional regulation by the AP-2 (TFAP2) family of transcription factors"
+    ],
+    "live_sample": [
+      "Intracellular signaling by second messengers",
+      "Nuclear signaling by ERBB4",
+      "Membrane Trafficking",
+      "L1CAM interactions",
+      "Transcriptional regulation by the AP-2 (TFAP2) family of transcription factors"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A5",
+    "nl_query": "What reactions are produced by the 'RHOJ GTPase cycle' pathway?",
+    "cypher": "MATCH (p:Pathway {hasPrimaryName: 'RHOJ GTPase cycle'})-[:HASREACTION]->(r:Reaction) RETURN DISTINCT r.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 3,
+    "live_count": 3,
+    "stored_sample": [
+      "RHOJ GEFs activate RHOJ",
+      "RHOJ GAPs stimulate RHOJ GTPase activity",
+      "RHOJ binds effectors at the plasma membrane"
+    ],
+    "live_sample": [
+      "RHOJ GEFs activate RHOJ",
+      "RHOJ GAPs stimulate RHOJ GTPase activity",
+      "RHOJ binds effectors at the plasma membrane"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A6",
+    "nl_query": "List all proteins belonging to the EGFR family.",
+    "cypher": "MATCH (f:EGFRfamily)-[:ENCODEDIN]->(p:Protein) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 9,
+    "live_count": 9,
+    "stored_sample": [
+      "AQUEK263",
+      "ERBB3",
+      "AQUEK266",
+      "LET-23",
+      "ERBB4"
+    ],
+    "live_sample": [
+      "AQUEK263",
+      "ERBB3",
+      "AQUEK266",
+      "LET-23",
+      "ERBB4"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A7",
+    "nl_query": "What is the tissue specificity of the EGFR protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) RETURN DISTINCT p.hasTissueSpecificity LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "Ubiquitously expressed. Isoform 2 is also expressed in ovarian cancers.",
+      "Ubiquitously expressed in embryos. In larvae, uniform expression is seen in wing disks, genital disk, anlagen of testis and ovary, and brain cortex. In eye-antenna disk, highest expression is anterior to morphogenetic furrow, levels remain high in photoreceptor precursor cells. This pattern is reversed in posterior eye disk. In adults expression is high in brain cortex and thoracic and abdominal ganglia."
+    ],
+    "live_sample": [
+      "Ubiquitously expressed. Isoform 2 is also expressed in ovarian cancers.",
+      "Ubiquitously expressed in embryos. In larvae, uniform expression is seen in wing disks, genital disk, anlagen of testis and ovary, and brain cortex. In eye-antenna disk, highest expression is anterior to morphogenetic furrow, levels remain high in photoreceptor precursor cells. This pattern is reversed in posterior eye disk. In adults expression is high in brain cortex and thoracic and abdominal ganglia."
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A8",
+    "nl_query": "What is the chromosomal position of the EGFR protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) RETURN DISTINCT p.chromosomalPosition LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "57F5--8",
+      "7p11.1-p11.2"
+    ],
+    "live_sample": [
+      "57F5--8",
+      "7p11.1-p11.2"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A9",
+    "nl_query": "Is HIPK1 protein a dark kinase?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'HIPK1'}) RETURN DISTINCT p.isDarkKinase LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "False",
+      "True"
+    ],
+    "live_sample": [
+      "False",
+      "True"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A10",
+    "nl_query": "What is the cellular location of the BRAF protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'BRAF'}) RETURN DISTINCT p.hasCellularLocation LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "Cell membrane",
+      "Cytoplasm"
+    ],
+    "live_sample": [
+      "Cell membrane",
+      "Cytoplasm"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B1",
+    "nl_query": "What are the sequence motifs found in the amino acid sequence of the EGFR protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASSEQUENCE]->(s:Sequence)-[:HASMOTIF]->(sm:SequenceMotif) RETURN DISTINCT sm.hasPrimaryName AS StructuralMotif LIMIT 100",
+    "error": null,
+    "stored_count": 98,
+    "live_count": 98,
+    "stored_sample": [
+      "alpha-D.55",
+      "APE Motif",
+      "Sh2",
+      "HxN Motif",
+      "alpha-C.28"
+    ],
+    "live_sample": [
+      "alpha-D.55",
+      "APE Motif",
+      "Sh2",
+      "HxN Motif",
+      "alpha-C.28"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B2",
+    "nl_query": "Which sample is associated with the gene expression of EGFR protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})<-[:HASPROTEIN]-(ge:GeneExpression)-[:INSAMPLE]->(s:Sample) RETURN DISTINCT s.hasSampleName LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "TCGA-AJ-A3TW-01",
+      "TCGA-B2-A4SR-01",
+      "TCGA-CR-7389-01",
+      "TCGA-GS-A9U3-01",
+      "TCGA-AA-3675-01"
+    ],
+    "live_sample": [
+      "TCGA-AJ-A3TW-01",
+      "TCGA-B2-A4SR-01",
+      "TCGA-CR-7389-01",
+      "TCGA-GS-A9U3-01",
+      "TCGA-AA-3675-01"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B3",
+    "nl_query": "What are functional domains in the EGFR protein that belong to Human?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain),(p)-[:PRESENTIN]->(o:Organism {hasPrimaryName: 'Human'}) RETURN DISTINCT fd.hasPrimaryName AS FunctionalDomain",
+    "error": null,
+    "stored_count": 4,
+    "live_count": 4,
+    "stored_sample": [
+      "Recep_L_domain",
+      "PK_Tyr_Ser-Thr",
+      "Furin-like",
+      "GF_recep_IV"
+    ],
+    "live_sample": [
+      "Recep_L_domain",
+      "PK_Tyr_Ser-Thr",
+      "Furin-like",
+      "GF_recep_IV"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B4",
+    "nl_query": "Which samples with primary site 'skin' have missense mutations in the protein 'DCLK3'? Please provide the sample names.",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'DCLK3'})-[:HASMUTATION]->(m:Missense)-[:INSAMPLE]->(s:Sample {hasPrimarySite: 'skin'}) RETURN DISTINCT s.hasSampleName LIMIT 100",
+    "error": null,
+    "stored_count": 88,
+    "live_count": 88,
+    "stored_sample": [
+      "TCGA-EE-A2GC-06",
+      "TCGA-D9-A6EC-06",
+      "EXTERN_MELA_20140524_014",
+      "PD42099a",
+      "EXTERN_MELA_20140924_079"
+    ],
+    "live_sample": [
+      "TCGA-EE-A2GC-06",
+      "TCGA-D9-A6EC-06",
+      "EXTERN_MELA_20140524_014",
+      "PD42099a",
+      "EXTERN_MELA_20140924_079"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B5",
+    "nl_query": "List all organisms that are classified under the 'Plant' clade.",
+    "cypher": "MATCH (c:Clade {hasPrimaryName: 'Plant'})<-[:ISPARTOF]-(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 1,
+    "live_count": 1,
+    "stored_sample": [
+      "S.moellendorffii"
+    ],
+    "live_sample": [
+      "S.moellendorffii"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B6",
+    "nl_query": "Which proteins have functional domains named 'Pkinase'?",
+    "cypher": "MATCH (fd:FunctionalDomain {hasPrimaryName: 'Pkinase'})<-[:HASFUNCTIONALDOMAIN]-(p:Protein) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "88273.M00404",
+      "93440.M00483",
+      "81907.M00061",
+      "88945.M00103",
+      "86827.M00443"
+    ],
+    "live_sample": [
+      "88273.M00404",
+      "93440.M00483",
+      "81907.M00061",
+      "88945.M00103",
+      "86827.M00443"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B7",
+    "nl_query": "What sequences are associated with EGFR protein?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASSEQUENCE]->(s:Sequence) RETURN DISTINCT s.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 14,
+    "live_count": 14,
+    "stored_sample": [
+      "FruitFly_EGFR-Isoform2_Seq",
+      "SeaUrchin_EGFR-Kinbase_Seq",
+      "Human_EGFR-Isoform3_Seq",
+      "Human_EGFR-Cosmic_Seq",
+      "Mouse_EGFR-Kinbase_Seq"
+    ],
+    "live_sample": [
+      "FruitFly_EGFR-Isoform2_Seq",
+      "SeaUrchin_EGFR-Kinbase_Seq",
+      "Human_EGFR-Isoform3_Seq",
+      "Human_EGFR-Cosmic_Seq",
+      "Mouse_EGFR-Kinbase_Seq"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B8",
+    "nl_query": "List the names of samples implicated in cancer type 'glioma_gliosarcoma'.",
+    "cypher": "MATCH (s:Sample)-[:IMPLICATEDIN]->(c:Cancer {hasPrimaryName: 'glioma_gliosarcoma'}) RETURN DISTINCT s.hasSampleName LIMIT 100",
+    "error": null,
+    "stored_count": 16,
+    "live_count": 16,
+    "stored_sample": [
+      "2760844",
+      "2240680",
+      "P-0001049-T01-IM3",
+      "E40430",
+      "1285427"
+    ],
+    "live_sample": [
+      "2760844",
+      "2240680",
+      "P-0001049-T01-IM3",
+      "E40430",
+      "1285427"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B9",
+    "nl_query": "Which proteins have mutations of type 'Missense'?",
+    "cypher": "MATCH (p:Protein)-[:HASMUTATION]->(m:Missense) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "FGFR4",
+      "DDR2",
+      "KDR",
+      "CDKL5",
+      "DDR1"
+    ],
+    "live_sample": [
+      "FGFR4",
+      "DDR2",
+      "KDR",
+      "CDKL5",
+      "DDR1"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B10",
+    "nl_query": "List the proteins with cellular location 'Cytoskeleton' that are found in the organism 'Mouse'.",
+    "cypher": "MATCH (p:Protein {hasCellularLocation: 'Cytoskeleton'})-[:PRESENTIN]->(o:Organism {hasPrimaryName: 'Mouse'}) RETURN DISTINCT p.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 16,
+    "live_count": 16,
+    "stored_sample": [
+      "LIMK2",
+      "MYO3B",
+      "SGK269",
+      "DCLK2",
+      "CDKL5"
+    ],
+    "live_sample": [
+      "LIMK2",
+      "MYO3B",
+      "SGK269",
+      "DCLK2",
+      "CDKL5"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C1",
+    "nl_query": "What ligands interact with the sequence motifs of the IRAK1 protein, and what is the type of interaction?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'IRAK1'})-[:HASSEQUENCE]->(s:Sequence)-[:HASMOTIF]->(sm:SequenceMotif)<-[:HASMOTIF]-(li:LigandInteraction)-[:HASLIGAND]->(l:Ligand) RETURN DISTINCT l.hasPrimaryName AS Ligand, li.hasType AS InteractionType LIMIT 100",
+    "error": null,
+    "stored_count": 5,
+    "live_count": 5,
+    "stored_sample": [
+      "Apolar contact",
+      "N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide",
+      "Hydrogen bond donor (protein)",
+      "Aromatic face-to-face",
+      "Aromatic edge-to-face"
+    ],
+    "live_sample": [
+      "Apolar contact",
+      "N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide",
+      "Hydrogen bond donor (protein)",
+      "Aromatic face-to-face",
+      "Aromatic edge-to-face"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C2",
+    "nl_query": "List the cancer types linked to mutations found in the DCLK3 protein.",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'DCLK3'})-[:HASMUTATION]->(m)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer) RETURN DISTINCT c.hasPrimaryName AS CancerType LIMIT 100",
+    "error": null,
+    "stored_count": 43,
+    "live_count": 43,
+    "stored_sample": [
+      "other_neoplasm",
+      "lymphoid_neoplasm_acute_lymphoblastic_B_cell_leukaemia",
+      "angiosarcoma_NS",
+      "malignant_melanoma_desmoplastic",
+      "carcinoma_Merkel_cell_carcinoma"
+    ],
+    "live_sample": [
+      "other_neoplasm",
+      "lymphoid_neoplasm_acute_lymphoblastic_B_cell_leukaemia",
+      "angiosarcoma_NS",
+      "malignant_melanoma_desmoplastic",
+      "carcinoma_Merkel_cell_carcinoma"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C3",
+    "nl_query": "Which cancer samples have under expression of AKT3 protein? Show sample name, regulation, and cancer type.",
+    "cypher": "MATCH (ge:GeneExpression)-[:HASPROTEIN]->(p:Protein {hasPrimaryName: 'AKT3'}) MATCH (ge)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer) WHERE ge.hasRegulation IN ['under'] RETURN DISTINCT s.hasSampleName AS SampleName, ge.hasRegulation AS Regulation, c.hasPrimaryName AS CancerType LIMIT 100",
+    "error": null,
+    "stored_count": 15,
+    "live_count": 15,
+    "stored_sample": [
+      "glioma_NS",
+      "TCGA-ET-A4KN-01",
+      "TCGA-ZG-A9N3-01",
+      "under",
+      "TCGA-XK-AAIW-01"
+    ],
+    "live_sample": [
+      "glioma_NS",
+      "TCGA-ET-A4KN-01",
+      "TCGA-ZG-A9N3-01",
+      "under",
+      "TCGA-XK-AAIW-01"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C4",
+    "nl_query": "Which sequence motifs are hallmarks for the Human_EGFR family?",
+    "cypher": "MATCH (fam:EGFRfamily {hasPrimaryName: 'Human_EGFR'})-[:ENCODEDIN]->(p:Protein)-[:HASSEQUENCE]->(seq:Sequence)-[:HASMOTIF]->(motif:SequenceMotif) RETURN DISTINCT motif.hasPrimaryName AS SequenceMotif LIMIT 100",
+    "error": null,
+    "stored_count": 98,
+    "live_count": 98,
+    "stored_sample": [
+      "alpha-D.55",
+      "APE Motif",
+      "Sh2",
+      "HxN Motif",
+      "alpha-C.28"
+    ],
+    "live_sample": [
+      "alpha-D.55",
+      "APE Motif",
+      "Sh2",
+      "HxN Motif",
+      "alpha-C.28"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C5",
+    "nl_query": "What are the histology subtypes of cancers linked to samples that have proteins with mutation ID 'COSM4166151'?",
+    "cypher": "MATCH (m:OtherMutation {hasMutationId: 'COSM4166151'}) MATCH (p:Protein)-[:HASMUTATION]->(m) MATCH (p)<-[:HASPROTEIN]-(ge:GeneExpression) MATCH (ge)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer) RETURN DISTINCT c.hasHistologySubType AS HistologySubType LIMIT 100",
+    "error": null,
+    "stored_count": 14,
+    "live_count": 14,
+    "stored_sample": [
+      "non_small_cell_carcinoma",
+      "acute_myeloid_leukaemia",
+      "serous_carcinoma",
+      "hepatocellular_carcinoma",
+      "chromophobe_renal_cell_carcinoma"
+    ],
+    "live_sample": [
+      "non_small_cell_carcinoma",
+      "acute_myeloid_leukaemia",
+      "serous_carcinoma",
+      "hepatocellular_carcinoma",
+      "chromophobe_renal_cell_carcinoma"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C6",
+    "nl_query": "What is the name of the organism for proteins belonging to the Plant clade?",
+    "cypher": "MATCH (c:Clade {hasPrimaryName: 'Plant'})<-[:ISPARTOF]-(o:Organism) MATCH (p:Protein)-[:PRESENTIN]->(o) RETURN DISTINCT o.hasPrimaryName AS Organism LIMIT 100",
+    "error": null,
+    "stored_count": 1,
+    "live_count": 1,
+    "stored_sample": [
+      "S.moellendorffii"
+    ],
+    "live_sample": [
+      "S.moellendorffii"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C7",
+    "nl_query": "Find pathways that include proteins containing the functional domain 'PI3_PI4_kinase' and have mutations. Please provide the names of these pathways and descriptions of the mutations.",
+    "cypher": "MATCH (fd:FunctionalDomain {hasPrimaryName: 'PI3_PI4_kinase'})<-[:HASFUNCTIONALDOMAIN]-(p:Protein)-[:HASMUTATION]->(m),(p)-[:PARTICIPATESIN]->(pw:Pathway) RETURN DISTINCT pw.hasPrimaryName AS Pathway, m.hasMutationDescription AS MutationDescription LIMIT 100",
+    "error": null,
+    "stored_count": 21,
+    "live_count": 21,
+    "stored_sample": [
+      "Presynaptic phase of homologous DNA pairing and strand exchange",
+      "TP53 Regulates Transcription of DNA Repair Genes",
+      "DNA Double-Strand Break Repair",
+      "Substitution - Missense",
+      "Deletion - Frameshift"
+    ],
+    "live_sample": [
+      "Presynaptic phase of homologous DNA pairing and strand exchange",
+      "TP53 Regulates Transcription of DNA Repair Genes",
+      "DNA Double-Strand Break Repair",
+      "Substitution - Missense",
+      "Deletion - Frameshift"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C8",
+    "nl_query": "List the organisms that have proteins containing the functional domain 'Cadherin'.",
+    "cypher": "MATCH (fd:FunctionalDomain {hasPrimaryName: 'Cadherin'})<-[:HASFUNCTIONALDOMAIN]-(p:Protein)-[:PRESENTIN]->(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 3,
+    "live_count": 3,
+    "stored_sample": [
+      "Human",
+      "Mouse",
+      "M.brevicollis"
+    ],
+    "live_sample": [
+      "Human",
+      "Mouse",
+      "M.brevicollis"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C9",
+    "nl_query": "Which mutations of the protein 'BRAF' associated with samples implicated in 'carcinoma_blastoma'? Please provide the mutation IDs and mutation descriptions.",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'BRAF'})-[:HASMUTATION]->(m)-[:INSAMPLE]->(s:Sample)-[:IMPLICATEDIN]->(c:Cancer {hasPrimaryName: 'carcinoma_blastoma'}) RETURN DISTINCT m.hasMutationId, m.hasMutationDescription LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "Substitution - Missense",
+      "COSM1131"
+    ],
+    "live_sample": [
+      "Substitution - Missense",
+      "COSM1131"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C10",
+    "nl_query": "What are the reactions associated with pathways in which BRAF protein participates?",
+    "cypher": "MATCH (p:Protein {hasPrimaryName: 'BRAF'})-[:PARTICIPATESIN]->(path:Pathway)-[:HASREACTION]->(r:Reaction) RETURN DISTINCT r.hasPrimaryName LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "Activated MAPKs phosphorylate MAP2K1",
+      "MAP2Ks phosphorylate MAPKs downstream of BRAF and NGF",
+      "p-BRAF and RAF fusion dimers bind MAP2Ks and MAPKs",
+      "RAF is phosphorylated downstream of oncogenic RAS",
+      "CBL ubiquitinates FRS2 and FGFR4"
+    ],
+    "live_sample": [
+      "Activated MAPKs phosphorylate MAP2K1",
+      "MAP2Ks phosphorylate MAPKs downstream of BRAF and NGF",
+      "p-BRAF and RAF fusion dimers bind MAP2Ks and MAPKs",
+      "RAF is phosphorylated downstream of oncogenic RAS",
+      "CBL ubiquitinates FRS2 and FGFR4"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  }
+]

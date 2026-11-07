@@ -1,0 +1,302 @@
+[
+    {
+        "title": "A1",
+        "query": "What is the functional domain associated with EGFR protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain) WHERE p.hasPrimaryName = \"EGFR\" RETURN fd.hasPrimaryName AS functionalDomain LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:HASFUNCTIONALDOMAIN]->(d:FunctionalDomain) WHERE p.hasPrimaryName = 'EGFR' RETURN d.hasPrimaryName AS FunctionalDomain, d.uri AS DomainURI;",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName: 'EGFR'})-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain) RETURN fd.hasPrimaryName AS functionalDomainName LIMIT 100;",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:FUNCTIONALDOMAIN]->(fd:FunctionalDomain) WHERE p.hasPrimaryName = 'EGFR'  RETURN fd.hasPrimaryName LIMIT 100;"
+        }
+    },
+    {
+        "title": "A2",
+        "query": "What are the amino acid changes and mutation descriptions for EGFR protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein) WHERE p.hasPrimaryName = 'EGFR' MATCH (p)-[rel:HASMUTATION]->(m:Missense) RETURN m.hasWildTypeResidue, m.hasPKAResidue, m.hasMutationDescription LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:HASMUTATION]->(m:Missense) WHERE p.hasPrimaryName = 'EGFR'    OR p.hasFullName CONTAINS 'EGFR'    OR p.hasUniprotPrimaryName = 'EGFR' RETURN DISTINCT m.hasPKAResidue AS aminoAcidChange,               m.hasMutationDescription AS mutationDescription;",
+            "without_schema_comments": "MATCH (egfr:Protein)-[:TYPE]->(e:Class) WHERE e.hasPrimaryName = 'EGFR' MATCH (egfr)-[r:HASMUTATION]->(mut:Mutation) OPTIONAL MATCH (mut)-[d:HASDBXREF]->(xref:DbXref) RETURN mut.hasPrimaryName AS aminoAcidChanges, mut.hasDescription AS mutationDescriptions LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:EGFRfamily)-[:hasMutation]->(m:OtherMutation) RETURN m.hasMutationAA AS aminoAcidChanges, m.hasMutationDescription AS mutationDescriptions LIMIT 100"
+        }
+    },
+    {
+        "title": "A3",
+        "query": "In which organisms is DCLK1 protein present?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:HAS_SEQUENCE]->(seq:Sequence)-[:HAS_DBXREF]->(db:DbXref) WHERE p.hasPrimaryName = 'DCLK1' MATCH (organism:Organism)-[:ISPARTOF|:ISPARTOF*0..]->(organism) WHERE (organism)-[:HAS_DBXREF]->(db) RETURN organism.hasPrimaryName AS organism LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {hasPrimaryName: 'DCLK1'})-[:PRESENTIN]->(o:Organism) RETURN o.hasPrimaryName AS organismName, o.hasScientificName AS scientificName",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName: 'DCLK1'})-[:PRESENTIN]->(o:Organism) RETURN o.hasPrimaryName AS organism LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {hasPrimaryName: 'DCLK1'})-[:organism]-() RETURN DISTINCT id(p) AS organismUri, DISTINCT p.uri AS organismUri LIMIT 100>MATCH (p:Protein {hasPrimaryName: 'DCLK1'})-[:organism]->(o:Organism) RETURN o.hasPrimaryName AS organismName LIMIT 100"
+        }
+    },
+    {
+        "title": "A4",
+        "query": "What pathways does EGFR protein participate in?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) MATCH (p)-[:PARTICIPANTS_IN]->(r:Reaction) MATCH (r)-[:INPART_OF]->(pw:Pathway) RETURN pw.hasPrimaryName AS pathway LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:PARTICIPATESIN]->(pw:Pathway) WHERE p.hasPrimaryName = 'EGFR'    OR p.hasFullName = 'EGFR'    OR p.hasUniprotPrimaryName = 'EGFR' RETURN DISTINCT pw.hasPrimaryName AS pathway",
+            "without_schema_comments": "MATCH (p:Protein) WHERE p.hasPrimaryName = 'EGFR' MATCH (p)-[:PARTICIPATESIN]->(path:Pathway) RETURN path.hasPrimaryName AS pathwayName LIMIT 100",
+            "without_relevant_nodes": "MATCH (egfr:Protein) WHERE egfr.hasPrimaryName = 'EGFR' MATCH (egfr)-[:PARTICIPATION]->(p:Pathway) RETURN p.hasPrimaryName AS pathway LIMIT 100"
+        }
+    },
+    {
+        "title": "A5",
+        "query": "What reactions are produced by the 'RHOJ GTPase cycle' pathway?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Pathway)-[:HASREACTION]->(r:Reaction) WHERE p.hasPrimaryName = 'RHOJ GTPase cycle' RETURN r.hasPrimaryName AS reactionName LIMIT 100",
+            "without_instructions": "MATCH (p:Pathway {hasPrimaryName: 'RHOJ GTPase cycle'})-[:HASREACTION]->(r:Reaction) RETURN r.hasPrimaryName AS reactionName;",
+            "without_schema_comments": "MATCH (p:Pathway)-[:HASREACTION]->(r:Reaction) WHERE p.hasPrimaryName = 'RHOJ GTPase cycle' RETURN r.hasPrimaryName AS ReactionName LIMIT 100;",
+            "without_relevant_nodes": "MATCH (p:Pathway {hasPrimaryName: 'RHOJ GTPase cycle'})-[:hasPrimaryName]->(r:Reaction) RETURN r.hasPrimaryName AS reaction LIMIT 100"
+        }
+    },
+    {
+        "title": "A6",
+        "query": "List all proteins belonging to the EGFR family.",
+        "ablation_results": {
+            "with_instructions": "MATCH (f:EGFRfamily)-[:ENCODEDIN]->(p:Protein) RETURN p.hasPrimaryName AS hasPrimaryName LIMIT 100",
+            "without_instructions": "MATCH (f:EGFRfamily)-[:ENCODEDIN]->(p:Protein) RETURN p",
+            "without_schema_comments": "MATCH (f:EGFRfamily)-[:ENCODEDIN]->(p:Protein) RETURN p.hasPrimaryName AS proteinName LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein:EGFRfamily) RETURN p.hasPrimaryName AS protein LIMIT 100"
+        }
+    },
+    {
+        "title": "A7",
+        "query": "What is the tissue specificity of the EGFR protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:HASTISSUESPECIFICITY]->(t) WHERE p.hasPrimaryName = 'EGFR' RETURN t.hasTissueSpecificity LIMIT 100;",
+            "without_instructions": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) RETURN p.hasTissueSpecificity;",
+            "without_schema_comments": "MATCH (p:Protein)-[r1:ASSOCIATEDWITH]->(c:Cancer) WHERE p.hasPrimaryName = 'EGFR' MATCH (t:CellularTissueSpecificity)-[r2:ASSOCIATEDWITH]-(p) RETURN t.hasPrimaryName AS TissueSpecificity LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:EGFRfamily) RETURN p.hasTissueSpecificity AS tissueSpecificity LIMIT 100"
+        }
+    },
+    {
+        "title": "A8",
+        "query": "What is the chromosomal position of the EGFR protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:hasPrimaryName]->(n) WHERE n.hasPrimaryName = 'EGFR' RETURN p.chromosomalPosition AS chromosomal_position LIMIT 100",
+            "without_instructions": "MATCH (p:Protein) WHERE p.hasPrimaryName = 'EGFR' RETURN p.chromosomalPosition AS chromosomal_position;",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName:'EGFR'})-[:HASDBXREF]->(g:GenomeEncodedEntity) RETURN g.chromosomalPosition AS chromosomalPosition LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) RETURN p.chromosomalPosition LIMIT 100"
+        }
+    },
+    {
+        "title": "A9",
+        "query": "Is HIPK1 protein a dark kinase?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {hasPrimaryName: 'HIPK1'}) RETURN p.isDarkKinase AS isDarkKinase LIMIT 100;",
+            "without_instructions": "MATCH (p:Protein) WHERE p.hasPrimaryName = \"HIPK1\" RETURN p.isDarkKinase AS isDarkKinase;",
+            "without_schema_comments": "MATCH (p:Protein)-[:hasPrimaryName]->(pname:hasPrimaryName) WHERE pname = 'HIPK1' RETURN false AS IsHIPK1DarkKinase  (Note: The schema does not have a \"dark kinase\" classification property. Returning a hard coded boolean is not allowed. This is not clear if it is dark or not.)  <|start|>assistant<|channel|>analysis<|message|>We need to answer user query: \"Is HIPK1 protein a dark kinase?\" We need to find whether HIPK1 protein is a dark kinase. The schema includes Protein nodes, and we need to know if there's a property like \"dark kinase\" classification. There is \"darkGene\" property for Clade, etc. Actually \"dark kinase\" concept maybe defined as in literature (dark kinases are less studied). But no explicit property. In schema, there is no \"dark kinase\" classification. But there are \"darkKinases\" Clade maybe? I don't see such. There's a \"Clade\" node. Also \"darkGene\" property: \"darkGene\": Property. We need to determine if HIPK1 is a dark kinase. But not obviously from schema. We might need to find \"HIPK1\" as Protein. Then check if it has \"darkGene\" or \"clade\" linking to a dark kinase classification etc.  Perhaps in graph, there is a \"darkKinase\" classification? I don't see. Possibly the concept \"dark kinase\" may be encoded by \"hasGene\" linking to a gene with 'darkGene' property? Actually there is \"darkGene\" property defined but not a relationship.  Could be that there is a concept of \"dark kinase\" that might be a subcategory under \"protein\". Let's search relationships: We have \"HASMUTATION\", \"ASSOCIATEDWITH\", \"ASSOCIATEDWITH\", etc. There is no \"dark kinase\" classification.  Thus we cannot determine from schema.  But we need to produce a Cypher query. Perhaps we need to check if HIPK1 protein has \"darkGene\" property? Wait that property refers to a Clade? No.  Maybe dark kinase classification is stored in node property \"darkKinase\" or \"dark\" field somewhere. Let's quickly search the schema: There's no property \"darkKinase\" defined. There may be property on Protein \"hasProteinDomain\" etc.  Thus the user query may not be answerable from graph.  But we need to give query. If unsolvable, we can query the existence of \"dark gene\" property? Use where exists? We can attempt to match Protein node with hasPrimaryName HIPK1 and then see if it has any property that indicates dark kinase.  But the query can't know property; but maybe we can check if there is a classification \"darkKinaseClade\" etc. There's a Clade node. Might connect to Protein via \"PARTOF\". Possibly protein belongs to a clade that is dark kinase? We could match (hipk1:Protein)-[:hasPrimaryName]->(name) where name='HIPK1'.  But we need to determine if that protein is classified as dark kinase. There might be a \"dark\" property or \"darkKinase\" relationship. Not in schema. So unsolvable.  The instructions: If you don't know, do not include them. We could produce a generic query but not sure.  We may have to return empty result or just check if HIPK1 is a protein. Probably the query cannot be answered.  But still need to produce one Cypher query, maybe returning existence boolean.  We could produce a query that returns the hasPrimaryName of the protein but not classification. But user asked \"Is HIPK1 protein a dark kinase?\" So we should return some boolean. But we cannot create false if not know.  We could produce query that matches protein HIPK1 but then returns a property maybe 'darkKinase' if exists, else null. But no property defined.  We might query if there is a relationship from Protein to a node labeled \"darkKinase\" if exists? But no label.  Ok maybe I can create query: MATCH (p:Protein)-[:hasPrimaryName]->(n) WHERE n='HIPK1' RETURN exists((p)-[:darkKinaseLabel]-()) as isDark  But \"darkKinaseLabel\" not exist.  Alternate: Use property 'darkKinase' not exist.  Hence probably no.  We might just produce query that matches Protein with primary name HIPK1 and return hasPrimaryName column. That's required always return hasPrimaryName value. They didn't ask classification. So just return it.  But that wouldn't answer question.  But requirement: single cypher query, return results. We can't answer question with unknown. So we might return nothing? But we need to output query.  Maybe do:  MATCH (p:Protein) WHERE p.hasPrimaryName = 'HIPK1' RETURN true AS IsHIPK1DarkKinase  But 'true' is not derived. This is not based on data;",
+            "without_relevant_nodes": "MATCH (p:Protein {hasPrimaryName: \"HIPK1\"}) RETURN p.isDarkKinase AS isDarkKinase LIMIT 100"
+        }
+    },
+    {
+        "title": "A10",
+        "query": "What is the cellular location of the BRAF protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein) WHERE p.hasPrimaryName = 'BRAF' RETURN p.hasCellularLocation LIMIT 100",
+            "without_instructions": "MATCH (p:Protein) WHERE p.hasPrimaryName = 'BRAF'    OR p.hasFullName = 'BRAF'    OR p.hasUniprotPrimaryName = 'BRAF' RETURN p.hasCellularLocation AS cellularLocation",
+            "without_schema_comments": "MATCH (p:Protein)  WHERE p.hasPrimaryName = \"BRAF\"  RETURN p.cellularLocation AS CellularLocation  LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {hasPrimaryName: 'BRAF'}) RETURN p.hasCellularLocation AS cellular_location LIMIT 100"
+        }
+    },
+    {
+        "title": "B1",
+        "query": "What are the sequence motifs found in the amino acid sequence of the EGFR protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (protein:Protein)-[:hasSequence]->(seq:Sequence)-[:hasAmendedMotif]->(motif:SequenceMotif) WHERE protein.hasPrimaryName = 'EGFR' RETURN motif.hasPrimaryName AS motifName LIMIT 100;",
+            "without_instructions": "MATCH (p:Protein)-[:HASSEQUENCE]->(s:Sequence)-[:HASSEQUENCEMOTIF]->(m:SequenceMotif) WHERE toLower(p.hasPrimaryName) CONTAINS \"egfr\" OR toLower(p.hasUniprotPrimaryName) CONTAINS \"egfr\" OR toLower(p.hasUniprotSynonymName) CONTAINS \"egfr\" RETURN m.hasPrimaryName AS motifName;",
+            "without_schema_comments": "MATCH (egfrProteins:Protein)-[:HASSEQUENCE]->(seq:Sequence) MATCH (seq)-[:HASSEQUENCEMOTIF]->(motif:SequenceMotif) RETURN DISTINCT motif.hasPrimaryName AS motif LIMIT 100",
+            "without_relevant_nodes": "MATCH (protein:Protein {hasPrimaryName:'EGFR'}), (seq:Sequence)-[:SEQUENCEOF]-(:Protein),  (pMotif:Sequence)-[:HASSEQUENCEOF]-(seq)-[:HASSEQUENCEMOTIF]->(motif:SequenceMotif) WHERE seq.hasPrimaryName = protein.hasPrimaryName RETURN DISTINCT motif.hasPrimaryName AS motifName LIMIT 100;"
+        }
+    },
+    {
+        "title": "B2",
+        "query": "Which sample is associated with the gene expression of EGFR protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (s:Sample)-[:isAssociatedWith]-(:GeneExpression)-[:hasGeneExression]-(:GeneExpression)-[:isExpressedAs]-(:Protein)-[:hasPrimaryName {hasPrimaryName:'EGFR'}] RETURN DISTINCT s.hasIdSample AS sampleId, s.hasSampleName AS sampleName LIMIT 100",
+            "without_instructions": "MATCH (s:Sample)-[:INSAMPLE]->(ge:GeneExpression) WHERE ge.hasGene = 'EGFR'          // or any other property that links\u2011the\u2011gene\u2011expression to the EGFR\u2011gene RETURN s.hasIdSample AS SampleID,        s.hasSampleName AS SampleName;",
+            "without_schema_comments": "MATCH (egfr:Protein) WHERE 'EGFR' IN egfr.hasPrimaryName MATCH (egfr)-[:GENEXP]->(ge:GeneExpression) MATCH (s:Sample)-[:hasGeneExpression]->(ge) RETURN s.hasPrimaryName AS sample LIMIT 100",
+            "without_relevant_nodes": "MATCH (s:Sample)-[:hasGeneExpression]->(ge:GeneExpression)-[:r]->(p:Protein {hasPrimaryName:'EGFR'}) RETURN s.hasIdSample AS sampleId, s.hasSampleName AS sampleName, s.hasPrimaryName AS sampleHasPrimaryName? Wait we need return hasPrimaryName of return nodes. But sample node has property hasIdSample, hasSampleName, etc, not hasPrimaryName. But we should always return the hasPrimaryName if in node properties. Sample has no hasPrimaryName. So we can return s.hasIdSample and s.hasSampleName maybe.  But user query: \"Which sample is associated with the gene expression of EGFR protein?\" They likely want Sample name or ID, maybe both. Since Sample label has properties hasSampleName. So we can return s.hasSampleName.  Thus query:  MATCH (s:Sample)-[:hasGeneExpression]->(ge:GeneExpression)-[:r]->(p:Protein {hasPrimaryName:'EGFR'}) RETURN s.hasSampleName AS sampleName LIMIT 100;  But we must use hasPrimaryName? Not for Sample;"
+        }
+    },
+    {
+        "title": "B3",
+        "query": "What are functional domains in the EGFR protein that belong to Human?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {hasPrimaryName:'EGFR'}),       (o:Organism {hasPrimaryName:'Human'}),       (p)-[:PRESENTIN]->(o),       (p)-[:HAS]->(d:FunctionalDomain) RETURN d.hasPrimaryName LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:PRESENTIN]->(o:Organism) WHERE (p.hasPrimaryName = 'EGFR' OR p.hasFullName = 'Epidermal growth factor receptor')   AND (o.hasPrimaryName = 'Human' OR o.hasScientificName = 'Homo sapiens') MATCH (p)-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain) RETURN DISTINCT fd.hasPrimaryName AS functionalDomain;",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName:'EGFR'})-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain),        (p)-[:PRESENTIN]->(o:Organism {hasPrimaryName:'Human'})  RETURN fd.hasPrimaryName AS functionalDomain  LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}) WHERE (p)-[:hasPrimaryName]->(f:FunctionalDomain)   AND (p)-[:hasPrimarySite]->(o:Organism {hasScientificName: 'Homo sapiens'}) RETURN f.hasPrimaryName AS functionalDomain LIMIT 100"
+        }
+    },
+    {
+        "title": "B4",
+        "query": "Which samples with primary site 'skin' have missense mutations in the protein 'DCLK3'? Please provide the sample names.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {hasFullName: 'DCLK3'}) MATCH (s:Sample)-[:INSAMPLE]->(m:Missense) MATCH (p)-[:HASMUTATION]->(m) WHERE s.hasPrimarySite = 'skin' RETURN DISTINCT s.hasSampleName AS sampleName LIMIT 100;",
+            "without_instructions": "MATCH (s:Sample)-[:INSAMPLE]->(m:Missense)-[:HASMUTATION]-(p:Protein)  WHERE s.hasPrimarySite = 'skin' AND p.hasPrimaryName = 'DCLK3' RETURN s.hasSampleName  But orientation: sample -[:INSAMPLE]-> missense; missense -[:HASMUTATION]-> protein maybe orientation reversed? But we can use any direction.  Given defined relationships:  - \"INSAMPLE\" is between Missense and Sample, but can be either orientation: (Missense)-[:INSAMPLE]->(Sample) or (Sample)-[:INSAMPLE]->(Missense). So either.  - \"HASMUTATION\" is between Protein and Mutation. It can be (Protein)-[:HASMUTATION]->(Missense) or (Missense)-[:HASMUTATION]->(Protein). So we can use any orientation.  So query:  MATCH (p:Protein {hasPrimaryName:'DCLK3'})<-[:HASMUTATION]-(m:Missense)-[:INSAMPLE]->(s:Sample) WHERE s.hasPrimarySite='skin' RETURN DISTINCT s.hasSampleName  We also need sample names. So distinct.  So final.MATCH (p:Protein {hasPrimaryName: 'DCLK3'}) <-[:HASMUTATION]-(m:Missense)-[:INSAMPLE]->(s:Sample) WHERE s.hasPrimarySite = 'skin' RETURN DISTINCT s.hasSampleName;",
+            "without_schema_comments": "MATCH (s:Sample)  WHERE s.hasTissueCategory1 = 'skin'  AND EXISTS { MATCH (p:Protein {hasPrimaryName:'DCLK3'})-[r:HASMUTATION]->(m:Missense) } RETURN s.hasPrimaryName AS sampleName LIMIT 100;",
+            "without_relevant_nodes": "MATCH (s:Sample)-[:MUTATED]->(m:Missense), (p:Protein)-[:MISSENSE]->(m) WHERE s.hasPrimarySite = 'skin' AND p.hasPrimaryName = 'DCLK3' RETURN s.hasSampleName AS sampleName LIMIT 100;"
+        }
+    },
+    {
+        "title": "B5",
+        "query": "List all organisms that are classified under the 'Plant' clade.",
+        "ablation_results": {
+            "with_instructions": "MATCH (o:Organism)-[:ISPARTOF]->(c:Clade) WHERE c.hasPrimaryName = 'Plant' RETURN o.hasPrimaryName AS organism LIMIT 100",
+            "without_instructions": "MATCH (o:Organism)-[:ISPARTOF]->(c:Clade {hasPrimaryName: 'Plant'}) RETURN o;",
+            "without_schema_comments": "MATCH (o:Organism)-[:ISPARTOF]->(c:Clade {hasPrimaryName: \"Plant\"}) RETURN o.hasPrimaryName AS organismName LIMIT 100",
+            "without_relevant_nodes": "MATCH (c:Clade {hasPrimaryName:'Plant'}), (o:Organism)-[:r]-(c)  RETURN o.hasPrimaryName AS Organism, c.hasPrimaryName AS Clade  LIMIT 100;"
+        }
+    },
+    {
+        "title": "B6",
+        "query": "Which proteins have functional domains named 'Pkinase'?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:HASFUNCTIONALDOMAIN]->(d:FunctionalDomain) WHERE d.hasPrimaryName = 'Pkinase' RETURN p.hasPrimaryName AS protein LIMIT 100;",
+            "without_instructions": "MATCH (p:Protein)-[:HASFUNCTIONALDOMAIN]->(d:FunctionalDomain) WHERE d.hasPrimaryName = 'Pkinase' RETURN DISTINCT p",
+            "without_schema_comments": "MATCH (p:Protein)-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain) WHERE fd.hasPrimaryName = 'Pkinase' RETURN DISTINCT p.hasPrimaryName AS proteinName LIMIT 100;",
+            "without_relevant_nodes": "MATCH (fd:FunctionalDomain)-[:belongsTo]->(p:Protein) WHERE fd.hasPrimaryName = 'Pkinase' RETURN p.hasPrimaryName AS proteinName LIMIT 100"
+        }
+    },
+    {
+        "title": "B7",
+        "query": "What sequences are associated with EGFR protein?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:isAssociatedWith]->(s:Sequence) WHERE p.hasPrimaryName = 'EGFR' RETURN s.hasPrimaryName AS sequence LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:EGFR]->(s:Sequence) WHERE p.hasFullName = 'Epidermal growth factor receptor' RETURN s.hasPrimaryName AS sequenceName, s.hasFASTAFormat AS fasta;",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName: 'EGFR'}), (s:Sequence) WHERE s.hasPrimaryName CONTAINS p.hasPrimaryName RETURN DISTINCT s.hasPrimaryName AS SequenceName",
+            "without_relevant_nodes": "MATCH (egfr:Protein {hasPrimaryName:'EGFR'})-[:hasFunctionalDomain|hasFunctionalDomain?]-()   # placeholder for domain? but we need sequences directly related WITH egfr MATCH (egfr)-[:hasFunctionalDomain?]-(:FunctionalDomain)-[:hasSequence]-(:Sequence) RETURN egfr.hasPrimaryName, seq.hasPrimaryName ??MATCH (egfr:Protein {hasPrimaryName:'EGFR'}) OPTIONAL MATCH (egfr)-[:hasFunctionalDomain]->(fd:FunctionalDomain)-[*]->(seq:Sequence) WHERE seq IS NOT NULL RETURN egfr.hasPrimaryName AS Protein, seq.hasPrimaryName AS Sequence LIMIT 100"
+        }
+    },
+    {
+        "title": "B8",
+        "query": "List the names of samples implicated in cancer type 'glioma_gliosarcoma'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (s:Sample)-[:IMPLICATEDIN]->(c:Cancer) WHERE c.hasPrimaryName = 'glioma_gliosarcoma' RETURN s.hasSampleName LIMIT 100",
+            "without_instructions": "MATCH (s:Sample)-[:IMPLICATEDIN]->(c:Cancer {hasPrimaryName: 'glioma_gliosarcoma'}) RETURN s.hasSampleName AS sampleName;",
+            "without_schema_comments": "MATCH (s:Sample)-[:IMPLICATEDIN]->(c:Cancer) WHERE c.hasPrimaryName = 'glioma_gliosarcoma' RETURN s.hasPrimaryName LIMIT 100",
+            "without_relevant_nodes": "MATCH (c: Cancer)-[:implicated]->(s: Sample) WHERE c.hasPrimaryName = 'glioma_gliosarcoma' RETURN s.hasPrimaryName AS SampleName LIMIT 100. Check node labels: \"Cancer\" and \"Sample\" exist. Relationship name \"implicated\" exists, with from Cancer to Sample. Direction is from Cancer to Sample. In query we specify (c)-[:implicated]->(s). Good.  Thus final query.MATCH (c:Cancer)-[:implicated]->(s:Sample)  WHERE c.hasPrimaryName = 'glioma_gliosarcoma'  RETURN s.hasPrimaryName AS SampleName  LIMIT 100"
+        }
+    },
+    {
+        "title": "B9",
+        "query": "Which proteins have mutations of type 'Missense'?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:HASMUTATION]->(m:Missense) RETURN DISTINCT p.hasPrimaryName AS ProteinName LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:HASMUTATION]->(m:Missense) RETURN p;",
+            "without_schema_comments": "MATCH (p:Protein)-[:HASMUTATION]->(m:Missense) RETURN p.hasPrimaryName AS ProteinName LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:hasMissense]-(:Missense) RETURN p.hasPrimaryName AS Protein LIMIT 100;"
+        }
+    },
+    {
+        "title": "B10",
+        "query": "List the proteins with cellular location 'Cytoskeleton' that are found in the organism 'Mouse'.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:PRESENTIN]->(o:Organism) WHERE p.hasCellularLocation = 'Cytoskeleton' AND o.hasPrimaryName = 'Mouse' RETURN p.hasPrimaryName AS protein LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {hasCellularLocation: 'Cytoskeleton'})-[:PRESENTIN]->(o:Organism {hasPrimaryName: 'Mouse'}) RETURN DISTINCT p.hasPrimaryName AS ProteinName",
+            "without_schema_comments": "MATCH (p:Protein)-[:PRESENTIN]->(o:Organism) WHERE p.cellularLocation = 'Cytoskeleton' AND o.hasPrimaryName = 'Mouse' RETURN p.hasPrimaryName AS Protein LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:Organism]->(o:Organism) WHERE p.hasCellularLocation = 'Cytoskeleton' AND o.hasPrimaryName = 'Mouse' RETURN p.hasPrimaryName AS proteinName LIMIT 100"
+        }
+    },
+    {
+        "title": "C1",
+        "query": "What ligands interact with the sequence motifs of the IRAK1 protein, and what is the type of interaction?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:hasFullName]->(pName) WHERE p.hasFullName = 'IRAK1' MATCH (p)-[:hasUniprotSynonymName]->(pUniprot)  WITH p MATCH (p)-[:INTERACTS]->(lm:Ligand)  MATCH (lm)-[:INTERACTS]->(motif:SequenceMotif) MATCH (lm)-[int:INTERACTS]->(motif) RETURN lm.hasPrimaryName, int.hasType LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {hasPrimaryName: 'IRAK1'})  // Find the sequence motifs that are present in this protein OPTIONAL MATCH (p)-[:LOCATED_IN]->(motif:SequenceMotif)  // Find the ligand\u2011protein interaction records that involve IRAK1 OPTIONAL MATCH (p)-[:SOME]->(ligandInt:LigandInteraction)  // Find the ligand that is bound in each interaction // (Assumes a :SOME relationship links a LigandInteraction to a Ligand node) OPTIONAL MATCH (ligandInt)-[:SOME]->(ligand:Ligand)  // Return the motif hit, the ligand name, and the type of interaction RETURN   motif.hasPrimaryName   AS motif,   ligand.hasPrimaryName  AS ligand,   ligandInt.hasType      AS interactionType LIMIT 50;",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName: 'IRAK1'}) MATCH (p)-[:HASMUTATION]->(m) MATCH (m)-[:HASMUTATION]->(lm:Ligand) RETURN lm.hasPrimaryName AS ligand, lm.interactionType AS interactionType LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {hasPrimaryName:'IRAK1'}) // Sequence motifs represented by FunctionalDomain nodes MATCH (fd:FunctionalDomain)-[:r]->(p) // Ligand \u2192 interaction with a motif MATCH (l:Ligand)-[li:LigandInteraction]->(fd) RETURN l.LigandName     AS Ligand,        li.InteractionType AS InteractionType;"
+        }
+    },
+    {
+        "title": "C2",
+        "query": "List the cancer types linked to mutations found in the DCLK3 protein.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {hasPrimaryName:'DCLK3'})-[:HASMUTATION]->(m:Missense) MATCH (p)-[:ASSOCIATEDWITH]->(c:Cancer) RETURN c.hasPrimaryName AS cancerType LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[HAS_MUTATION]->(m)-[:HAS_MUTATION]->(c:Cancer) RETURN DISTINCT c.hasPrimaryName as cancer?MATCH (p:Protein)-[:HASMUTATION]->(m)-[:IMPLICTLY]->(c:Cancer) WHERE p.hasPrimaryName = 'DCLK3' RETURN DISTINCT c.hasPrimaryName AS cancerTypes;",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName: 'DCLK3'})-[:HASMUTATION]->(m:Mutation) MATCH (m)-[:MUTATION]->(c:Cancer) RETURN DISTINCT c.hasPrimaryName AS cancerType LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein {hasPrimaryName:'DCLK3'})-[:HAS_MUTATION]->(m) MATCH (s)-[:IN_THIS_SAMPLE]->(m) MATCH (s)-[:IN_THIS_CANCER]->(cancer:Cancer) RETURN DISTINCT cancer.hasPrimaryName AS cancerType LIMIT 100"
+        }
+    },
+    {
+        "title": "C3",
+        "query": "Which cancer samples have under expression of AKT3 protein? Show sample name, regulation, and cancer type.",
+        "ablation_results": {
+            "with_instructions": "MATCH (s:Sample)-[rex:Sample_hasSampleRegulation]-(g2:GeneExpression) WHERE g2.hasPrimaryName = 'AKT3' AND g2.hasRegulation = 'under'  RETURN s.hasSampleName AS SampleName, g2.hasRegulation AS Regulation, s.hasPrimaryHistology AS CancerType LIMIT 100",
+            "without_instructions": "MATCH (s:Sample)-[:INCLUDEDIN]->(c:Cancer),       (p:Protein)-[:ASSOCIATEDWITH]->(c),       (e:GeneExpression)-[:INVOLVES]->(p) WHERE p.hasFullName = 'AKT3' AND e.hasRegulation = 'under' RETURN s.hasSampleName AS sampleName, e.hasRegulation AS regulation, c.hasPrimaryName AS cancerType;",
+            "without_schema_comments": "MATCH (p:Protein)-[r:SampleHasProtein]->(s:Sample) // Wait SampleHasProtein from Sample to Protein, not Protein to Sample. Actually from schema: from: Sample, to: Protein; so the relationship direction is Sample to Protein. So pattern (s)-[r:SampleHasProtein]->(p). We'll match this. But r has property hasProteinHasRegulationValue. So we need to filter r.hasProteinHasRegulationValue = 'Under' or maybe 'Under expression'. But property may exactly store 'Under expression' maybe. We'll use 'Under' for property. Use 'Under' to satisfy \"under expression\".  Then we need to match Sample to Cancer. Relationship SampleHasCancer from Sample to Cancer. So MATCH (s)-[:SampleHasCancer]->(c:Cancer). The Cancer node has property hasProteinHasClassification. So we can return s.hasPrimaryName as sampleName, r.hasProteinHasRegulationValue as regulation, c.hasProteinHasClassification as cancerType.  We need to limit to 100.  So final Cypher query:  MATCH (s:Sample)-[r:SampleHasProtein]->(p:Protein) WHERE p.hasPrimaryName = 'AKT3' AND r.hasProteinHasRegulationValue = 'Under' MATCH (s)-[:SampleHasCancer]->(c:Cancer) RETURN s.hasPrimaryName AS sampleName, r.hasProteinHasRegulationValue AS regulation, c.hasProteinHasClassification AS cancerType LIMIT 100  But we need to confirm property names: In Sample nodes, property hasPrimaryName exists;",
+            "without_relevant_nodes": "MATCH (s:Sample)-[:hasExpression]->(p:Protein),       (p)-[:HAS_REGULATION]->(e:Expression) WHERE p.hasPrimaryName = 'AKT3' AND e.regulation = 'under' RETURN s.hasSampleName AS SampleName, e.regulation AS Regulation, s.hasHistologySubType AS CancerType LIMIT 100"
+        }
+    },
+    {
+        "title": "C4",
+        "query": "Which sequence motifs are found in proteins belonging to the EGFR family?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:HAS_FAMILY_EGFR]->(sf:Sequence) MATCH (sf)-[:HAS_FAMILY_EGFR]->(sm:SequenceMotif) RETURN sm.hasPrimaryName AS SequenceMotif LIMIT 100",
+            "without_instructions": "MATCH (family:ProteinFamily {hasPrimaryName:\"EGFR family\"})<-[:BELONGSTO]-(prot:Protein)-[:hasSequence]->(seq:Sequence)-[:BELONGS]->(motif:SequenceMotif) RETURN DISTINCT motif.hasPrimaryName AS motifName;",
+            "without_schema_comments": "MATCH (family:Family)-[:IS_A]->(egfrFamily:Subfamily) WHERE egfrFamily.hasPrimaryGeneIdentifier = 'EGFR' MATCH (protein:Protein)-[:IS_A]->(:Subfamily)-[:IS_A]->(egfrFamily) MATCH (protein)-[:IS_A]->(motif:SequenceMotif) RETURN DISTINCT motif.hasPrimaryName AS motifName LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:partOfFamily]->(f:EGFRfamily)-[:contains]->(s:Sequence)-[:hasMotif]->(m:FunctionalDomain) RETURN DISTINCT m.hasPrimaryName AS Motif LIMIT 100"
+        }
+    },
+    {
+        "title": "C5",
+        "query": "What are the histology subtypes of cancers linked to samples that have proteins with mutation ID 'COSM4166151'?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:HASMUTATION]->(m:Missense {hasMutationId:'COSM4166151'}) MATCH (p)-[:INSAMPLE]->(s:Sample) MATCH (s)-[:Like]->(c:Cancer) RETURN c.hasHistologySubType AS histologySubtypes LIMIT 100",
+            "without_instructions": "MATCH (s:Sample)-[:HAS_PROTEIN]->(p:Protein)-[:HASMUTATION]->(m:Missense) WHERE m.hasMutationId = 'COSM4166151' MATCH (p)-[:ASSOCIATEDWITH]->(c:Cancer) RETURN DISTINCT c.hasHistologySubType;",
+            "without_schema_comments": "MATCH (p:Protein)-[:HAVE_MUTATION]->(m:Mutation {mutationID:'COSM4166151'})<-[:HAS_PROTEIN]-(s:Sample) MATCH (s)-[:HAS_TUMOUR_HISTOLOGY]->(h:Histology) WHERE h.hasSubtype IS NOT NULL RETURN DISTINCT h.hasSubtype AS histologySubtype LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:hasHas]->(om:OtherMutation {hasMutationId:'COSM4166151'}) MATCH (p)-[:has]->(s:Sample) MATCH (c:Cancer)-[:linkedTo]->(s) RETURN c.hasHistologySubType AS histologySubtype LIMIT 100"
+        }
+    },
+    {
+        "title": "C6",
+        "query": "What is the name of the organism for proteins belonging to the Plant clade?",
+        "ablation_results": {
+            "with_instructions": "MATCH (o:Organism)-[:ISPARTOF]->(c:Clade {hasPrimaryName: 'Plant'}) RETURN DISTINCT o.hasPrimaryName AS OrganismName LIMIT 100",
+            "without_instructions": "MATCH (p:Protein)-[:PRESENTIN]->(o:Organism)-[:ISPARTOF]->(c:Clade {hasPrimaryName:\"Plant\"}) RETURN DISTINCT o.hasPrimaryName AS organismName;",
+            "without_schema_comments": "MATCH (p:Protein)-[:PRESENTIN]->(o:Organism)-[:ISPARTOF]->(c:Clade) WHERE c.hasPrimaryName = 'Plant' RETURN o.hasPrimaryName AS organism LIMIT 100",
+            "without_relevant_nodes": "MATCH (c:Plantclade)<-[:hasMemberOf]-(o:Organism)-[:OrganismProtein]->(p:Protein) RETURN DISTINCT o.hasPrimaryName AS OrganismName"
+        }
+    },
+    {
+        "title": "C7",
+        "query": "Find pathways that include proteins containing the functional domain 'PI3_PI4_kinase' and have mutations. Please provide the names of these pathways and descriptions of the mutations.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein)-[:LOCATEDIN|HAS_FUNCTIONAL_DOMAIN]->(fd:FunctionalDomain {hasPrimaryName: 'PI3_PI4_kinase'}) MATCH (p)-[:HASMUTATION]->(m:Mutation) MATCH (p)-[:LOCATEDIN]->(pw:Pathway) RETURN pw.hasPrimaryName AS pathwayName, m.hasMutationDescription AS mutationDescription LIMIT 100",
+            "without_instructions": "MATCH (pw:Pathway)-[:hasComponent]->(p:Protein)-[:HASMUTATION]->(m) MATCH (fd:FunctionalDomain)-[:contains]->(p) WHERE fd.hasPrimaryName = 'PI3_PI4_kinase' RETURN pw.hasPrimaryName AS pathwayName, collect(m.hasMutationDescription) AS mutationDescriptions;",
+            "without_schema_comments": "MATCH (p:Protein)-[:includesDomain]->(d:FunctionalDomain)-[:hasDomain]->(f:Domain) WHERE d.hasPrimaryName = 'PI3_PI4_kinase' MATCH (p)-[:belongsToPathway]->(pw:Pathway) MATCH (pw)-[:hasPathwayStatus]->(ps:PathwayStatus) WHERE ps.status = 'included' MATCH (p)-[m]->(mut:Mutation) RETURN pw.hasPrimaryName AS pathwayName, mut.description AS mutationDescription LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:hasFunctionalDomain]->(fd:FunctionalDomain {hasPrimaryName:'PI3_PI4_kinase'}) MATCH (p)-[:hasMutation]->(m) MATCH (p)-[:part_of]->(pw:Pathway) RETURN pw.hasPrimaryName AS pathwayName, m.hasMutationDescription AS mutationDescription LIMIT 100"
+        }
+    },
+    {
+        "title": "C8",
+        "query": "List the organisms that have proteins containing the functional domain 'Cadherin'.",
+        "ablation_results": {
+            "with_instructions": "",
+            "without_instructions": "MATCH (prot:Protein)-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain) WHERE fd.hasPrimaryName = 'Cadherin' MATCH (prot)-[:PRESENTIN]->(org:Organism) RETURN DISTINCT org.hasPrimaryName AS organism_name;",
+            "without_schema_comments": "MATCH (p:Protein)-[:HASFUNCTIONALDOMAIN]->(fd:FunctionalDomain {hasPrimaryName: 'Cadherin'}) MATCH (p)-[:PRESENTIN]->(o:Organism) RETURN DISTINCT o.hasPrimaryName AS organism LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein)-[:hasFunctionalDomain]->(fd:FunctionalDomain) WHERE fd.hasPrimaryName = 'Cadherin' WITH DISTINCT p MATCH (p)-[:hasOrganism]->(o:Organism) RETURN o.hasPrimaryName AS Organism LIMIT 100"
+        }
+    },
+    {
+        "title": "C9",
+        "query": "Which mutations of the protein 'BRAF' associated with samples implicated in 'carcinoma_blastoma'? Please provide the mutation IDs and mutation descriptions.",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {hasPrimaryName:'BRAF'}) MATCH (p)-[:HASMUTATION]->(m:Mutation) MATCH (m)-[:]-(s:Sample) MATCH (s)-[:IMPPLICATED_IN]->(c:Cancer {hasPrimaryName:'carcinoma_blastoma'}) RETURN m.hasMutationId AS mutationId, m.hasMutationDescription AS mutationDescription LIMIT 100",
+            "without_instructions": "MATCH (p:Protein {hasPrimaryName:'BRAF'})-[:HASMUTATION]->(m)-[:INSAMPLE]->(s:Sample) WHERE s.hasPrimaryHistology = 'carcinoma_blastoma'    OR s.hasHistologySubType = 'carcinoma_blastoma' RETURN DISTINCT m.hasMutationId   AS mutationId,                 m.hasMutationDescription AS mutationDescription",
+            "without_schema_comments": "MATCH (p:Protein {hasPrimaryName: 'BRAF'}) MATCH (p)-[:HASMUTATION]->(m:Mutation) MATCH (m)-[:INSAMPLE]->(s:Sample)-[:SampleImplicatedInCancer]->(c:Cancer) WHERE c.hasPrimaryName = 'carcinoma_blastoma' RETURN m.hasMutationID AS mutationID, m.hasPrimaryDescription AS mutationDescription LIMIT 100",
+            "without_relevant_nodes": ""
+        }
+    },
+    {
+        "title": "C10",
+        "query": "What are the reactions associated with pathways in which BRAF protein participates?",
+        "ablation_results": {
+            "with_instructions": "MATCH (p:Protein {hasPrimaryName:'BRAF'}) MATCH (p)-[:HAS_MOTIF?]->(m)  // But actually we need participation: BRAF protein participates in pathways means relationship from Protein to Pathway? There's relationship ASSOCIATEDWITH from Protein to Cancer not pathways. Actually pathway involvement: path-protein association through associations: Pathway -? Relationship PATHWAY? but none. Use generic: BRAF participates in Pathway via Protein -[:ASSOCIATEDWITH?].  The correct path: Protein -> Pathway via ASSOCIATEDWITH? Actually relationship from Protein to Pathway is not defined. We have Pathway label, Reaction label. Pathway includes proteins? Not defined. But reactions within Pathway via (Pathway)-[:HAS_MOTIF?].  Given schema, the only relationship between Protein and Pathway is none. So we cannot answer.MATCH (p:Protein {hasPrimaryName:'BRAF'}) MATCH (p)-[:ASSOCIATEDWITH]->(c:Cancer)  // not relevant, so no query.",
+            "without_instructions": "MATCH (p:Protein {hasPrimaryName:'BRAF'})-[:ParticipatesInPathway]->(pw:Pathway)-[:HASREACTANTS]->(r:Reaction) RETURN DISTINCT r.hasPrimaryName AS reactionName;",
+            "without_schema_comments": "MATCH (braf:Protein)-[:HASMUTATION]->(mut) MATCH (braf)-[participatesIn]->(pathway:Pathway) WHERE braf.hasPrimaryName = 'BRAF' MATCH (pathway)-[:PRECEDEDBYPATHWAY*]->(p:Pathway) MATCH (p)-[:PRECEDEDBYPATHWAY*]->(associatedPathway:Pathway) MATCH (associatedPathway)-[:PRECEDEDBYPATHWAY*]->(reactions:Reaction) RETURN reactions.hasPrimaryName AS reactionName LIMIT 100",
+            "without_relevant_nodes": "MATCH (p:Protein) WHERE p.hasPrimaryName = 'BRAF' WITH p MATCH (p)-[:part_of]->(seq:Sequence) MATCH (seq)-[:part_of]-(:FunctionalDomain)  // Not needed MATCH (p)-[:hasOtherName|:part_of]-(:FunctionalDomain)  // Not needed MATCH (p)-[:part_of]->(r1:OtherMutation)-[:part_of]->(p2:Protein)  // Not needed MATCH (p)-[in:HAS_PROBLEM]->(s:SmallMoleculeEntity)  // Not needed RETURN NULL  limit 100"
+        }
+    }
+]

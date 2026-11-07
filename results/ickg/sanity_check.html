@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sanity Check — ickg</title>
+<style>
+  body { font-family: sans-serif; font-size: 12px; padding: 20px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #ccc; padding: 7px 9px; vertical-align: top; }
+  th { background: #333; color: white; }
+  code { white-space: pre-wrap; font-size: 11px; }
+  mark { background: #FFD700; padding: 1px 2px; border-radius: 2px; }
+  .summary { background:#f5f5f5; padding:12px 16px; border-radius:6px; margin-bottom:14px; }
+</style>
+</head>
+<body>
+<h2>Sanity Check: Ground-Truth Queries vs Live DB — ICKG</h2>
+<div class="summary">
+  <b>30</b> PASS &nbsp;|&nbsp;
+  <b>0</b> MISMATCH &nbsp;|&nbsp;
+  <b>0</b> ERROR &nbsp;|&nbsp;
+  Total: 30 queries<br><br>
+  <span style="background:#C6EFCE;padding:2px 6px">Green</span> = live results match stored &nbsp;|&nbsp;
+  <span style="background:#FFC7CE;padding:2px 6px">Red</span> = mismatch &nbsp;|&nbsp;
+  <span style="background:#FFF3CD;padding:2px 6px">Yellow</span> = query error &nbsp;|&nbsp;
+  <mark>Yellow text</mark> = differing tokens
+</div>
+<table>
+  <thead>
+    <tr><th>ID</th><th>NL Query</th><th>Cypher</th><th>Stored Results</th><th>Live Results</th><th>F1</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr style="background:#C6EFCE">
+      <td><b>A1</b></td>
+      <td>Find all proteins involved in the &#x27;Muscle contraction&#x27; pathway.</td>
+      <td><code>MATCH (p:Protein)-[:hasPathway]-&gt;(pw:Pathway {label: &#x27;Muscle contraction&#x27;}) RETURN DISTINCT p.label AS Protein LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>ITPR1 (INSP3R1), CAMK2D, SRI, RANGRF MOG1 RANGNRF HSPC165 HSPC236 MDS5, PLN PLB</small></td>
+      <td><small>ITPR1 (INSP3R1), CAMK2D, SRI, RANGRF MOG1 RANGNRF HSPC165 HSPC236 MDS5, PLN PLB</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A2</b></td>
+      <td>Retrieve all functional domains associated with the &#x27;KCNC2&#x27; protein.</td>
+      <td><code>MATCH (p:Protein {label: &#x27;KCNC2&#x27;})-[:hasFunctionalDomain]-&gt;(fd:FunctionalDomain) RETURN DISTINCT fd.label AS FunctionalDomain LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>Ion_trans, BTB_2</small></td>
+      <td><small>Ion_trans, BTB_2</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A3</b></td>
+      <td>List all diseases the protein &#x27;CFTR&#x27; is implicated in.</td>
+      <td><code>MATCH (p:Protein {label: &#x27;CFTR&#x27;})-[:implicatedInDisease]-&gt;(d:Disease) RETURN DISTINCT d.label AS Disease LIMIT 100</code></td>
+      <td>stored=16 | live=16<br>
+          <small>Pancreatitis, Chronic, Hernia, Diaphragmatic, Pancreatitis, Bronchiectasis With Or Without Elevated Sweat Chloride 1, Colorectal Neoplasms</small></td>
+      <td><small>Pancreatitis, Chronic, Hernia, Diaphragmatic, Pancreatitis, Bronchiectasis With Or Without Elevated Sweat Chloride 1, Colorectal Neoplasms</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A4</b></td>
+      <td>Find all proteins interacting with the light ion channel &#x27;KCNQ3&#x27;.</td>
+      <td><code>MATCH (lic:LightIonChannel {label: &#x27;KCNQ3&#x27;})-[:interact]-(p:Protein) RETURN DISTINCT p.label AS Protein LIMIT 100</code></td>
+      <td>stored=18 | live=18<br>
+          <small>KCNQ4, CHRNA4 (NACRA4), SCN1A (NAC1, SCN1), KCNAB1 (KCNA1B), SCN2A (NAC2, SCN2A1, SCN2A2)</small></td>
+      <td><small>KCNQ4, CHRNA4 (NACRA4), SCN1A (NAC1, SCN1), KCNAB1 (KCNA1B), SCN2A (NAC2, SCN2A1, SCN2A2)</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A5</b></td>
+      <td>List all biological processes the protein &#x27;CFTR&#x27; is involved in.</td>
+      <td><code>MATCH (p:Protein {label: &#x27;CFTR&#x27;})-[:hasBiologicalProcess]-&gt;(bp:BiologicalProcess) RETURN DISTINCT bp.label AS BiologicalProcess LIMIT 100</code></td>
+      <td>stored=8 | live=8<br>
+          <small>inorganic ion transmembrane transport, organic anion transport, chloride transport, chloride transmembrane transport, inorganic anion transmembrane transport</small></td>
+      <td><small>inorganic ion transmembrane transport, organic anion transport, chloride transport, chloride transmembrane transport, inorganic anion transmembrane transport</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A6</b></td>
+      <td>Retrieve all molecular functions associated with the dark ion channel &#x27;KCNG3&#x27;.</td>
+      <td><code>MATCH (dic:DarkIonChannel {label: &#x27;KCNG3&#x27;})-[:hasMolecularFunction]-&gt;(mf:MolecularFunction) RETURN DISTINCT mf.label AS MolecularFunction LIMIT 100</code></td>
+      <td>stored=14 | live=14<br>
+          <small>monoatomic cation channel activity, protein binding, monoatomic ion channel activity, gated channel activity, voltage-gated monoatomic cation channel activity</small></td>
+      <td><small>monoatomic cation channel activity, protein binding, monoatomic ion channel activity, gated channel activity, voltage-gated monoatomic cation channel activity</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A7</b></td>
+      <td>Find all cellular components the protein &#x27;CFTR&#x27; is associated with.</td>
+      <td><code>MATCH (p:Protein {label: &#x27;CFTR&#x27;})-[:hasCellularComponent]-&gt;(cc:CellularComponent) RETURN DISTINCT cc.label AS CellularComponent LIMIT 100</code></td>
+      <td>stored=1 | live=1<br>
+          <small>apical plasma membrane</small></td>
+      <td><small>apical plasma membrane</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A8</b></td>
+      <td>List all chemicals associated with the &#x27;Chemical and Drug Induced Liver Injury&#x27; disease.</td>
+      <td><code>MATCH (c:Chemical)-[:assoWithDisease]-&gt;(d:Disease {label: &#x27;Chemical and Drug Induced Liver Injury&#x27;}) RETURN DISTINCT c.label AS Chemical LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>Harmine, zingerone, Doxorubicin, Ciprofloxacin, Guanabenz</small></td>
+      <td><small>Harmine, zingerone, Doxorubicin, Ciprofloxacin, Guanabenz</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A9</b></td>
+      <td>Retrieve all ions associated with the light ion channel &#x27;HTR3E&#x27;.</td>
+      <td><code>MATCH (lic:LightIonChannel {label: &#x27;HTR3E&#x27;})-[:hasIonAsso]-&gt;(i:Ion) RETURN DISTINCT i.label AS Ion LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>nonselective, cation</small></td>
+      <td><small>nonselective, cation</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A10</b></td>
+      <td>Find all proteins that have the PTM &#x27;Prkaa2&#x27;</td>
+      <td><code>MATCH (ptm:PTM {label: &#x27;Prkaa2&#x27;})&lt;-[:hasPTM]-(p:Protein) RETURN DISTINCT p.label AS Protein LIMIT 100</code></td>
+      <td>stored=1 | live=1<br>
+          <small>Ikbkb Ikkb</small></td>
+      <td><small>Ikbkb Ikkb</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A11</b></td>
+      <td>List all dark ion channels that interact with the &#x27;CACNB1&#x27; protein.</td>
+      <td><code>MATCH (dIC:DarkIonChannel)-[:interact]-&gt;(p:Protein {label: &#x27;CACNB1&#x27;}) RETURN DISTINCT dIC.label AS DarkIonChannel LIMIT 100</code></td>
+      <td>stored=6 | live=6<br>
+          <small>CACNG3, CACNG8 (CACNG6), CACNG7, CACNA2D4, CACNG4</small></td>
+      <td><small>CACNG3, CACNG8 (CACNG6), CACNG7, CACNA2D4, CACNG4</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A12</b></td>
+      <td>List all the ion channels from the family TRP.</td>
+      <td><code>MATCH (p:Protein)-[:hasFamily]-&gt;(f:Family {label: &#x27;TRP&#x27;}) RETURN DISTINCT p.label AS IonChannel LIMIT 100</code></td>
+      <td>stored=29 | live=29<br>
+          <small>MCOLN3, TRPC6 (TRP6), TRPM6, TRPM4 (LTRPC4), TRPC5 (TRP5)</small></td>
+      <td><small>MCOLN3, TRPC6 (TRP6), TRPM6, TRPM4 (LTRPC4), TRPC5 (TRP5)</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A13</b></td>
+      <td>Which family has the largest number of dark ion channels?</td>
+      <td><code>MATCH (d:DarkIonChannel)-[:hasFamily]-&gt;(f:Family) RETURN DISTINCT f.label AS Family, COUNT(d) AS DarkIonChannelCount ORDER BY DarkIonChannelCount DESC LIMIT 1</code></td>
+      <td>stored=2 | live=2<br>
+          <small>16, Unclassified</small></td>
+      <td><small>16, Unclassified</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A14</b></td>
+      <td>List all dark ion channels that belong to the family labeled &#x27;Unclassified&#x27;.</td>
+      <td><code>MATCH (d:DarkIonChannel)-[:hasFamily]-&gt;(f:Family {label: &#x27;Unclassified&#x27;}) RETURN DISTINCT d.label AS UnclassifiedDarkIonChannel LIMIT 100</code></td>
+      <td>stored=16 | live=16<br>
+          <small>PLLP (PMLP, TM4SF11), CALHM6 (C6orf187, FAM26F), GPR89A (GPHRA, GPR89, SH120), GPR89B (GPHRB, GPR89C), TMC7</small></td>
+      <td><small>PLLP (PMLP, TM4SF11), CALHM6 (C6orf187, FAM26F), GPR89A (GPHRA, GPR89, SH120), GPR89B (GPHRB, GPR89C), TMC7</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A15</b></td>
+      <td>What molecular functions are associated with light ion channels that belong to the &#x27;GABA&#x27; family?</td>
+      <td><code>MATCH (lic:LightIonChannel)-[:hasFamily]-&gt;(f:Family {label: &#x27;GABA&#x27;}), (lic)-[:hasMolecularFunction]-&gt;(mf:MolecularFunction) RETURN DISTINCT mf.label AS MolecularFunction LIMIT 100</code></td>
+      <td>stored=34 | live=34<br>
+          <small>monoatomic ion channel activity, transmembrane signaling receptor activity, transmitter-gated monoatomic ion channel activity involved in regulation of postsynaptic membrane potential, inorganic anion transmembrane transporter activity, postsynaptic neurotransmitter receptor activity</small></td>
+      <td><small>monoatomic ion channel activity, transmembrane signaling receptor activity, transmitter-gated monoatomic ion channel activity involved in regulation of postsynaptic membrane potential, inorganic anion transmembrane transporter activity, postsynaptic neurotransmitter receptor activity</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A16</b></td>
+      <td>List all the ions and gating mechanisms for the &#x27;K&#x27; family of dark ion channels.</td>
+      <td><code>MATCH (p:DarkIonChannel)-[:hasFamily]-&gt;(f:Family {label: &#x27;K&#x27;}), (p)-[:hasIonAsso]-&gt;(i:Ion), (p)-[:hasGateMechanism]-&gt;(g:GateMechanism) RETURN DISTINCT p.label AS IonChannel, i.label AS Ion, g.label AS GateMechanism LIMIT 100</code></td>
+      <td>stored=19 | live=19<br>
+          <small>inward rectifier, KCNG3, KCNG4 (KCNG3), KCND1, potassium</small></td>
+      <td><small>inward rectifier, KCNG3, KCNG4 (KCNG3), KCND1, potassium</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A17</b></td>
+      <td>Find all proteins involved in the &#x27;Fatty acid metabolism&#x27; pathway.</td>
+      <td><code>MATCH (p:Protein)-[:hasPathway]-&gt;(pw:Pathway {label: &#x27;Fatty acid metabolism&#x27;}) RETURN DISTINCT p.label AS Protein LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>LTA4H LTA4, FAAH2 AMDD, PTGS1 COX1, ELOVL5 ELOVL2 PRO0530, CYP2C19</small></td>
+      <td><small>LTA4H LTA4, FAAH2 AMDD, PTGS1 COX1, ELOVL5 ELOVL2 PRO0530, CYP2C19</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B1</b></td>
+      <td>Find all light ion channels that are involved in the same biological process as the protein &#x27;CFTR&#x27;.</td>
+      <td><code>MATCH (p1:LightIonChannel)-[:hasBiologicalProcess]-&gt;(bp:BiologicalProcess)&lt;-[:hasBiologicalProcess]-(p2:Protein {label: &#x27;CFTR&#x27;}) RETURN DISTINCT p1.label AS LightIonChannel,  bp.label AS BiologicalProcess LIMIT 100</code></td>
+      <td>stored=52 | live=52<br>
+          <small>GJA1 (GJAL) (CX43), GABRG2, chloride transport, CACNA1A (CACH4, CACN3, CACNL1A4), CLIC2</small></td>
+      <td><small>GJA1 (GJAL) (CX43), GABRG2, chloride transport, CACNA1A (CACH4, CACN3, CACNL1A4), CLIC2</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B2</b></td>
+      <td>Find all dark ion channels that are involved in the same pathway as the &#x27;CACNG6&#x27; dark ion channel.</td>
+      <td><code>MATCH (lic1:DarkIonChannel {label: &#x27;CACNG6&#x27;})-[:hasPathway]-&gt;(pw:Pathway)&lt;-[:hasPathway]-(lic2:DarkIonChannel) RETURN DISTINCT lic2.label AS LightIonChannel2, pw.label AS Pathway LIMIT 100</code></td>
+      <td>stored=7 | live=7<br>
+          <small>CACNG8 (CACNG6), Phase 0 - rapid depolarisation, CACNG7, Phase 2 - plateau phase, CACNA2D2 (KIAA0558)</small></td>
+      <td><small>CACNG8 (CACNG6), Phase 0 - rapid depolarisation, CACNG7, Phase 2 - plateau phase, CACNA2D2 (KIAA0558)</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B3</b></td>
+      <td>Find all diseases that are linked to proteins that bind to the &#x27;ferric oxide&#x27; chemical.</td>
+      <td><code>MATCH (c:Chemical {label: &#x27;ferric oxide&#x27;})-[:assoWithGene]-&gt;(p:Protein)-[:implicatedInDisease]-&gt;(d:Disease) RETURN DISTINCT d.label AS Disease LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>Bronchial Hyperreactivity, Optic Atrophy, Hereditary, Leber, Urticaria, Skin Diseases, Dermatomyositis</small></td>
+      <td><small>Bronchial Hyperreactivity, Optic Atrophy, Hereditary, Leber, Urticaria, Skin Diseases, Dermatomyositis</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B4</b></td>
+      <td>Find all functional domains that the protein &#x27;CFTR&#x27; shares with other proteins.</td>
+      <td><code>MATCH (p1:Protein {label: &#x27;CFTR&#x27;})-[:hasFunctionalDomain]-&gt;(fd:FunctionalDomain)&lt;-[:hasFunctionalDomain]-(p2:Protein) RETURN DISTINCT p2.label AS OtherProtein, fd.label AS SharedFunctionalDomain LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>LOC101106534, haf-4 CELE_W04C9.1 W04C9.1, ABCC4 EST3 MRP4 At2g47800 F17A22.19, PHAVU_001G165500g, CARUB_v10012819mg</small></td>
+      <td><small>LOC101106534, haf-4 CELE_W04C9.1 W04C9.1, ABCC4 EST3 MRP4 At2g47800 F17A22.19, PHAVU_001G165500g, CARUB_v10012819mg</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B5</b></td>
+      <td>Find all the proteins that are associated with the same pathways and conduct the same ions as the protein &#x27;KCNG3&#x27;.</td>
+      <td><code>MATCH (p1:Protein {label: &#x27;KCNG3&#x27;})-[:hasPathway]-&gt;(pw:Pathway)&lt;-[:hasPathway]-(p2:Protein),(p1)-[:hasIonAsso]-&gt;(ion:Ion)&lt;-[:hasIonAsso]-(p2) RETURN DISTINCT p2.label AS Protein LIMIT 100</code></td>
+      <td>stored=71 | live=71<br>
+          <small>KCNQ4, KCNG1, KCNF1, KCNK18 (TRESK, TRIK), KCNH5 (EAG2)</small></td>
+      <td><small>KCNQ4, KCNG1, KCNF1, KCNK18 (TRESK, TRIK), KCNH5 (EAG2)</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B6</b></td>
+      <td>List all biological processes that are connected to chemicals associated with the protein &#x27;TRPM8&#x27;.</td>
+      <td><code>MATCH (p:Protein {label: &#x27;TRPM8&#x27;})&lt;-[:assoWithGene]-(c:Chemical)-[:assoWithBiologicalProcess]-&gt;(bp:BiologicalProcess) RETURN DISTINCT c.label AS Chemical, bp.label AS BiologicalProcess LIMIT 100</code></td>
+      <td>stored=95 | live=95<br>
+          <small>allyl isothiocyanate, intracellular calcium ion homeostasis, positive regulation of G2/M transition of mitotic cell cycle, negative regulation of cell population proliferation, locomotion involved in locomotory behavior</small></td>
+      <td><small>allyl isothiocyanate, intracellular calcium ion homeostasis, positive regulation of G2/M transition of mitotic cell cycle, negative regulation of cell population proliferation, locomotion involved in locomotory behavior</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B7</b></td>
+      <td>Identify all pathways that connect the dark ion channel &#x27;CACNG3&#x27; to diseases through proteins implicated in those diseases.</td>
+      <td><code>MATCH (dIC:DarkIonChannel {label: &#x27;CACNG3&#x27;})-[:hasPathway]-&gt;(pw:Pathway)&lt;-[:hasPathway]-(p:Protein)-[:implicatedInDisease]-&gt;(d:Disease) RETURN DISTINCT pw.label AS Pathway, d.label AS Disease LIMIT 100</code></td>
+      <td>stored=43 | live=43<br>
+          <small>Carcinoma, Squamous Cell, Glioblastoma, Pancreatitis, Celiac Disease, Exfoliative Ichthyosis, Autosomal Recessive, Ichthyosis Bullosa of Siemens-like</small></td>
+      <td><small>Carcinoma, Squamous Cell, Glioblastoma, Pancreatitis, Celiac Disease, Exfoliative Ichthyosis, Autosomal Recessive, Ichthyosis Bullosa of Siemens-like</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B8</b></td>
+      <td>Retrieve all molecular functions associated with proteins implicated in &#x27;Seizures&#x27; disease.</td>
+      <td><code>MATCH (p:Protein)-[:implicatedInDisease]-&gt;(d:Disease {label: &#x27;Seizures&#x27;}), (p)-[:hasMolecularFunction]-&gt;(mf:MolecularFunction) RETURN DISTINCT mf.label AS MolecularFunction LIMIT 100</code></td>
+      <td>stored=84 | live=84<br>
+          <small>lyase activity, ethanolamine kinase activity, calcium ion transmembrane transporter activity, sphingolipid transporter activity, adenyl nucleotide binding</small></td>
+      <td><small>lyase activity, ethanolamine kinase activity, calcium ion transmembrane transporter activity, sphingolipid transporter activity, adenyl nucleotide binding</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B9</b></td>
+      <td>Retrieve the functional domains of proteins that are associated with the chemical &#x27;ferric oxide&#x27;.</td>
+      <td><code>MATCH (c:Chemical {label: &#x27;ferric oxide&#x27;})-[:assoWithGene]-&gt;(lic:Protein)-[:hasFunctionalDomain]-&gt;(fd:FunctionalDomain) RETURN DISTINCT lic.label AS LightIonChannel, fd.label AS FunctionalDomain LIMIT 100</code></td>
+      <td>stored=33 | live=33<br>
+          <small>Histone, TIMP2, ICAM_N, Bax, CASP3</small></td>
+      <td><small>Histone, TIMP2, ICAM_N, Bax, CASP3</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C1</b></td>
+      <td>Which family and group does the ion channel &#x27;HTR3E&#x27; belong to?</td>
+      <td><code>MATCH (p:Protein {label: &#x27;HTR3E&#x27;})-[:hasFamily]-&gt;(f:Family) MATCH (p)-[:hasGroup]-&gt;(g:Group) RETURN DISTINCT f.label AS Family, g.label AS Group LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>LGIC, 5-HT3</small></td>
+      <td><small>LGIC, 5-HT3</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C2</b></td>
+      <td>Find all ion channels that are connected to the &#x27;Neuronal System&#x27; pathway through interacting proteins.</td>
+      <td><code>MATCH (pw:Pathway {label: &#x27;Neuronal System&#x27;})&lt;-[:hasPathway]-(p1:Protein)-[:interact]-(p2:Protein)-[:interact]-(ic) WHERE ic:LightIonChannel OR ic:DarkIonChannel RETURN DISTINCT ic.label AS IonChannel LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>GJC1 (GJA7)(CX45), KCNA1, GJA5 (CX40), CACNA1A (CACH4, CACN3, CACNL1A4), CHRNB3</small></td>
+      <td><small>GJC1 (GJA7)(CX45), KCNA1, GJA5 (CX40), CACNA1A (CACH4, CACN3, CACNL1A4), CHRNB3</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C3</b></td>
+      <td>List the functional domains that are present in the light ion channels of the Chloride channels group.</td>
+      <td><code>MATCH (lic:LightIonChannel)-[:hasGroup]-&gt;(g:Group {label: &#x27;Chloride channels&#x27;}) MATCH (lic)-[:hasFunctionalDomain]-&gt;(fd:FunctionalDomain) RETURN DISTINCT lic.label AS LightIonChannel, fd.label AS FunctionalDomain LIMIT 100</code></td>
+      <td>stored=34 | live=34<br>
+          <small>CLIC1 (G6, NCC27), GST_C_2, VDAC3, CBS, CLIC2</small></td>
+      <td><small>CLIC1 (G6, NCC27), GST_C_2, VDAC3, CBS, CLIC2</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C4</b></td>
+      <td>Which ions are connected to the chemical &#x27;Ozone&#x27; through biological processes that involve proteins?</td>
+      <td><code>MATCH (c:Chemical {label: &#x27;Ozone&#x27;})-[:assoWithBiologicalProcess]-&gt;(:BiologicalProcess)&lt;-[:hasBiologicalProcess]-(:Protein)-[:hasIonAsso]-&gt;(i:Ion) RETURN DISTINCT i.label AS Ion LIMIT 100</code></td>
+      <td>stored=9 | live=9<br>
+          <small>sodium, potassium, anion, protons, nonselective</small></td>
+      <td><small>sodium, potassium, anion, protons, nonselective</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr></tbody>
+</table>
+</body>
+</html>

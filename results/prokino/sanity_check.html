@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sanity Check — prokino</title>
+<style>
+  body { font-family: sans-serif; font-size: 12px; padding: 20px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #ccc; padding: 7px 9px; vertical-align: top; }
+  th { background: #333; color: white; }
+  code { white-space: pre-wrap; font-size: 11px; }
+  mark { background: #FFD700; padding: 1px 2px; border-radius: 2px; }
+  .summary { background:#f5f5f5; padding:12px 16px; border-radius:6px; margin-bottom:14px; }
+</style>
+</head>
+<body>
+<h2>Sanity Check: Ground-Truth Queries vs Live DB — PROKINO</h2>
+<div class="summary">
+  <b>30</b> PASS &nbsp;|&nbsp;
+  <b>0</b> MISMATCH &nbsp;|&nbsp;
+  <b>0</b> ERROR &nbsp;|&nbsp;
+  Total: 30 queries<br><br>
+  <span style="background:#C6EFCE;padding:2px 6px">Green</span> = live results match stored &nbsp;|&nbsp;
+  <span style="background:#FFC7CE;padding:2px 6px">Red</span> = mismatch &nbsp;|&nbsp;
+  <span style="background:#FFF3CD;padding:2px 6px">Yellow</span> = query error &nbsp;|&nbsp;
+  <mark>Yellow text</mark> = differing tokens
+</div>
+<table>
+  <thead>
+    <tr><th>ID</th><th>NL Query</th><th>Cypher</th><th>Stored Results</th><th>Live Results</th><th>F1</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr style="background:#C6EFCE">
+      <td><b>A1</b></td>
+      <td>What is the functional domain associated with EGFR protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;})-[:HASFUNCTIONALDOMAIN]-&gt;(fd:FunctionalDomain) RETURN DISTINCT fd.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=4 | live=4<br>
+          <small>PK_Tyr_Ser-Thr, GF_recep_IV, Furin-like, Recep_L_domain</small></td>
+      <td><small>PK_Tyr_Ser-Thr, GF_recep_IV, Furin-like, Recep_L_domain</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A2</b></td>
+      <td>What are the amino acid changes and mutation descriptions for EGFR protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;})-[:HASMUTATION]-&gt;(m) RETURN DISTINCT m.hasMutationAA, m.hasMutationDescription LIMIT 100</code></td>
+      <td>stored=108 | live=108<br>
+          <small>p.C624Y, p.V592=, p.P266Hfs*14, p.E746_T751delinsV, p.K754R</small></td>
+      <td><small>p.C624Y, p.V592=, p.P266Hfs*14, p.E746_T751delinsV, p.K754R</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A3</b></td>
+      <td>In which organisms is DCLK1 protein present?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;DCLK1&#x27;})-[:PRESENTIN]-&gt;(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>Human, Mouse</small></td>
+      <td><small>Human, Mouse</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A4</b></td>
+      <td>What pathways does EGFR protein participate in?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;})-[:PARTICIPATESIN]-&gt;(path:Pathway) RETURN DISTINCT path.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=79 | live=79<br>
+          <small>Intracellular signaling by second messengers, Nuclear signaling by ERBB4, Membrane Trafficking, L1CAM interactions, Transcriptional regulation by the AP-2 (TFAP2) family of transcription factors</small></td>
+      <td><small>Intracellular signaling by second messengers, Nuclear signaling by ERBB4, Membrane Trafficking, L1CAM interactions, Transcriptional regulation by the AP-2 (TFAP2) family of transcription factors</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A5</b></td>
+      <td>What reactions are produced by the &#x27;RHOJ GTPase cycle&#x27; pathway?</td>
+      <td><code>MATCH (p:Pathway {hasPrimaryName: &#x27;RHOJ GTPase cycle&#x27;})-[:HASREACTION]-&gt;(r:Reaction) RETURN DISTINCT r.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=3 | live=3<br>
+          <small>RHOJ GEFs activate RHOJ, RHOJ GAPs stimulate RHOJ GTPase activity, RHOJ binds effectors at the plasma membrane</small></td>
+      <td><small>RHOJ GEFs activate RHOJ, RHOJ GAPs stimulate RHOJ GTPase activity, RHOJ binds effectors at the plasma membrane</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A6</b></td>
+      <td>List all proteins belonging to the EGFR family.</td>
+      <td><code>MATCH (f:EGFRfamily)-[:ENCODEDIN]-&gt;(p:Protein) RETURN DISTINCT p.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=9 | live=9<br>
+          <small>AQUEK263, ERBB3, AQUEK266, LET-23, ERBB4</small></td>
+      <td><small>AQUEK263, ERBB3, AQUEK266, LET-23, ERBB4</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A7</b></td>
+      <td>What is the tissue specificity of the EGFR protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;}) RETURN DISTINCT p.hasTissueSpecificity LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>Ubiquitously expressed. Isoform 2 is also expressed in ovarian cancers., Ubiquitously expressed in embryos. In larvae, uniform expression is seen in wing disks, genital disk, anlagen of testis and ovary, and brain cortex. In eye-antenna disk, highest expression is anterior to morphogenetic furrow, levels remain high in photoreceptor precursor cells. This pattern is reversed in posterior eye disk. In adults expression is high in brain cortex and thoracic and abdominal ganglia.</small></td>
+      <td><small>Ubiquitously expressed. Isoform 2 is also expressed in ovarian cancers., Ubiquitously expressed in embryos. In larvae, uniform expression is seen in wing disks, genital disk, anlagen of testis and ovary, and brain cortex. In eye-antenna disk, highest expression is anterior to morphogenetic furrow, levels remain high in photoreceptor precursor cells. This pattern is reversed in posterior eye disk. In adults expression is high in brain cortex and thoracic and abdominal ganglia.</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A8</b></td>
+      <td>What is the chromosomal position of the EGFR protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;}) RETURN DISTINCT p.chromosomalPosition LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>57F5--8, 7p11.1-p11.2</small></td>
+      <td><small>57F5--8, 7p11.1-p11.2</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A9</b></td>
+      <td>Is HIPK1 protein a dark kinase?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;HIPK1&#x27;}) RETURN DISTINCT p.isDarkKinase LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>False, True</small></td>
+      <td><small>False, True</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>A10</b></td>
+      <td>What is the cellular location of the BRAF protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;BRAF&#x27;}) RETURN DISTINCT p.hasCellularLocation LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>Cell membrane, Cytoplasm</small></td>
+      <td><small>Cell membrane, Cytoplasm</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B1</b></td>
+      <td>What are the sequence motifs found in the amino acid sequence of the EGFR protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;})-[:HASSEQUENCE]-&gt;(s:Sequence)-[:HASMOTIF]-&gt;(sm:SequenceMotif) RETURN DISTINCT sm.hasPrimaryName AS StructuralMotif LIMIT 100</code></td>
+      <td>stored=98 | live=98<br>
+          <small>alpha-D.55, APE Motif, Sh2, HxN Motif, alpha-C.28</small></td>
+      <td><small>alpha-D.55, APE Motif, Sh2, HxN Motif, alpha-C.28</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B2</b></td>
+      <td>Which sample is associated with the gene expression of EGFR protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;})&lt;-[:HASPROTEIN]-(ge:GeneExpression)-[:INSAMPLE]-&gt;(s:Sample) RETURN DISTINCT s.hasSampleName LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>TCGA-AJ-A3TW-01, TCGA-B2-A4SR-01, TCGA-CR-7389-01, TCGA-GS-A9U3-01, TCGA-AA-3675-01</small></td>
+      <td><small>TCGA-AJ-A3TW-01, TCGA-B2-A4SR-01, TCGA-CR-7389-01, TCGA-GS-A9U3-01, TCGA-AA-3675-01</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B3</b></td>
+      <td>What are functional domains in the EGFR protein that belong to Human?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;})-[:HASFUNCTIONALDOMAIN]-&gt;(fd:FunctionalDomain),(p)-[:PRESENTIN]-&gt;(o:Organism {hasPrimaryName: &#x27;Human&#x27;}) RETURN DISTINCT fd.hasPrimaryName AS FunctionalDomain</code></td>
+      <td>stored=4 | live=4<br>
+          <small>Recep_L_domain, PK_Tyr_Ser-Thr, Furin-like, GF_recep_IV</small></td>
+      <td><small>Recep_L_domain, PK_Tyr_Ser-Thr, Furin-like, GF_recep_IV</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B4</b></td>
+      <td>Which samples with primary site &#x27;skin&#x27; have missense mutations in the protein &#x27;DCLK3&#x27;? Please provide the sample names.</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;DCLK3&#x27;})-[:HASMUTATION]-&gt;(m:Missense)-[:INSAMPLE]-&gt;(s:Sample {hasPrimarySite: &#x27;skin&#x27;}) RETURN DISTINCT s.hasSampleName LIMIT 100</code></td>
+      <td>stored=88 | live=88<br>
+          <small>TCGA-EE-A2GC-06, TCGA-D9-A6EC-06, EXTERN_MELA_20140524_014, PD42099a, EXTERN_MELA_20140924_079</small></td>
+      <td><small>TCGA-EE-A2GC-06, TCGA-D9-A6EC-06, EXTERN_MELA_20140524_014, PD42099a, EXTERN_MELA_20140924_079</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B5</b></td>
+      <td>List all organisms that are classified under the &#x27;Plant&#x27; clade.</td>
+      <td><code>MATCH (c:Clade {hasPrimaryName: &#x27;Plant&#x27;})&lt;-[:ISPARTOF]-(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=1 | live=1<br>
+          <small>S.moellendorffii</small></td>
+      <td><small>S.moellendorffii</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B6</b></td>
+      <td>Which proteins have functional domains named &#x27;Pkinase&#x27;?</td>
+      <td><code>MATCH (fd:FunctionalDomain {hasPrimaryName: &#x27;Pkinase&#x27;})&lt;-[:HASFUNCTIONALDOMAIN]-(p:Protein) RETURN DISTINCT p.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>88273.M00404, 93440.M00483, 81907.M00061, 88945.M00103, 86827.M00443</small></td>
+      <td><small>88273.M00404, 93440.M00483, 81907.M00061, 88945.M00103, 86827.M00443</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B7</b></td>
+      <td>What sequences are associated with EGFR protein?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;EGFR&#x27;})-[:HASSEQUENCE]-&gt;(s:Sequence) RETURN DISTINCT s.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=14 | live=14<br>
+          <small>FruitFly_EGFR-Isoform2_Seq, SeaUrchin_EGFR-Kinbase_Seq, Human_EGFR-Isoform3_Seq, Human_EGFR-Cosmic_Seq, Mouse_EGFR-Kinbase_Seq</small></td>
+      <td><small>FruitFly_EGFR-Isoform2_Seq, SeaUrchin_EGFR-Kinbase_Seq, Human_EGFR-Isoform3_Seq, Human_EGFR-Cosmic_Seq, Mouse_EGFR-Kinbase_Seq</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B8</b></td>
+      <td>List the names of samples implicated in cancer type &#x27;glioma_gliosarcoma&#x27;.</td>
+      <td><code>MATCH (s:Sample)-[:IMPLICATEDIN]-&gt;(c:Cancer {hasPrimaryName: &#x27;glioma_gliosarcoma&#x27;}) RETURN DISTINCT s.hasSampleName LIMIT 100</code></td>
+      <td>stored=16 | live=16<br>
+          <small>2760844, 2240680, P-0001049-T01-IM3, E40430, 1285427</small></td>
+      <td><small>2760844, 2240680, P-0001049-T01-IM3, E40430, 1285427</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B9</b></td>
+      <td>Which proteins have mutations of type &#x27;Missense&#x27;?</td>
+      <td><code>MATCH (p:Protein)-[:HASMUTATION]-&gt;(m:Missense) RETURN DISTINCT p.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>FGFR4, DDR2, KDR, CDKL5, DDR1</small></td>
+      <td><small>FGFR4, DDR2, KDR, CDKL5, DDR1</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>B10</b></td>
+      <td>List the proteins with cellular location &#x27;Cytoskeleton&#x27; that are found in the organism &#x27;Mouse&#x27;.</td>
+      <td><code>MATCH (p:Protein {hasCellularLocation: &#x27;Cytoskeleton&#x27;})-[:PRESENTIN]-&gt;(o:Organism {hasPrimaryName: &#x27;Mouse&#x27;}) RETURN DISTINCT p.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=16 | live=16<br>
+          <small>LIMK2, MYO3B, SGK269, DCLK2, CDKL5</small></td>
+      <td><small>LIMK2, MYO3B, SGK269, DCLK2, CDKL5</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C1</b></td>
+      <td>What ligands interact with the sequence motifs of the IRAK1 protein, and what is the type of interaction?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;IRAK1&#x27;})-[:HASSEQUENCE]-&gt;(s:Sequence)-[:HASMOTIF]-&gt;(sm:SequenceMotif)&lt;-[:HASMOTIF]-(li:LigandInteraction)-[:HASLIGAND]-&gt;(l:Ligand) RETURN DISTINCT l.hasPrimaryName AS Ligand, li.hasType AS InteractionType LIMIT 100</code></td>
+      <td>stored=5 | live=5<br>
+          <small>Apolar contact, N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide, Hydrogen bond donor (protein), Aromatic face-to-face, Aromatic edge-to-face</small></td>
+      <td><small>Apolar contact, N-[2-methoxy-4-(morpholin-4-yl)phenyl]-6-(1H-pyrazol-5-yl)pyridine-2-carboxamide, Hydrogen bond donor (protein), Aromatic face-to-face, Aromatic edge-to-face</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C2</b></td>
+      <td>List the cancer types linked to mutations found in the DCLK3 protein.</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;DCLK3&#x27;})-[:HASMUTATION]-&gt;(m)-[:INSAMPLE]-&gt;(s:Sample)-[:IMPLICATEDIN]-&gt;(c:Cancer) RETURN DISTINCT c.hasPrimaryName AS CancerType LIMIT 100</code></td>
+      <td>stored=43 | live=43<br>
+          <small>other_neoplasm, lymphoid_neoplasm_acute_lymphoblastic_B_cell_leukaemia, angiosarcoma_NS, malignant_melanoma_desmoplastic, carcinoma_Merkel_cell_carcinoma</small></td>
+      <td><small>other_neoplasm, lymphoid_neoplasm_acute_lymphoblastic_B_cell_leukaemia, angiosarcoma_NS, malignant_melanoma_desmoplastic, carcinoma_Merkel_cell_carcinoma</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C3</b></td>
+      <td>Which cancer samples have under expression of AKT3 protein? Show sample name, regulation, and cancer type.</td>
+      <td><code>MATCH (ge:GeneExpression)-[:HASPROTEIN]-&gt;(p:Protein {hasPrimaryName: &#x27;AKT3&#x27;}) MATCH (ge)-[:INSAMPLE]-&gt;(s:Sample)-[:IMPLICATEDIN]-&gt;(c:Cancer) WHERE ge.hasRegulation IN [&#x27;under&#x27;] RETURN DISTINCT s.hasSampleName AS SampleName, ge.hasRegulation AS Regulation, c.hasPrimaryName AS CancerType LIMIT 100</code></td>
+      <td>stored=15 | live=15<br>
+          <small>glioma_NS, TCGA-ET-A4KN-01, TCGA-ZG-A9N3-01, under, TCGA-XK-AAIW-01</small></td>
+      <td><small>glioma_NS, TCGA-ET-A4KN-01, TCGA-ZG-A9N3-01, under, TCGA-XK-AAIW-01</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C4</b></td>
+      <td>Which sequence motifs are hallmarks for the Human_EGFR family?</td>
+      <td><code>MATCH (fam:EGFRfamily {hasPrimaryName: &#x27;Human_EGFR&#x27;})-[:ENCODEDIN]-&gt;(p:Protein)-[:HASSEQUENCE]-&gt;(seq:Sequence)-[:HASMOTIF]-&gt;(motif:SequenceMotif) RETURN DISTINCT motif.hasPrimaryName AS SequenceMotif LIMIT 100</code></td>
+      <td>stored=98 | live=98<br>
+          <small>alpha-D.55, APE Motif, Sh2, HxN Motif, alpha-C.28</small></td>
+      <td><small>alpha-D.55, APE Motif, Sh2, HxN Motif, alpha-C.28</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C5</b></td>
+      <td>What are the histology subtypes of cancers linked to samples that have proteins with mutation ID &#x27;COSM4166151&#x27;?</td>
+      <td><code>MATCH (m:OtherMutation {hasMutationId: &#x27;COSM4166151&#x27;}) MATCH (p:Protein)-[:HASMUTATION]-&gt;(m) MATCH (p)&lt;-[:HASPROTEIN]-(ge:GeneExpression) MATCH (ge)-[:INSAMPLE]-&gt;(s:Sample)-[:IMPLICATEDIN]-&gt;(c:Cancer) RETURN DISTINCT c.hasHistologySubType AS HistologySubType LIMIT 100</code></td>
+      <td>stored=14 | live=14<br>
+          <small>non_small_cell_carcinoma, acute_myeloid_leukaemia, serous_carcinoma, hepatocellular_carcinoma, chromophobe_renal_cell_carcinoma</small></td>
+      <td><small>non_small_cell_carcinoma, acute_myeloid_leukaemia, serous_carcinoma, hepatocellular_carcinoma, chromophobe_renal_cell_carcinoma</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C6</b></td>
+      <td>What is the name of the organism for proteins belonging to the Plant clade?</td>
+      <td><code>MATCH (c:Clade {hasPrimaryName: &#x27;Plant&#x27;})&lt;-[:ISPARTOF]-(o:Organism) MATCH (p:Protein)-[:PRESENTIN]-&gt;(o) RETURN DISTINCT o.hasPrimaryName AS Organism LIMIT 100</code></td>
+      <td>stored=1 | live=1<br>
+          <small>S.moellendorffii</small></td>
+      <td><small>S.moellendorffii</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C7</b></td>
+      <td>Find pathways that include proteins containing the functional domain &#x27;PI3_PI4_kinase&#x27; and have mutations. Please provide the names of these pathways and descriptions of the mutations.</td>
+      <td><code>MATCH (fd:FunctionalDomain {hasPrimaryName: &#x27;PI3_PI4_kinase&#x27;})&lt;-[:HASFUNCTIONALDOMAIN]-(p:Protein)-[:HASMUTATION]-&gt;(m),(p)-[:PARTICIPATESIN]-&gt;(pw:Pathway) RETURN DISTINCT pw.hasPrimaryName AS Pathway, m.hasMutationDescription AS MutationDescription LIMIT 100</code></td>
+      <td>stored=21 | live=21<br>
+          <small>Presynaptic phase of homologous DNA pairing and strand exchange, TP53 Regulates Transcription of DNA Repair Genes, DNA Double-Strand Break Repair, Substitution - Missense, Deletion - Frameshift</small></td>
+      <td><small>Presynaptic phase of homologous DNA pairing and strand exchange, TP53 Regulates Transcription of DNA Repair Genes, DNA Double-Strand Break Repair, Substitution - Missense, Deletion - Frameshift</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C8</b></td>
+      <td>List the organisms that have proteins containing the functional domain &#x27;Cadherin&#x27;.</td>
+      <td><code>MATCH (fd:FunctionalDomain {hasPrimaryName: &#x27;Cadherin&#x27;})&lt;-[:HASFUNCTIONALDOMAIN]-(p:Protein)-[:PRESENTIN]-&gt;(o:Organism) RETURN DISTINCT o.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=3 | live=3<br>
+          <small>Human, Mouse, M.brevicollis</small></td>
+      <td><small>Human, Mouse, M.brevicollis</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C9</b></td>
+      <td>Which mutations of the protein &#x27;BRAF&#x27; associated with samples implicated in &#x27;carcinoma_blastoma&#x27;? Please provide the mutation IDs and mutation descriptions.</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;BRAF&#x27;})-[:HASMUTATION]-&gt;(m)-[:INSAMPLE]-&gt;(s:Sample)-[:IMPLICATEDIN]-&gt;(c:Cancer {hasPrimaryName: &#x27;carcinoma_blastoma&#x27;}) RETURN DISTINCT m.hasMutationId, m.hasMutationDescription LIMIT 100</code></td>
+      <td>stored=2 | live=2<br>
+          <small>Substitution - Missense, COSM1131</small></td>
+      <td><small>Substitution - Missense, COSM1131</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr>
+    <tr style="background:#C6EFCE">
+      <td><b>C10</b></td>
+      <td>What are the reactions associated with pathways in which BRAF protein participates?</td>
+      <td><code>MATCH (p:Protein {hasPrimaryName: &#x27;BRAF&#x27;})-[:PARTICIPATESIN]-&gt;(path:Pathway)-[:HASREACTION]-&gt;(r:Reaction) RETURN DISTINCT r.hasPrimaryName LIMIT 100</code></td>
+      <td>stored=100 | live=100<br>
+          <small>Activated MAPKs phosphorylate MAP2K1, MAP2Ks phosphorylate MAPKs downstream of BRAF and NGF, p-BRAF and RAF fusion dimers bind MAP2Ks and MAPKs, RAF is phosphorylated downstream of oncogenic RAS, CBL ubiquitinates FRS2 and FGFR4</small></td>
+      <td><small>Activated MAPKs phosphorylate MAP2K1, MAP2Ks phosphorylate MAPKs downstream of BRAF and NGF, p-BRAF and RAF fusion dimers bind MAP2Ks and MAPKs, RAF is phosphorylated downstream of oncogenic RAS, CBL ubiquitinates FRS2 and FGFR4</small><br></td>
+      <td style="text-align:center"><b>1.00</b></td>
+      <td style="text-align:center">PASS</td>
+    </tr></tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+- Pay attention to the relationship directions specified in `from` to `to`. The direction is important! For example, in `{"name": "r", "from": "n1", "to": "n2"}`, the `r` relationship should be from `n1` to `n2` not the other way around.
+- Create one and only one Cypher query that satisfies the user query.
+- The Cypher query should be valid BASED ON THE SCHEMA and it should return results.
+- The node labels and relationship names in the Cypher query MUST EXIST in the schema.
+- If you don't know the node label or relationship name, do not include them in the query.
+- Instead of creating long MATCH statements such as (a)-[b]-(c)-[d]-(e), break them into multiple MATCH statements. For each, make sure the relationship name and direction are based on the schema.
+- Use the schema to validate node and relationship labels and ensure logical consistency.
+- Before suggesting the Cypher query, make sure it has valid syntax and semantics.
+- Limit to 100 results. (append LIMIT 100 to the Cypher query)
+- Always return the "label" value of the return nodes.
+- Return one column per entity type requested in the query. If the query asks about a single entity, return one column with its label value. If the query asks about multiple distinct entities (e.g., "entity A and entity B"), return a separate column for each. Never concatenate multiple values into a single column using string operators (e.g., do not use col1 + ' | ' + col2).
+- When the query asks for a specific property of a named entity (e.g., its location, classification, or status), return only that property value. The named entity itself does not need to be returned.
+- Generate a Cypher query that considers relationships in both directions, unless it is the best to include the direction to answer the user query.
+- Whenever possible, return DISTINCT values.
+- Except a Cypher query, return nothing else (no explanation, no comments).

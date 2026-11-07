@@ -1,0 +1,832 @@
+[
+  {
+    "title": "A1",
+    "nl_query": "Find all proteins involved in the 'Muscle contraction' pathway.",
+    "cypher": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway {label: 'Muscle contraction'}) RETURN DISTINCT p.label AS Protein LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "ITPR1 (INSP3R1)",
+      "CAMK2D",
+      "SRI",
+      "RANGRF MOG1 RANGNRF HSPC165 HSPC236 MDS5",
+      "PLN PLB"
+    ],
+    "live_sample": [
+      "ITPR1 (INSP3R1)",
+      "CAMK2D",
+      "SRI",
+      "RANGRF MOG1 RANGNRF HSPC165 HSPC236 MDS5",
+      "PLN PLB"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A2",
+    "nl_query": "Retrieve all functional domains associated with the 'KCNC2' protein.",
+    "cypher": "MATCH (p:Protein {label: 'KCNC2'})-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT fd.label AS FunctionalDomain LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "Ion_trans",
+      "BTB_2"
+    ],
+    "live_sample": [
+      "Ion_trans",
+      "BTB_2"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A3",
+    "nl_query": "List all diseases the protein 'CFTR' is implicated in.",
+    "cypher": "MATCH (p:Protein {label: 'CFTR'})-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label AS Disease LIMIT 100",
+    "error": null,
+    "stored_count": 16,
+    "live_count": 16,
+    "stored_sample": [
+      "Pancreatitis, Chronic",
+      "Hernia, Diaphragmatic",
+      "Pancreatitis",
+      "Bronchiectasis With Or Without Elevated Sweat Chloride 1",
+      "Colorectal Neoplasms"
+    ],
+    "live_sample": [
+      "Pancreatitis, Chronic",
+      "Hernia, Diaphragmatic",
+      "Pancreatitis",
+      "Bronchiectasis With Or Without Elevated Sweat Chloride 1",
+      "Colorectal Neoplasms"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A4",
+    "nl_query": "Find all proteins interacting with the light ion channel 'KCNQ3'.",
+    "cypher": "MATCH (lic:LightIonChannel {label: 'KCNQ3'})-[:interact]-(p:Protein) RETURN DISTINCT p.label AS Protein LIMIT 100",
+    "error": null,
+    "stored_count": 18,
+    "live_count": 18,
+    "stored_sample": [
+      "KCNQ4",
+      "CHRNA4 (NACRA4)",
+      "SCN1A (NAC1, SCN1)",
+      "KCNAB1 (KCNA1B)",
+      "SCN2A (NAC2, SCN2A1, SCN2A2)"
+    ],
+    "live_sample": [
+      "KCNQ4",
+      "CHRNA4 (NACRA4)",
+      "SCN1A (NAC1, SCN1)",
+      "KCNAB1 (KCNA1B)",
+      "SCN2A (NAC2, SCN2A1, SCN2A2)"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A5",
+    "nl_query": "List all biological processes the protein 'CFTR' is involved in.",
+    "cypher": "MATCH (p:Protein {label: 'CFTR'})-[:hasBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT bp.label AS BiologicalProcess LIMIT 100",
+    "error": null,
+    "stored_count": 8,
+    "live_count": 8,
+    "stored_sample": [
+      "inorganic ion transmembrane transport",
+      "organic anion transport",
+      "chloride transport",
+      "chloride transmembrane transport",
+      "inorganic anion transmembrane transport"
+    ],
+    "live_sample": [
+      "inorganic ion transmembrane transport",
+      "organic anion transport",
+      "chloride transport",
+      "chloride transmembrane transport",
+      "inorganic anion transmembrane transport"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A6",
+    "nl_query": "Retrieve all molecular functions associated with the dark ion channel 'KCNG3'.",
+    "cypher": "MATCH (dic:DarkIonChannel {label: 'KCNG3'})-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.label AS MolecularFunction LIMIT 100",
+    "error": null,
+    "stored_count": 14,
+    "live_count": 14,
+    "stored_sample": [
+      "monoatomic cation channel activity",
+      "protein binding",
+      "monoatomic ion channel activity",
+      "gated channel activity",
+      "voltage-gated monoatomic cation channel activity"
+    ],
+    "live_sample": [
+      "monoatomic cation channel activity",
+      "protein binding",
+      "monoatomic ion channel activity",
+      "gated channel activity",
+      "voltage-gated monoatomic cation channel activity"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A7",
+    "nl_query": "Find all cellular components the protein 'CFTR' is associated with.",
+    "cypher": "MATCH (p:Protein {label: 'CFTR'})-[:hasCellularComponent]->(cc:CellularComponent) RETURN DISTINCT cc.label AS CellularComponent LIMIT 100",
+    "error": null,
+    "stored_count": 1,
+    "live_count": 1,
+    "stored_sample": [
+      "apical plasma membrane"
+    ],
+    "live_sample": [
+      "apical plasma membrane"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A8",
+    "nl_query": "List all chemicals associated with the 'Chemical and Drug Induced Liver Injury' disease.",
+    "cypher": "MATCH (c:Chemical)-[:assoWithDisease]->(d:Disease {label: 'Chemical and Drug Induced Liver Injury'}) RETURN DISTINCT c.label AS Chemical LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "Harmine",
+      "zingerone",
+      "Doxorubicin",
+      "Ciprofloxacin",
+      "Guanabenz"
+    ],
+    "live_sample": [
+      "Harmine",
+      "zingerone",
+      "Doxorubicin",
+      "Ciprofloxacin",
+      "Guanabenz"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A9",
+    "nl_query": "Retrieve all ions associated with the light ion channel 'HTR3E'.",
+    "cypher": "MATCH (lic:LightIonChannel {label: 'HTR3E'})-[:hasIonAsso]->(i:Ion) RETURN DISTINCT i.label AS Ion LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "nonselective",
+      "cation"
+    ],
+    "live_sample": [
+      "nonselective",
+      "cation"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A10",
+    "nl_query": "Find all proteins that have the PTM 'Prkaa2'",
+    "cypher": "MATCH (ptm:PTM {label: 'Prkaa2'})<-[:hasPTM]-(p:Protein) RETURN DISTINCT p.label AS Protein LIMIT 100",
+    "error": null,
+    "stored_count": 1,
+    "live_count": 1,
+    "stored_sample": [
+      "Ikbkb Ikkb"
+    ],
+    "live_sample": [
+      "Ikbkb Ikkb"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A11",
+    "nl_query": "List all dark ion channels that interact with the 'CACNB1' protein.",
+    "cypher": "MATCH (dIC:DarkIonChannel)-[:interact]->(p:Protein {label: 'CACNB1'}) RETURN DISTINCT dIC.label AS DarkIonChannel LIMIT 100",
+    "error": null,
+    "stored_count": 6,
+    "live_count": 6,
+    "stored_sample": [
+      "CACNG3",
+      "CACNG8 (CACNG6)",
+      "CACNG7",
+      "CACNA2D4",
+      "CACNG4"
+    ],
+    "live_sample": [
+      "CACNG3",
+      "CACNG8 (CACNG6)",
+      "CACNG7",
+      "CACNA2D4",
+      "CACNG4"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A12",
+    "nl_query": "List all the ion channels from the family TRP.",
+    "cypher": "MATCH (p:Protein)-[:hasFamily]->(f:Family {label: 'TRP'}) RETURN DISTINCT p.label AS IonChannel LIMIT 100",
+    "error": null,
+    "stored_count": 29,
+    "live_count": 29,
+    "stored_sample": [
+      "MCOLN3",
+      "TRPC6 (TRP6)",
+      "TRPM6",
+      "TRPM4 (LTRPC4)",
+      "TRPC5 (TRP5)"
+    ],
+    "live_sample": [
+      "MCOLN3",
+      "TRPC6 (TRP6)",
+      "TRPM6",
+      "TRPM4 (LTRPC4)",
+      "TRPC5 (TRP5)"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A13",
+    "nl_query": "Which family has the largest number of dark ion channels?",
+    "cypher": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family) RETURN DISTINCT f.label AS Family, COUNT(d) AS DarkIonChannelCount ORDER BY DarkIonChannelCount DESC LIMIT 1",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "16",
+      "Unclassified"
+    ],
+    "live_sample": [
+      "16",
+      "Unclassified"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A14",
+    "nl_query": "List all dark ion channels that belong to the family labeled 'Unclassified'.",
+    "cypher": "MATCH (d:DarkIonChannel)-[:hasFamily]->(f:Family {label: 'Unclassified'}) RETURN DISTINCT d.label AS UnclassifiedDarkIonChannel LIMIT 100",
+    "error": null,
+    "stored_count": 16,
+    "live_count": 16,
+    "stored_sample": [
+      "PLLP (PMLP, TM4SF11)",
+      "CALHM6 (C6orf187, FAM26F)",
+      "GPR89A (GPHRA, GPR89, SH120)",
+      "GPR89B (GPHRB, GPR89C)",
+      "TMC7"
+    ],
+    "live_sample": [
+      "PLLP (PMLP, TM4SF11)",
+      "CALHM6 (C6orf187, FAM26F)",
+      "GPR89A (GPHRA, GPR89, SH120)",
+      "GPR89B (GPHRB, GPR89C)",
+      "TMC7"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A15",
+    "nl_query": "What molecular functions are associated with light ion channels that belong to the 'GABA' family?",
+    "cypher": "MATCH (lic:LightIonChannel)-[:hasFamily]->(f:Family {label: 'GABA'}), (lic)-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.label AS MolecularFunction LIMIT 100",
+    "error": null,
+    "stored_count": 34,
+    "live_count": 34,
+    "stored_sample": [
+      "monoatomic ion channel activity",
+      "transmembrane signaling receptor activity",
+      "transmitter-gated monoatomic ion channel activity involved in regulation of postsynaptic membrane potential",
+      "inorganic anion transmembrane transporter activity",
+      "postsynaptic neurotransmitter receptor activity"
+    ],
+    "live_sample": [
+      "monoatomic ion channel activity",
+      "transmembrane signaling receptor activity",
+      "transmitter-gated monoatomic ion channel activity involved in regulation of postsynaptic membrane potential",
+      "inorganic anion transmembrane transporter activity",
+      "postsynaptic neurotransmitter receptor activity"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A16",
+    "nl_query": "List all the ions and gating mechanisms for the 'K' family of dark ion channels.",
+    "cypher": "MATCH (p:DarkIonChannel)-[:hasFamily]->(f:Family {label: 'K'}), (p)-[:hasIonAsso]->(i:Ion), (p)-[:hasGateMechanism]->(g:GateMechanism) RETURN DISTINCT p.label AS IonChannel, i.label AS Ion, g.label AS GateMechanism LIMIT 100",
+    "error": null,
+    "stored_count": 19,
+    "live_count": 19,
+    "stored_sample": [
+      "inward rectifier",
+      "KCNG3",
+      "KCNG4 (KCNG3)",
+      "KCND1",
+      "potassium"
+    ],
+    "live_sample": [
+      "inward rectifier",
+      "KCNG3",
+      "KCNG4 (KCNG3)",
+      "KCND1",
+      "potassium"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "A17",
+    "nl_query": "Find all proteins involved in the 'Fatty acid metabolism' pathway.",
+    "cypher": "MATCH (p:Protein)-[:hasPathway]->(pw:Pathway {label: 'Fatty acid metabolism'}) RETURN DISTINCT p.label AS Protein LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "LTA4H LTA4",
+      "FAAH2 AMDD",
+      "PTGS1 COX1",
+      "ELOVL5 ELOVL2 PRO0530",
+      "CYP2C19"
+    ],
+    "live_sample": [
+      "LTA4H LTA4",
+      "FAAH2 AMDD",
+      "PTGS1 COX1",
+      "ELOVL5 ELOVL2 PRO0530",
+      "CYP2C19"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B1",
+    "nl_query": "Find all light ion channels that are involved in the same biological process as the protein 'CFTR'.",
+    "cypher": "MATCH (p1:LightIonChannel)-[:hasBiologicalProcess]->(bp:BiologicalProcess)<-[:hasBiologicalProcess]-(p2:Protein {label: 'CFTR'}) RETURN DISTINCT p1.label AS LightIonChannel,  bp.label AS BiologicalProcess LIMIT 100",
+    "error": null,
+    "stored_count": 52,
+    "live_count": 52,
+    "stored_sample": [
+      "GJA1 (GJAL) (CX43)",
+      "GABRG2",
+      "chloride transport",
+      "CACNA1A (CACH4, CACN3, CACNL1A4)",
+      "CLIC2"
+    ],
+    "live_sample": [
+      "GJA1 (GJAL) (CX43)",
+      "GABRG2",
+      "chloride transport",
+      "CACNA1A (CACH4, CACN3, CACNL1A4)",
+      "CLIC2"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B2",
+    "nl_query": "Find all dark ion channels that are involved in the same pathway as the 'CACNG6' dark ion channel.",
+    "cypher": "MATCH (lic1:DarkIonChannel {label: 'CACNG6'})-[:hasPathway]->(pw:Pathway)<-[:hasPathway]-(lic2:DarkIonChannel) RETURN DISTINCT lic2.label AS LightIonChannel2, pw.label AS Pathway LIMIT 100",
+    "error": null,
+    "stored_count": 7,
+    "live_count": 7,
+    "stored_sample": [
+      "CACNG8 (CACNG6)",
+      "Phase 0 - rapid depolarisation",
+      "CACNG7",
+      "Phase 2 - plateau phase",
+      "CACNA2D2 (KIAA0558)"
+    ],
+    "live_sample": [
+      "CACNG8 (CACNG6)",
+      "Phase 0 - rapid depolarisation",
+      "CACNG7",
+      "Phase 2 - plateau phase",
+      "CACNA2D2 (KIAA0558)"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B3",
+    "nl_query": "Find all diseases that are linked to proteins that bind to the 'ferric oxide' chemical.",
+    "cypher": "MATCH (c:Chemical {label: 'ferric oxide'})-[:assoWithGene]->(p:Protein)-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT d.label AS Disease LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "Bronchial Hyperreactivity",
+      "Optic Atrophy, Hereditary, Leber",
+      "Urticaria",
+      "Skin Diseases",
+      "Dermatomyositis"
+    ],
+    "live_sample": [
+      "Bronchial Hyperreactivity",
+      "Optic Atrophy, Hereditary, Leber",
+      "Urticaria",
+      "Skin Diseases",
+      "Dermatomyositis"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B4",
+    "nl_query": "Find all functional domains that the protein 'CFTR' shares with other proteins.",
+    "cypher": "MATCH (p1:Protein {label: 'CFTR'})-[:hasFunctionalDomain]->(fd:FunctionalDomain)<-[:hasFunctionalDomain]-(p2:Protein) RETURN DISTINCT p2.label AS OtherProtein, fd.label AS SharedFunctionalDomain LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "LOC101106534",
+      "haf-4 CELE_W04C9.1 W04C9.1",
+      "ABCC4 EST3 MRP4 At2g47800 F17A22.19",
+      "PHAVU_001G165500g",
+      "CARUB_v10012819mg"
+    ],
+    "live_sample": [
+      "LOC101106534",
+      "haf-4 CELE_W04C9.1 W04C9.1",
+      "ABCC4 EST3 MRP4 At2g47800 F17A22.19",
+      "PHAVU_001G165500g",
+      "CARUB_v10012819mg"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B5",
+    "nl_query": "Find all the proteins that are associated with the same pathways and conduct the same ions as the protein 'KCNG3'.",
+    "cypher": "MATCH (p1:Protein {label: 'KCNG3'})-[:hasPathway]->(pw:Pathway)<-[:hasPathway]-(p2:Protein),(p1)-[:hasIonAsso]->(ion:Ion)<-[:hasIonAsso]-(p2) RETURN DISTINCT p2.label AS Protein LIMIT 100",
+    "error": null,
+    "stored_count": 71,
+    "live_count": 71,
+    "stored_sample": [
+      "KCNQ4",
+      "KCNG1",
+      "KCNF1",
+      "KCNK18 (TRESK, TRIK)",
+      "KCNH5 (EAG2)"
+    ],
+    "live_sample": [
+      "KCNQ4",
+      "KCNG1",
+      "KCNF1",
+      "KCNK18 (TRESK, TRIK)",
+      "KCNH5 (EAG2)"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B6",
+    "nl_query": "List all biological processes that are connected to chemicals associated with the protein 'TRPM8'.",
+    "cypher": "MATCH (p:Protein {label: 'TRPM8'})<-[:assoWithGene]-(c:Chemical)-[:assoWithBiologicalProcess]->(bp:BiologicalProcess) RETURN DISTINCT c.label AS Chemical, bp.label AS BiologicalProcess LIMIT 100",
+    "error": null,
+    "stored_count": 95,
+    "live_count": 95,
+    "stored_sample": [
+      "allyl isothiocyanate",
+      "intracellular calcium ion homeostasis",
+      "positive regulation of G2/M transition of mitotic cell cycle",
+      "negative regulation of cell population proliferation",
+      "locomotion involved in locomotory behavior"
+    ],
+    "live_sample": [
+      "allyl isothiocyanate",
+      "intracellular calcium ion homeostasis",
+      "positive regulation of G2/M transition of mitotic cell cycle",
+      "negative regulation of cell population proliferation",
+      "locomotion involved in locomotory behavior"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B7",
+    "nl_query": "Identify all pathways that connect the dark ion channel 'CACNG3' to diseases through proteins implicated in those diseases.",
+    "cypher": "MATCH (dIC:DarkIonChannel {label: 'CACNG3'})-[:hasPathway]->(pw:Pathway)<-[:hasPathway]-(p:Protein)-[:implicatedInDisease]->(d:Disease) RETURN DISTINCT pw.label AS Pathway, d.label AS Disease LIMIT 100",
+    "error": null,
+    "stored_count": 43,
+    "live_count": 43,
+    "stored_sample": [
+      "Carcinoma, Squamous Cell",
+      "Glioblastoma",
+      "Pancreatitis",
+      "Celiac Disease",
+      "Exfoliative Ichthyosis, Autosomal Recessive, Ichthyosis Bullosa of Siemens-like"
+    ],
+    "live_sample": [
+      "Carcinoma, Squamous Cell",
+      "Glioblastoma",
+      "Pancreatitis",
+      "Celiac Disease",
+      "Exfoliative Ichthyosis, Autosomal Recessive, Ichthyosis Bullosa of Siemens-like"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B8",
+    "nl_query": "Retrieve all molecular functions associated with proteins implicated in 'Seizures' disease.",
+    "cypher": "MATCH (p:Protein)-[:implicatedInDisease]->(d:Disease {label: 'Seizures'}), (p)-[:hasMolecularFunction]->(mf:MolecularFunction) RETURN DISTINCT mf.label AS MolecularFunction LIMIT 100",
+    "error": null,
+    "stored_count": 84,
+    "live_count": 84,
+    "stored_sample": [
+      "lyase activity",
+      "ethanolamine kinase activity",
+      "calcium ion transmembrane transporter activity",
+      "sphingolipid transporter activity",
+      "adenyl nucleotide binding"
+    ],
+    "live_sample": [
+      "lyase activity",
+      "ethanolamine kinase activity",
+      "calcium ion transmembrane transporter activity",
+      "sphingolipid transporter activity",
+      "adenyl nucleotide binding"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "B9",
+    "nl_query": "Retrieve the functional domains of proteins that are associated with the chemical 'ferric oxide'.",
+    "cypher": "MATCH (c:Chemical {label: 'ferric oxide'})-[:assoWithGene]->(lic:Protein)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT lic.label AS LightIonChannel, fd.label AS FunctionalDomain LIMIT 100",
+    "error": null,
+    "stored_count": 33,
+    "live_count": 33,
+    "stored_sample": [
+      "Histone",
+      "TIMP2",
+      "ICAM_N",
+      "Bax",
+      "CASP3"
+    ],
+    "live_sample": [
+      "Histone",
+      "TIMP2",
+      "ICAM_N",
+      "Bax",
+      "CASP3"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C1",
+    "nl_query": "Which family and group does the ion channel 'HTR3E' belong to?",
+    "cypher": "MATCH (p:Protein {label: 'HTR3E'})-[:hasFamily]->(f:Family) MATCH (p)-[:hasGroup]->(g:Group) RETURN DISTINCT f.label AS Family, g.label AS Group LIMIT 100",
+    "error": null,
+    "stored_count": 2,
+    "live_count": 2,
+    "stored_sample": [
+      "LGIC",
+      "5-HT3"
+    ],
+    "live_sample": [
+      "LGIC",
+      "5-HT3"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C2",
+    "nl_query": "Find all ion channels that are connected to the 'Neuronal System' pathway through interacting proteins.",
+    "cypher": "MATCH (pw:Pathway {label: 'Neuronal System'})<-[:hasPathway]-(p1:Protein)-[:interact]-(p2:Protein)-[:interact]-(ic) WHERE ic:LightIonChannel OR ic:DarkIonChannel RETURN DISTINCT ic.label AS IonChannel LIMIT 100",
+    "error": null,
+    "stored_count": 100,
+    "live_count": 100,
+    "stored_sample": [
+      "GJC1 (GJA7)(CX45)",
+      "KCNA1",
+      "GJA5 (CX40)",
+      "CACNA1A (CACH4, CACN3, CACNL1A4)",
+      "CHRNB3"
+    ],
+    "live_sample": [
+      "GJC1 (GJA7)(CX45)",
+      "KCNA1",
+      "GJA5 (CX40)",
+      "CACNA1A (CACH4, CACN3, CACNL1A4)",
+      "CHRNB3"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C3",
+    "nl_query": "List the functional domains that are present in the light ion channels of the Chloride channels group.",
+    "cypher": "MATCH (lic:LightIonChannel)-[:hasGroup]->(g:Group {label: 'Chloride channels'}) MATCH (lic)-[:hasFunctionalDomain]->(fd:FunctionalDomain) RETURN DISTINCT lic.label AS LightIonChannel, fd.label AS FunctionalDomain LIMIT 100",
+    "error": null,
+    "stored_count": 34,
+    "live_count": 34,
+    "stored_sample": [
+      "CLIC1 (G6, NCC27)",
+      "GST_C_2",
+      "VDAC3",
+      "CBS",
+      "CLIC2"
+    ],
+    "live_sample": [
+      "CLIC1 (G6, NCC27)",
+      "GST_C_2",
+      "VDAC3",
+      "CBS",
+      "CLIC2"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  },
+  {
+    "title": "C4",
+    "nl_query": "Which ions are connected to the chemical 'Ozone' through biological processes that involve proteins?",
+    "cypher": "MATCH (c:Chemical {label: 'Ozone'})-[:assoWithBiologicalProcess]->(:BiologicalProcess)<-[:hasBiologicalProcess]-(:Protein)-[:hasIonAsso]->(i:Ion) RETURN DISTINCT i.label AS Ion LIMIT 100",
+    "error": null,
+    "stored_count": 9,
+    "live_count": 9,
+    "stored_sample": [
+      "sodium",
+      "potassium",
+      "anion",
+      "protons",
+      "nonselective"
+    ],
+    "live_sample": [
+      "sodium",
+      "potassium",
+      "anion",
+      "protons",
+      "nonselective"
+    ],
+    "only_in_stored": [],
+    "only_in_live": [],
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "exact_match": true,
+    "status": "PASS"
+  }
+]
